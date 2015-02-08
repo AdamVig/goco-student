@@ -1,0 +1,36 @@
+<ion-view class="gordon-blue-background" view-title="Login">
+  <ion-content class="login-content text-center" scroll="false">
+    <img class="gordon-chapel"
+      src="img/gordon-chapel.svg">
+    <h2 class="login-title">Log In</h2>
+    <form name="loginForm"
+      novalidate
+      ng-submit="login.loginUser()">
+      <p class="login-info text-left">
+        Enter your credentials for Go Gordon.
+      </p>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text"
+            required
+            placeholder="Firstname.Lastname"
+            name="username"
+            ng-minlength="3"
+            ng-model="login.userCredentials.username">
+        </label>
+        <label class="item item-input">
+          <input type="password"
+            required
+            placeholder="Gordon Password"
+            name="password"
+            ng-model="login.userCredentials.password">
+        </label>
+      </div>
+      <button type="submit"
+        class="login-button button button-light"
+        ng-disabled="loginForm.$invalid">
+        All done!
+      </button>
+    </form>
+  </ion-content>
+</ion-view>
