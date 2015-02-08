@@ -1,0 +1,68 @@
+$gordon-blue: #014983;
+$text-color: #fff;
+
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 700;
+  src: url('/fonts/OpenSans-Bold.ttf') format('truetype');
+}
+
+.view.gordon-blue-background,
+.pane.gordon-blue-background {
+  background-color: $gordon-blue;
+}
+.scroll-content {
+  h1 { font-size: 15rem; }
+  h2 { font-size: 2.6rem; }
+  h1, h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: $text-color;
+  }
+}
+.main-content {
+  .chapel-loader-container {
+    .gordon-chapel {
+      margin-top: 7em;
+      height: 30em;
+      -webkit-animation: fill-cycle 1s infinite alternate;
+              animation: fill-cycle 1s infinite alternate;
+    }
+  }
+  .text-container {
+    margin-top: 8rem;
+    .chapel-message {
+      margin-top: 14rem;
+    }
+  }
+}
+.login-content {
+  .gordon-chapel {
+    margin-top: 2rem;
+    height: 15rem;
+  }
+  .login-title {
+    margin-top: 0;
+  }
+  .login-info {
+    margin-left: 3%;
+    margin-top: 50px;
+    margin-bottom: -15px;
+    color: #fff;
+    font-size: 1.2em;
+    font-family: sans-serif;
+  }
+  .login-button {
+    width: 95%;
+  }
+}
+
+@-webkit-keyframes fill-cycle {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes fill-cycle {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
