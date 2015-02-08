@@ -1,14 +1,7 @@
-// Ionic Starter App
+var app = angular.module('gocostudent', ['ionic']);
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
-
-.run(function($ionicPlatform) {
+app.run(['$ionicPlatform', function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -16,4 +9,22 @@ angular.module('starter', ['ionic'])
       StatusBar.styleDefault();
     }
   });
-})
+}]).
+
+config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: 'html/login.html',
+      controller: 'LoginController as login'
+    })
+    .state('main', {
+      url: '/',
+      templateUrl: 'html/main.html',
+      controller: 'ChapelCreditController as chapel'
+    });
+
+  $urlRouterProvider.otherwise('/');
+}]).
+
+constant('ApiUrl', 'http://data.adamvig.com:5000');
