@@ -9,7 +9,7 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
 
     var config = {
       params: userCredentials,
-      timeout: 5000
+      timeout: 7500
     };
 
     return $http.get(ApiUrl + '/chapelcredit', config);
