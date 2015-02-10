@@ -34,4 +34,4 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
   $urlRouterProvider.otherwise('/');
 }]).
 
-constant('ApiUrl', 'http://data.adamvig.com:5000');
+constant('ApiUrl', 'https://adamvigdata.herokuapp.com/');
