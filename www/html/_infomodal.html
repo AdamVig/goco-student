@@ -1,0 +1,22 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title" ng-click="chapel.toggleModal()">Tap to close</h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        Yell at me on Twitter <a href="" onclick="window.open('https://twitter.com/MeetAdamJohn', '_system', 'location=yes'); return false;">@MeetAdamJohn</a>
+      </ion-item>
+      <ion-item>
+        Stalk me at <a href="" onclick="window.open('http://www.adamvig.com/', '_system', 'location=yes'); return false;">AdamVig.com</a>
+      </ion-item>
+      <ion-item>
+        Good luck using <a href="" onclick="window.open('http://go.gordon.edu/', '_system', 'location=yes'); return false;">Go Gordon</a>
+      </ion-item>
+      <ion-item class="assertive"
+        ng-click="chapel.logout()">
+        Logout
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>
