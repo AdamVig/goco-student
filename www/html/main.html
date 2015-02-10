@@ -13,11 +13,10 @@
       </div>
       <div class="chapel-message" ng-show="chapel.message">
         <h2>{{chapel.message}}</h2>
-        <button class="button button-light"
-          ng-click="chapel.logout()">
-          Logout and try again
-        </button>
       </div>
     </div>
   </ion-content>
+  <ion-footer-bar class="bar-light" ng-click="chapel.toggleModal()">
+    <h1 class="title">Menu</h1>
+  </ion-footer-bar>
 </ion-view>
