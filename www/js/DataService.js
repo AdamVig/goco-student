@@ -6,6 +6,12 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
    * @return {promise}                 Fulfilled by response from server
    */
   this.getChapelCredit = function (userCredentials) {
-    return $http.get(ApiUrl + '/chapelcredit', { params: userCredentials });
+
+    var config = {
+      params: userCredentials,
+      timeout: 5000
+    };
+
+    return $http.get(ApiUrl + '/chapelcredit', config);
   };
 }]);
