@@ -8,6 +8,13 @@ app.run(['$ionicPlatform', function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    if (window.AdMob) {
+      AdMob.prepareInterstitial({
+        adId: 'ca-app-pub-9660792847854450/1366364053',
+        autoShow: false
+      });
+    }
+
   });
 }]).
 
