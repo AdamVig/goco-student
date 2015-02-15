@@ -25,7 +25,13 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
         chapel.isLoading = false;
       }).
       error(function(data, status) {
-        chapel.message = "Oops! Couldn't find your chapel credit.";
+        if (status == 401) {
+          chapel.message = "Username and password don't match. Log out and try again!"
+        } else if (status == 500 || status == 404) {
+          chapel.message = "Something went horribly wrong. Try again later!"
+        } else {
+          chapel.message = "Oops! Couldn't find your chapel credit.";
+        }
       }).
       finally(function() {
         chapel.isLoading = false;
