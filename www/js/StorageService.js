@@ -5,7 +5,7 @@ app.service('StorageService', ['$window', function ($window) {
    * @param {object} userCredentials Contains username and password
    */
   this.storeCredentials = function (userCredentials) {
-    $window.localStorage['Gordon.Username'] = userCredentials.username;
+    $window.localStorage['Gordon.Username'] = userCredentials.username.toLowerCase();
     $window.localStorage['Gordon.Password'] = userCredentials.password;
   };
 
