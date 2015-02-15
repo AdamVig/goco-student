@@ -12,6 +12,6 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
       timeout: 7500
     };
 
-    return $http.get(ApiUrl + '/chapelcredit', config);
+    return $http.get(ApiUrl + 'chapelcredit', config);
   };
 }]);
