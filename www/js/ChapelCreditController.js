@@ -40,9 +40,12 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
     } else {
       $state.go('login');
     }
-  };
+  })();
 
-  chapel.refreshData();
+  // Refresh data on app load
+  $ionicPlatform.on('resume', function() {
+    chapel.refreshData();
+  });
 
   chapel.toggleModal = function() {
     chapel.modal.isShown() ? chapel.modal.hide() : chapel.modal.show();
