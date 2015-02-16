@@ -1,20 +1,34 @@
-app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$ionicModal', 'DataService', 'StorageService', function ($scope, $state, $filter, $timeout, $ionicModal, DataService, StorageService) {
+app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', function ($scope, $state, $filter, $timeout, $ionicPlatform, $ionicModal, DataService, StorageService) {
 
   var chapel = this;
-  if (window.AdMob) AdMob.showInterstitial();
   chapel.isLoading = true;
   chapel.chapelCredit = { credit: "" };
   chapel.userCredentials = StorageService.retrieveCredentials();
+
+  // Advertisement
+  var showAdvertisement = function () {
+    if (window.AdMob) {
+      AdMob.prepareInterstitial({
+        adId: 'ca-app-pub-9660792847854450/1366364053',
+        autoShow: true
+      });
+    }
+  };
+
+  // Menu modal
   $ionicModal.fromTemplateUrl('html/_menu.html', {
     scope: $scope
   }).then(function(modal) {
     chapel.modal = modal;
   });
 
-  chapel.refreshData = function () {
+  // Refresh data (immediately-invoked)
+  (chapel.refreshData = function () {
 
+    console.log("Refreshing data.");
     if (chapel.modal) chapel.modal.hide();
     chapel.isLoading = true;
+    showAdvertisement();
 
     if (chapel.userCredentials != false) {
       chapel.userName = $filter('NameFilter')(chapel.userCredentials.username);

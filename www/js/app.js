@@ -5,13 +5,6 @@ app.run(['$ionicPlatform', function($ionicPlatform) {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if (window.AdMob) {
-      AdMob.prepareInterstitial({
-        adId: 'ca-app-pub-9660792847854450/1366364053',
-        autoShow: false
-      });
-    }
-
   });
 }]).
 
