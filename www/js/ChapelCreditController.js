@@ -25,7 +25,6 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
   // Refresh data (immediately-invoked)
   (chapel.refreshData = function () {
 
-    console.log("Refreshing data.");
     if (chapel.modal) chapel.modal.hide();
     chapel.isLoading = true;
     showAdvertisement();
