@@ -1,4 +1,9 @@
 <ion-view class="gordon-blue-background" view-title="Chapel Credit" cache-view="false">
+  <ion-header-bar class="bar-balanced"
+    ng-show="chapel.banner.body"
+    ng-click="chapel.toggleModal('banner')">
+    <h1 class="title">{{chapel.banner.title}}</h1>
+  </ion-header-bar>
   <ion-content class="main-content center text-center">
     <div class="chapel-loader-container" ng-show="chapel.isLoading">
       <img class="gordon-chapel"
@@ -16,7 +21,7 @@
       </div>
     </div>
   </ion-content>
-  <ion-footer-bar class="bar-light" ng-click="chapel.toggleModal()">
+  <ion-footer-bar class="bar-light" ng-click="chapel.toggleModal('menu')">
     <h1 class="title">Menu</h1>
   </ion-footer-bar>
 </ion-view>

@@ -1,9 +1,10 @@
-app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', function ($scope, $state, $filter, $timeout, $ionicPlatform, $ionicModal, DataService, StorageService) {
+app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'DatabaseFactory', function ($scope, $state, $filter, $timeout, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, DatabaseFactory) {
 
   var chapel = this;
   chapel.isLoading = true;
   chapel.chapelCredit = { credit: "" };
   chapel.userCredentials = StorageService.retrieveCredentials();
+  chapel.modal = {};
 
   // Advertisement
   var showAdvertisement = function () {
@@ -19,13 +20,20 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
   $ionicModal.fromTemplateUrl('html/_menu.html', {
     scope: $scope
   }).then(function(modal) {
-    chapel.modal = modal;
+    chapel.modal.menu = modal;
+  });
+
+  // Menu modal
+  $ionicModal.fromTemplateUrl('html/_banner.html', {
+    scope: $scope
+  }).then(function(modal) {
+    chapel.modal.banner = modal;
   });
 
   // Refresh data (immediately-invoked)
   (chapel.refreshData = function () {
 
-    if (chapel.modal) chapel.modal.hide();
+    if (chapel.menu) chapel.modal.menu.hide();
     chapel.isLoading = true;
     showAdvertisement();
 
@@ -61,8 +69,19 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
     chapel.refreshData();
   });
 
-  chapel.toggleModal = function() {
-    chapel.modal.isShown() ? chapel.modal.hide() : chapel.modal.show();
+  DatabaseFactory.get('message').then(function (response) {
+    if (response.data) {
+      if (response.data.body != "") {
+        chapel.banner = response.data;
+        chapel.banner.body = $sce.trustAsHtml(chapel.banner.body);
+      }
+    }
+  });
+
+  chapel.toggleModal = function(modalName) {
+    chapel.modal[modalName].isShown() ?
+      chapel.modal[modalName].hide() :
+      chapel.modal[modalName].show();
   };
 
   chapel.logout = function () {
