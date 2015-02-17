@@ -40,7 +40,7 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
       error(function(data, status) {
         if (status == 401) {
           chapel.message = "Username and password don't match. Log out and try again!"
-        } else if (data == null) {
+        } else if (status == 0) {
           chapel.message = "Oops! Couldn't find your chapel credit.";
         } else {
           console.error("Error getting data. Status:", status, "Response:", response);
