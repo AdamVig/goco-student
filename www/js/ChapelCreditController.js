@@ -1,4 +1,4 @@
-app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'DatabaseFactory', function ($scope, $state, $filter, $timeout, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, DatabaseFactory) {
+app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', function ($scope, $state, $filter, $timeout, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory) {
 
   var chapel = this;
   chapel.isLoading = true;
@@ -32,6 +32,8 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
 
   // Refresh data (immediately-invoked)
   (chapel.refreshData = function () {
+
+    UsageService.log(chapel.userCredentials.username);
 
     if (chapel.menu) chapel.modal.menu.hide();
     chapel.isLoading = true;
