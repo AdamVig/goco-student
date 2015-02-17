@@ -7055,18 +7055,16 @@ a.button {
 .view.gordon-blue-background, .pane.gordon-blue-background {
   background-color: #014983; }
 
-.scroll-content {
+.scroll-content h1 {
+  font-size: 75vw;
+  line-height: 1; }
+.scroll-content h2 {
+  font-size: 10vw; }
+.scroll-content h1, .scroll-content h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
   color: #fff; }
-  .scroll-content h1 {
-    font-size: 75vw;
-    line-height: 1; }
-  .scroll-content h2 {
-    font-size: 10vw; }
-  .scroll-content h1, .scroll-content h2 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #fff; }
 
 .main-content .chapel-loader-container .gordon-chapel {
   margin-bottom: -1.1rem;
@@ -7082,6 +7080,10 @@ a.button {
 
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0); }
+
+.banner-content {
+  font-size: 1.2rem;
+  line-height: 1.5rem; }
 
 .platform-ios.platform-cordova:not(.fullscreen) .modal .bar-header:not(.bar-subheader) {
   height: 44px; }
@@ -7113,7 +7115,8 @@ a.button {
   .login-content .login-form .login-info {
     margin-top: 2rem;
     font-size: 1.2rem;
-    font-family: sans-serif; }
+    font-family: sans-serif;
+    color: #fff; }
   .login-content .login-form .login-errors {
     margin-left: 1rem;
     text-align: left;

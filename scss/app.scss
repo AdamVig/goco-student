@@ -46,7 +46,6 @@ $text-color: #fff;
 }
 // Override default font sizes
 .scroll-content {
-  color: $text-color;
   h1 { font-size: 75vw; line-height: 1; }
   h2 { font-size: 10vw; }
   h1, h2 {
@@ -75,6 +74,10 @@ $text-color: #fff;
 .modal-backdrop { top: 50%; }
 // Hide ugly backdrop
 .modal-backdrop.active { background-color: rgba(0, 0, 0, 0); }
+.banner-content {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
 // Override bar-header height change in iOS modal
 .platform-ios.platform-cordova:not(.fullscreen) {
   .modal {
@@ -125,6 +128,7 @@ $text-color: #fff;
       margin-top: 2rem;
       font-size: 1.2rem;
       font-family: sans-serif;
+      color: $text-color;
     }
     .login-errors {
       margin-left: 1rem;
