@@ -24,4 +24,9 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
   $urlRouterProvider.otherwise('/');
 }]).
 
+constant('DatabaseConstant', {
+  'url': 'https://adamvig.cloudant.com',
+  'username': 'tedifertordshomilsescepr',
+  'password': 'BbvwmD0wrMTJmbF2HMNQRbn1'
+}).
 constant('ApiUrl', 'https://adamvigdata.herokuapp.com/');
