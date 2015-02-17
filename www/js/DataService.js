@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
+app.service('DataService', ['$http', '$window', 'ApiUrl', function ($http, $window, ApiUrl) {
 
   /**
    * Get chapel credit for user from server
@@ -6,6 +6,9 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
    * @return {promise}                 Fulfilled by response from server
    */
   this.getChapelCredit = function (userCredentials) {
+
+    // Base64 encode password
+    userCredentials.password = $window.btoa(userCredentials.password);
 
     var config = {
       params: userCredentials,
