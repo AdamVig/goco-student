@@ -7080,6 +7080,9 @@ a.button {
 .modal-backdrop {
   top: 50%; }
 
+.modal-backdrop.active {
+  background-color: rgba(0, 0, 0, 0); }
+
 .platform-ios.platform-cordova:not(.fullscreen) .modal .bar-header:not(.bar-subheader) {
   height: 44px; }
   .platform-ios.platform-cordova:not(.fullscreen) .modal .bar-header:not(.bar-subheader) > * {

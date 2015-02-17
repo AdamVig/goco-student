@@ -73,6 +73,8 @@ $text-color: #fff;
 }
 // Make Modal only cover part of the screen
 .modal-backdrop { top: 50%; }
+// Hide ugly backdrop
+.modal-backdrop.active { background-color: rgba(0, 0, 0, 0); }
 // Override bar-header height change in iOS modal
 .platform-ios.platform-cordova:not(.fullscreen) {
   .modal {
