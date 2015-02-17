@@ -85,7 +85,7 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
   };
 
   chapel.logout = function () {
-    chapel.modal.hide();
+    chapel.modal.menu.hide();
     StorageService.eraseCredentials();
     $state.go('login');
   };
