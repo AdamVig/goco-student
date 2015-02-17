@@ -29,4 +29,4 @@ constant('DatabaseConstant', {
   'username': 'tedifertordshomilsescepr',
   'password': 'BbvwmD0wrMTJmbF2HMNQRbn1'
 }).
-constant('ApiUrl', 'https://data.adamvig.com/');
+constant('ApiUrl', 'http://data.adamvig.com/');
