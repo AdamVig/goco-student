@@ -6,28 +6,41 @@ app.service('UsageService', ['$filter', 'DatabaseFactory', function ($filter, Da
    */
   this.log = function (username) {
 
-    DatabaseFactory.get(username).then(function (response) {
-      var userData;
+    var userData;
+
+    DatabaseFactory.get(username).
+    success(function (response) {
 
       // Update usage info if user exists in database
-      if (response.status == 200) {
+      userData = response;
+      userData.lastLogin = $filter('date')(Date.now(), 'short');
 
-        userData = response.data;
-        userData.lastLogin = $filter('date')(Date.now(), 'short');
+      // Check for existence of totalLogins before incrementing
+      if (userData.totalLogins) {
         userData.totalLogins++;
-
-      // Create new usage info if user doesn't exist in database
       } else {
-
-        userData = {
-          '_id': chapel.userCredentials.username,
-          'firstLogin': $filter('date')(Date.now(), 'short'),
-          'lastLogin': $filter('date')(Date.now(), 'short'),
-          'totalLogins': 1
-        };
+        userData.totalLogins = 1;
       }
 
+
+    }).
+    error(function (response) {
+
+      // Create new usage info if user doesn't exist in database
+      userData = {
+        '_id': username,
+        'firstLogin': $filter('date')(Date.now(), 'short'),
+        'lastLogin': $filter('date')(Date.now(), 'short'),
+        'totalLogins': 1
+      };
+
+    }).
+    finally(function () {
+
       return DatabaseFactory.insert(userData);
+
     });
+
+
   };
 }]);
