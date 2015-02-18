@@ -64,13 +64,15 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
     } else {
       $state.go('login');
     }
-  })();
+  };
 
-  // Refresh data on app load
-  $ionicPlatform.on('resume', function() {
-    chapel.refreshData();
-  });
+  // Refresh data on app resume
+  $ionicPlatform.on('resume', chapel.refreshData);
 
+  // Refresh data on app open
+  $ionicPlatform.ready(chapel.refreshData);
+
+  // Get banner message from database
   DatabaseFactory.get('message').then(function (response) {
     if (response.data) {
       if (response.data.body != "") {
@@ -80,12 +82,14 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
     }
   });
 
+  // Hide/show modal based on its current state
   chapel.toggleModal = function(modalName) {
     chapel.modal[modalName].isShown() ?
       chapel.modal[modalName].hide() :
       chapel.modal[modalName].show();
   };
 
+  // Erase stored user info and go to login page
   chapel.logout = function () {
     chapel.modal.menu.hide();
     StorageService.eraseCredentials();
