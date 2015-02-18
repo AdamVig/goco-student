@@ -6,7 +6,7 @@ app.service('StorageService', ['$window', function ($window) {
    */
   this.storeCredentials = function (userCredentials) {
     $window.localStorage['Gordon.Username'] = userCredentials.username.toLowerCase();
-    $window.localStorage['Gordon.Password'] = userCredentials.password;
+    $window.localStorage['Gordon.Password'] = $window.btoa(userCredentials.password);
   };
 
   /**
