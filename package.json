@@ -20,8 +20,8 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "com.google.cordova.admob",
     "org.apache.cordova.inappbrowser",
-    "org.apache.cordova.statusbar"
+    "org.apache.cordova.statusbar",
+    "com.admob.google"
   ]
 }
