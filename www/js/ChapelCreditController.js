@@ -1,20 +1,10 @@
-app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeout', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', function ($scope, $state, $filter, $timeout, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory) {
+app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', function ($scope, $state, $filter, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory) {
 
   var chapel = this;
   chapel.isLoading = true;
   chapel.chapelCredit = { credit: "" };
   chapel.userCredentials = StorageService.retrieveCredentials();
   chapel.modal = {};
-
-  // Advertisement
-  var showAdvertisement = function () {
-    if (window.AdMob) {
-      AdMob.prepareInterstitial({
-        adId: 'ca-app-pub-9660792847854450/1366364053',
-        autoShow: true
-      });
-    }
-  };
 
   // Menu modal
   $ionicModal.fromTemplateUrl('html/_menu.html', {
@@ -30,22 +20,21 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
     chapel.modal.banner = modal;
   });
 
-  // Refresh data (immediately-invoked)
-  (chapel.refreshData = function () {
+  // Refresh data
+  chapel.refreshData = function () {
 
-    UsageService.log(chapel.userCredentials.username);
-
-    if (chapel.menu) chapel.modal.menu.hide();
+    if (chapel.modal.menu) chapel.modal.menu.hide();
     chapel.isLoading = true;
-    showAdvertisement();
 
     if (chapel.userCredentials != false) {
       chapel.userName = $filter('NameFilter')(chapel.userCredentials.username);
 
+      // Get chapel credit
       DataService.getChapelCredit(chapel.userCredentials).
       success(function(data) {
         chapel.chapelCredit.credit = data.credit;
         chapel.isLoading = false;
+        UsageService.log(chapel.userCredentials.username);
       }).
       error(function(data, status) {
         if (status == 401) {
@@ -59,18 +48,14 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$timeo
       }).
       finally(function() {
         chapel.isLoading = false;
-     });
+      });
 
     } else {
       $state.go('login');
     }
   };
 
-  // Refresh data on app resume
-  $ionicPlatform.on('resume', chapel.refreshData);
-
-  // Refresh data on app open
-  $ionicPlatform.ready(chapel.refreshData);
+  chapel.refreshData();
 
   // Get banner message from database
   DatabaseFactory.get('message').then(function (response) {
