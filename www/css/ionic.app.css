@@ -7076,7 +7076,7 @@ a.button {
   margin-right: 1em; }
 
 .modal-backdrop {
-  top: 50%; }
+  top: 45%; }
 
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0); }
