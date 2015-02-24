@@ -9,7 +9,7 @@ app.run(['$ionicPlatform', function($ionicPlatform) {
 
     if (window.admob) {
       admob.createBannerView({
-        isTesting: true,
+        isTesting: false,
         publisherId: "ca-app-pub-9660792847854450/1366364053"
       });
     }
