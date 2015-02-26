@@ -1,5 +1,6 @@
 <ion-view class="gordon-blue-background" view-title="Chapel Credit" cache-view="false">
   <ion-header-bar class="bar-balanced"
+    align-title="center"
     ng-show="chapel.banner.body"
     ng-click="chapel.toggleModal('banner')">
     <h1 class="title">{{chapel.banner.title}}</h1>
@@ -21,7 +22,7 @@
       </div>
     </div>
   </ion-content>
-  <ion-footer-bar class="bar-light" ng-click="chapel.toggleModal('menu')">
+  <ion-footer-bar class="menu-bar bar-light" ng-click="chapel.toggleModal('menu')">
     <h1 class="title">Menu</h1>
   </ion-footer-bar>
 </ion-view>
