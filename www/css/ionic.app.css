@@ -7056,7 +7056,7 @@ a.button {
   background-color: #014983; }
 
 .scroll-content h1 {
-  font-size: 75vw;
+  font-size: 70vw;
   line-height: 1; }
 .scroll-content h2 {
   font-size: 10vw; }
@@ -7075,13 +7075,17 @@ a.button {
   margin-left: 1em;
   margin-right: 1em; }
 
+.menu-bar.bar-footer {
+  border-bottom: 1px solid #ddd; }
+
 .modal-backdrop {
-  top: 45%; }
+  top: 45vh; }
 
 .modal-backdrop.active {
   background-color: rgba(0, 0, 0, 0); }
 
 .banner-content {
+  padding: 15px;
   font-size: 1.2rem;
   line-height: 1.5rem; }
 

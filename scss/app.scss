@@ -46,7 +46,7 @@ $text-color: #fff;
 }
 // Override default font sizes
 .scroll-content {
-  h1 { font-size: 75vw; line-height: 1; }
+  h1 { font-size: 70vw; line-height: 1; }
   h2 { font-size: 10vw; }
   h1, h2 {
     font-family: 'Open Sans', sans-serif;
@@ -70,11 +70,16 @@ $text-color: #fff;
     margin-right: 1em;
   }
 }
+// Add border to bottom of bar for advertisement
+.menu-bar.bar-footer {
+  border-bottom: 1px solid #ddd;
+}
 // Make Modal only cover part of the screen
-.modal-backdrop { top: 45%; }
+.modal-backdrop { top: 45vh; }
 // Hide ugly backdrop
 .modal-backdrop.active { background-color: rgba(0, 0, 0, 0); }
 .banner-content {
+  padding: 15px;
   font-size: 1.2rem;
   line-height: 1.5rem;
 }
