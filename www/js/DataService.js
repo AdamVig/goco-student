@@ -5,7 +5,7 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
    * @param  {object}  userCredentials Contains username and password
    * @return {promise}                 Fulfilled by response from server
    */
-  this.getChapelCredit = function (userCredentials) {
+  this.getChapelCredits = function (userCredentials) {
 
     var config = {
       params: userCredentials,
