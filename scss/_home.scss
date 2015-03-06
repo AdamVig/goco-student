@@ -17,6 +17,16 @@
       opacity: 0.75;
     }
   }
+  .nav-help {
+    height: 21px;
+    background-color: #fff;
+    &.ion-arrow-swap:before {
+      margin-right: 10px;
+      -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+              transform: rotate(90deg);
+    }
+  }
   .icon {
     height: 50%;
     background-repeat: no-repeat;
