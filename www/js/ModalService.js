@@ -1,6 +1,10 @@
 app.service('ModalService', ['$ionicModal', function ($ionicModal) {
   var modalService = this;
 
+  /**
+   * Create menu and banner modals
+   * @param {object} $scope Scope of controller
+   */
   this.createModals = function ($scope) {
     // Menu modal
     $ionicModal.fromTemplateUrl('html/_menu.html', {
@@ -17,6 +21,10 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
     });
   };
 
+  /**
+   * Toggle visibility of modal
+   * @param {String} modalName Name of modal
+   */
   this.toggleModal = function (modalName) {
     if (modalService[modalName]) {
       modalService[modalName].isShown() ?
@@ -25,10 +33,13 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
     }
   };
 
+  /**
+   * Hide a modal
+   * @param {String} modalName Name of modal
+   */
   this.hideModal = function (modalName) {
     if (modalService[modalName]) {
       modalService[modalName].hide();
     }
   };
-
 }]);

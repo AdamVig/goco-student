@@ -32,11 +32,19 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
     delete $window.localStorage['Gordon.Password'];
   };
 
+  /**
+   * Store banner title and body in localStorage
+   * @param {object} banner Contains banner title and body
+   */
   this.storeBanner = function (banner) {
     $window.localStorage['GoCoStudent.bannerTitle'] = banner.title;
     $window.localStorage['GoCoStudent.bannerBody'] = banner.body;
   };
 
+  /**
+   * Get banner title and body from localStorage
+   * @return {object}     Contains banner body as HTML and title
+   */
   this.retrieveBanner = function () {
 
     bannerTitle = $window.localStorage['GoCoStudent.bannerTitle'];
