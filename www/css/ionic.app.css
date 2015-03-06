@@ -7033,6 +7033,9 @@ a.button {
   font-weight: 700;
   text-transform: uppercase;
   color: #fff; }
+.scroll-content .text-container {
+  margin-left: 1em;
+  margin-right: 1em; }
 
 .menu-bar.bar-footer {
   border-bottom: 1px solid #ddd; }
@@ -7055,6 +7058,15 @@ a.button {
 .platform-ios.platform-cordova:not(.fullscreen) .modal .has-header {
   top: 44px; }
 
+a {
+  text-decoration: none; }
+
+.chapel-loader-container .gordon-chapel {
+  margin-bottom: -1.1rem;
+  height: 20em;
+  -webkit-animation: fade 1s infinite alternate;
+  animation: fade 1s infinite alternate; }
+
 @-webkit-keyframes fade {
   0% {
     opacity: 1; }
@@ -7068,3 +7080,113 @@ a.button {
 
   100% {
     opacity: 0; } }
+
+.chapel-credit-content .chapel-loader-container .gordon-chapel {
+  margin-bottom: -1.1rem;
+  height: 20em;
+  -webkit-animation: fade 1s infinite alternate;
+  animation: fade 1s infinite alternate; }
+
+.home-content .scroll {
+  width: 100%;
+  height: 100%; }
+.home-content .button {
+  height: 50%;
+  margin: 0;
+  border: 0; }
+  .home-content .button.chapel-credit-button {
+    background-color: #014983; }
+  .home-content .button.meal-points-button {
+    background-color: #F2A42C; }
+  .home-content .button.activated > * {
+    opacity: 0.75; }
+.home-content .icon {
+  height: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; }
+  .home-content .icon.chapel-icon {
+    background-image: url('/img/chapel.svg'); }
+  .home-content .icon.meal-points-icon {
+    background-image: url('/img/silverware.svg'); }
+
+.login-content .gordon-chapel {
+  width: 34vw;
+  margin-top: 1rem; }
+.login-content .login-title {
+  margin-top: 0;
+  text-align: center; }
+.login-content .login-form {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem; }
+  .login-content .login-form .item {
+    margin-top: 5px;
+    margin-bottom: 5px; }
+    .login-content .login-form .item.has-error {
+      border-bottom: 2px solid red; }
+      .login-content .login-form .item.has-error .input-label {
+        color: red; }
+    .login-content .login-form .item.valid {
+      border-bottom: 2px solid green; }
+      .login-content .login-form .item.valid .input-label {
+        color: green; }
+  .login-content .login-form .login-info {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-family: sans-serif;
+    color: #fff; }
+  .login-content .login-form .login-errors {
+    margin-left: 1rem;
+    text-align: left;
+    font-weight: 500;
+    color: red; }
+    .login-content .login-form .login-errors.ng-hide {
+      visibility: hidden;
+      display: block !important; }
+  .login-content .login-form .login-button {
+    width: 75%; }
+
+.view.meal-points-background, .pane.meal-points-background {
+  background-color: #F2A42C; }
+
+.meal-points-content.scroll-content h1 {
+  font-size: 18vw; }
+.meal-points-content .icon {
+  height: 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; }
+  .meal-points-content .icon.meal-points-icon {
+    background-image: url('/img/silverware.svg'); }
+
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: stretch;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.horizontal-center, .login-content .gordon-chapel, .login-content .login-form .login-button {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); }
