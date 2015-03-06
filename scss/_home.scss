@@ -18,7 +18,10 @@
     }
   }
   .nav-help {
-    height: 21px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1.4rem;
+    color: $muted-gray;
     background-color: #fff;
     &.ion-arrow-swap:before {
       margin-right: 10px;
