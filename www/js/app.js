@@ -35,16 +35,6 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
       url: '/',
       templateUrl: 'html/home.html',
       controller: 'HomeController as home'
-    })
-    .state('mealpoints', {
-      url: '/mealpoints',
-      templateUrl: 'html/mealpoints.html',
-      controller: 'MealPointsController as meal'
-    })
-    .state('chapelcredit', {
-      url: '/chapelcredit',
-      templateUrl: 'html/chapelcredit.html',
-      controller: 'ChapelCreditController as chapel'
     });
 
   $urlRouterProvider.otherwise('/');
