@@ -12,21 +12,25 @@
           ng-class="{loading: home.loading.chapelCredits}"
           ng-hide="home.loading.chapelCredits === false"></div>
         <div ng-hide="home.errorMessage.chapelCredits">
-          <h1>{{home.chapelCredits}}</h1>
+          <h1 ng-hide="home.loading.chapelCredits">
+            {{home.chapelCredits}}
+          </h1>
           <h2>Chapel Credits</h2>
         </div>
         <h2 ng-show="home.errorMessage.chapelCredits">
           {{home.errorMessage.chapelCredits}}
         </h2>
       </button>
-      <div class="nav-help ion-arrow-swap">Tap to load</div>
+      <div class="nav-help ion-arrow-swap">{{home.navHelp}}</div>
       <button class="meal-points-button button button-full"
         ng-click="home.getMealPoints()">
         <div class="meal-points-icon icon"
           ng-class="{loading: home.loading.mealPoints}"
           ng-hide="home.loading.mealPoints === false"></div>
         <div ng-hide="home.errorMessage.mealPoints">
-          <h1>{{home.mealPoints}}</h1>
+          <h1 ng-hide="home.loading.mealPoints">
+            {{home.mealPoints}}
+          </h1>
           <h2>Meal Points</h2>
         </div>
         <h2 ng-show="home.errorMessage.mealPoints">
