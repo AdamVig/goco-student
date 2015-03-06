@@ -23,9 +23,19 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
       templateUrl: 'html/login.html',
       controller: 'LoginController as login'
     })
-    .state('main', {
+    .state('home', {
       url: '/',
-      templateUrl: 'html/main.html',
+      templateUrl: 'html/home.html',
+      controller: 'HomeController as home'
+    })
+    .state('mealpoints', {
+      url: '/mealpoints',
+      templateUrl: 'html/mealpoints.html',
+      controller: 'MealPointsController as meal'
+    })
+    .state('chapelcredit', {
+      url: '/chapelcredit',
+      templateUrl: 'html/chapelcredit.html',
       controller: 'ChapelCreditController as chapel'
     });
 
