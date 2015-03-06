@@ -1,4 +1,4 @@
-app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', 'ModalService', 'LogoutService', function ($scope, $state, $filter, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory, ModalService, LogoutService) {
+app.controller('ChapelCreditController', ['$scope', '$state', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', 'ModalService', 'LogoutService', function ($scope, $state, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory, ModalService, LogoutService) {
 
   var chapel = this;
   chapel.isLoading = true;
@@ -19,7 +19,6 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce',
     chapel.isLoading = true;
 
     if (chapel.userCredentials != false) {
-      chapel.userName = $filter('NameFilter')(chapel.userCredentials.username);
 
       // Get chapel credit
       DataService.getChapelCredit(chapel.userCredentials).
