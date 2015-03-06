@@ -7,10 +7,18 @@ app.run(['$ionicPlatform', function($ionicPlatform) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
+    var admobPublisherId;
+
+    if (ionic.Platform.isIOS()) {
+      admobPublisherId = "ca-app-pub-9660792847854450/5221580058";
+    } else {
+      admobPublisherId = "ca-app-pub-9660792847854450/1366364053";
+    }
+
     if (window.admob) {
       admob.createBannerView({
         isTesting: false,
-        publisherId: "ca-app-pub-9660792847854450/1366364053"
+        publisherId: admobPublisherId
       });
     }
   });
