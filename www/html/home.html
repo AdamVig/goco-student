@@ -1,4 +1,10 @@
 <ion-view class="gordon-blue-background" view-title="Home" cache-view="true">
+  <ion-header-bar class="bar-balanced"
+    align-title="center"
+    ng-show="banner.body"
+    ng-click="modal.toggleModal('banner')">
+    <h1 class="title">{{banner.title}}</h1>
+  </ion-header-bar>
   <ion-content class="home-content center text-center">
       <a href="#/chapelcredit">
         <button class="chapel-credit-button button button-full button-positive">
@@ -13,4 +19,7 @@
         </button>
       </a>
   </ion-content>
+  <ion-footer-bar class="menu-bar bar-light" ng-click="modal.toggleModal('menu')">
+    <h1 class="title">Menu</h1>
+  </ion-footer-bar>
 </ion-view>
