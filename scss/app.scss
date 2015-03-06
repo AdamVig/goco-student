@@ -61,6 +61,11 @@ a {
   text-decoration: none;
 }
 
+.loading {
+  -webkit-animation: fade 1s infinite alternate;
+          animation: fade 1s infinite alternate;
+}
+
 // Loading screen
 .chapel-loader-container {
   .gordon-chapel {
