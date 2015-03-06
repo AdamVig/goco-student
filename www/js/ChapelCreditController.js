@@ -28,10 +28,14 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$sce', '$ionicPla
         UsageService.log(chapel.userCredentials.username);
       }).
       error(function(data, status) {
+        // Unauthorized
         if (status == 401) {
           chapel.message = "Username and password don't match. Log out and try again!"
+
+        // $http failed (cross-domain, timeout)
         } else if (status == 0) {
           chapel.message = "Oops! Couldn't find your chapel credit.";
+          console.log(data);
         } else {
           console.error("Error getting data. Status:", status, "Response:", response);
           chapel.message = "Something went horribly wrong. Try again later!"
