@@ -34,9 +34,14 @@ $muted-gray: #838C8D;
   border-bottom: 1px solid #ddd;
 }
 // Make Modal only cover part of the screen
-.modal-backdrop { top: 45vh; }
-// Hide ugly backdrop
-.modal-backdrop.active { background-color: rgba(0, 0, 0, 0); }
+.modal {
+  &.menu-modal {
+    top: 55vh;
+  }
+  &.banner-modal {
+    top: 45vh;
+  }
+}
 .banner-content {
   padding: 15px;
   font-size: 1.2rem;
