@@ -1,12 +1,15 @@
 app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
 
+  // String to prefix all keys in localStorage with
+  var storagePrefix = "GoCoStudent.";
+
   /**
    * Store user credentials in localStorage
    * @param {object} userCredentials Contains username and password
    */
   this.storeCredentials = function (userCredentials) {
-    $window.localStorage['Gordon.Username'] = userCredentials.username.toLowerCase();
-    $window.localStorage['Gordon.Password'] = $window.btoa(userCredentials.password);
+    $window.localStorage[storagePrefix + 'username'] = userCredentials.username.toLowerCase();
+    $window.localStorage[storagePrefix + 'password'] = $window.btoa(userCredentials.password);
   };
 
   /**
@@ -14,10 +17,11 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    * @return {object}       Contains username and password
    */
   this.retrieveCredentials = function () {
-    if ($window.localStorage['Gordon.Username'] && $window.localStorage['Gordon.Password']) {
+    if ($window.localStorage[storagePrefix + 'username'] &&
+        $window.localStorage[storagePrefix + 'password']) {
       return {
-        "username": $window.localStorage['Gordon.Username'],
-        "password": $window.localStorage['Gordon.Password']
+        "username": $window.localStorage[storagePrefix + 'username'],
+        "password": $window.localStorage[storagePrefix + 'password']
       };
     } else {
       return false;
@@ -28,8 +32,8 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    * Erase user credentials from localStorage
    */
   this.eraseCredentials = function () {
-    delete $window.localStorage['Gordon.Username'];
-    delete $window.localStorage['Gordon.Password'];
+    delete $window.localStorage[storagePrefix + 'username'];
+    delete $window.localStorage[storagePrefix + 'password'];
   };
 
   /**
@@ -37,8 +41,8 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    * @param {object} banner Contains banner title and body
    */
   this.storeBanner = function (banner) {
-    $window.localStorage['GoCoStudent.bannerTitle'] = banner.title;
-    $window.localStorage['GoCoStudent.bannerBody'] = banner.body;
+    $window.localStorage[storagePrefix + 'bannerTitle'] = banner.title;
+    $window.localStorage[storagePrefix + 'bannerBody'] = banner.body;
   };
 
   /**
@@ -47,8 +51,8 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    */
   this.retrieveBanner = function () {
 
-    bannerTitle = $window.localStorage['GoCoStudent.bannerTitle'];
-    bannerBody = $window.localStorage['GoCoStudent.bannerBody'];
+    bannerTitle = $window.localStorage[storagePrefix + 'bannerTitle'];
+    bannerBody = $window.localStorage[storagePrefix + 'bannerBody'];
 
     return {
       'title': bannerTitle,
