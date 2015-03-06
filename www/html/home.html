@@ -17,7 +17,7 @@
           </h1>
           <h2>Chapel Credits</h2>
         </div>
-        <h2 ng-show="home.errorMessage.chapelCredits">
+        <h2 ng-show="home.errorMessage.chapelCredits  && !home.loading.chapelCredits">
           {{home.errorMessage.chapelCredits}}
         </h2>
       </button>
@@ -33,7 +33,7 @@
           </h1>
           <h2>Meal Points</h2>
         </div>
-        <h2 ng-show="home.errorMessage.mealPoints">
+        <h2 ng-show="home.errorMessage.mealPoints && !home.loading.mealPoints">
           {{home.errorMessage.mealPoints}}
         </h2>
       </button>
