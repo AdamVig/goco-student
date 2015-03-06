@@ -1,0 +1,32 @@
+.home-content {
+  .scroll {
+    width: 100%;
+    height: 100%;
+  }
+  .button {
+    height: 50%;
+    margin: 0;
+    border: 0;
+    &.chapel-credit-button {
+      background-color: $gordon-blue;
+    }
+    &.meal-points-button {
+      background-color: $meal-points-orange;
+    }
+    &.activated > * {
+      opacity: 0.75;
+    }
+  }
+  .icon {
+    height: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    &.chapel-icon {
+      background-image: url('/img/chapel.svg');
+    }
+    &.meal-points-icon {
+      background-image: url('/img/silverware.svg');
+    }
+  }
+}
