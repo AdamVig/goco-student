@@ -29,7 +29,7 @@ app.controller('MealPointsController', ['$scope', 'ModalService', 'LogoutService
         if (status == 401) {
           meal.message = "Username and password don't match. Log out and try again!"
         } else if (status == 0) {
-          meal.message = "Oops! Couldn't find your chapel credit.";
+          meal.message = "Oops! Couldn't find your meal points.";
         } else {
           console.error("Error getting data. Status:", status, "Response:", response);
           meal.message = "Something went horribly wrong. Try again later!"
