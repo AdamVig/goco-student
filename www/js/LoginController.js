@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$state', function ($state) {
+app.controller('LoginController', ['$state', 'StorageService', function ($state, StorageService) {
 
   var login = this;
   login.userCredentials = {
