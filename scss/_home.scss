@@ -23,10 +23,10 @@
     background-size: contain;
     background-position: center;
     &.chapel-icon {
-      background-image: url('/img/chapel.svg');
+      background-image: url('../img/chapel.svg');
     }
     &.meal-points-icon {
-      background-image: url('/img/silverware.svg');
+      background-image: url('../img/silverware.svg');
     }
   }
 }
