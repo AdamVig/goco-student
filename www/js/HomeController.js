@@ -1,7 +1,6 @@
 app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFactory', 'DataService', 'ModalService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, $ionicModal, DatabaseFactory, DataService, ModalService, LogoutService, StorageService, UsageService) {
 
   var home = this;
-  home.navHelp = "Tap to load";
   $scope.logout = LogoutService;
 
   home.loading = {};
@@ -28,13 +27,6 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
   });
 
   /**
-   * Handle tap on either chapel credit or meal points button
-   */
-  var handleTap = function () {
-    home.navHelp = "Tap to refresh";
-  };
-
-  /**
    * Handle $http error
    * @param {object} data        Contains payload from $http response
    * @param {number} status      HTTP status from $http response
@@ -52,7 +44,6 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
   };
 
   home.getChapelCredits = function () {
-    handleTap();
     home.loading.chapelCredits = true;
 
     // Get chapel credits
@@ -71,7 +62,6 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
   };
 
   home.getMealPoints = function () {
-    handleTap();
     home.loading.mealPoints = true;
 
     // Get meal points

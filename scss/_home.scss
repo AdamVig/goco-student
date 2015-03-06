@@ -14,19 +14,6 @@
       background-color: $meal-points-orange;
     }
   }
-  .nav-help {
-    height: 30px;
-    line-height: 30px;
-    font-size: 1.4rem;
-    color: $muted-gray;
-    background-color: #fff;
-    &.ion-arrow-swap:before {
-      margin-right: 10px;
-      -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
-              transform: rotate(90deg);
-    }
-  }
   .icon {
     height: 50%;
     background-repeat: no-repeat;
