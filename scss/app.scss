@@ -67,16 +67,6 @@ a {
           animation: fade 1s infinite alternate;
 }
 
-// Loading screen
-.chapel-loader-container {
-  .gordon-chapel {
-    margin-bottom: -1.1rem;
-    height: 20em;
-    -webkit-animation: fade 1s infinite alternate;
-            animation: fade 1s infinite alternate;
-  }
-}
-
 // Loader animation (fade in and out)
 @-webkit-keyframes fade {
   0% { opacity: 1; }
