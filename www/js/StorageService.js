@@ -10,6 +10,10 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
   this.storeCredentials = function (userCredentials) {
     $window.localStorage[storagePrefix + 'username'] = userCredentials.username.toLowerCase();
     $window.localStorage[storagePrefix + 'password'] = $window.btoa(userCredentials.password);
+
+    // Remove legacy credentials
+    delete $window.localStorage['Gordon.Username'];
+    delete $window.localStorage['Gordon.Password'];
   };
 
   /**
