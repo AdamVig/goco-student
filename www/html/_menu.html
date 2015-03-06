@@ -1,6 +1,6 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title" ng-click="chapel.toggleModal('menu')">Tap to close</h1>
+    <h1 class="title" ng-click="modal.toggleModal('menu')">Tap to close</h1>
   </ion-header-bar>
   <ion-content>
     <ion-list>
@@ -14,11 +14,12 @@
         Good luck using <a href="" onclick="window.open('http://go.gordon.edu/', '_system', 'location=yes'); return false;">Go Gordon</a>
       </ion-item>
       <ion-item class="positive"
-        ng-click="chapel.refreshData()">
+        ng-show="refreshable"
+        ng-click="refreshData()">
         Refresh
       </ion-item>
       <ion-item class="assertive"
-        ng-click="chapel.logout()">
+        ng-click="logout.logout()">
         Logout
       </ion-item>
     </ion-list>
