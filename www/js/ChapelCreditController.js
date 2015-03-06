@@ -1,29 +1,21 @@
-app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', function ($scope, $state, $filter, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory) {
+app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce', '$ionicPlatform', '$ionicModal', 'DataService', 'StorageService', 'UsageService', 'DatabaseFactory', 'ModalService', 'LogoutService', function ($scope, $state, $filter, $sce, $ionicPlatform, $ionicModal, DataService, StorageService, UsageService, DatabaseFactory, ModalService, LogoutService) {
 
   var chapel = this;
   chapel.isLoading = true;
   chapel.chapelCredit = { credit: "" };
   chapel.userCredentials = StorageService.retrieveCredentials();
-  chapel.modal = {};
+  $scope.logout = LogoutService;
 
-  // Menu modal
-  $ionicModal.fromTemplateUrl('html/_menu.html', {
-    scope: $scope
-  }).then(function(modal) {
-    chapel.modal.menu = modal;
-  });
-
-  // Banner modal
-  $ionicModal.fromTemplateUrl('html/_banner.html', {
-    scope: $scope
-  }).then(function(modal) {
-    chapel.modal.banner = modal;
-  });
+  // Modals
+  ModalService.createModals($scope);
+  $scope.modal = ModalService;
+  $scope.refreshable = true;
+  $scope.banner = StorageService.retrieveBanner();
 
   // Refresh data
-  chapel.refreshData = function () {
+  $scope.refreshData = function () {
 
-    if (chapel.modal.menu) chapel.modal.menu.hide();
+    ModalService.hideModal('menu');
     chapel.isLoading = true;
 
     if (chapel.userCredentials != false) {
@@ -55,29 +47,6 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce',
     }
   };
 
-  chapel.refreshData();
+  $scope.refreshData();
 
-  // Get banner message from database
-  DatabaseFactory.get('message').then(function (response) {
-    if (response.data) {
-      if (response.data.body != "") {
-        chapel.banner = response.data;
-        chapel.banner.body = $sce.trustAsHtml(chapel.banner.body);
-      }
-    }
-  });
-
-  // Hide/show modal based on its current state
-  chapel.toggleModal = function(modalName) {
-    chapel.modal[modalName].isShown() ?
-      chapel.modal[modalName].hide() :
-      chapel.modal[modalName].show();
-  };
-
-  // Erase stored user info and go to login page
-  chapel.logout = function () {
-    chapel.modal.menu.hide();
-    StorageService.eraseCredentials();
-    $state.go('login');
-  };
 }]);
