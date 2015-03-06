@@ -13,7 +13,7 @@ app.controller('ChapelCreditController', ['$scope', '$state', '$filter', '$sce',
     chapel.modal.menu = modal;
   });
 
-  // Menu modal
+  // Banner modal
   $ionicModal.fromTemplateUrl('html/_banner.html', {
     scope: $scope
   }).then(function(modal) {
