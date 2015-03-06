@@ -32,9 +32,9 @@ app.service('StorageService', ['$window', function ($window) {
     delete $window.localStorage['Gordon.Password'];
   };
 
-  this.storeBanner = function (bannerTitle, bannerBody) {
-    $window.localStorage['GoCoStudent.bannerTitle'] = bannerTitle;
-    $window.localStorage['GoCoStudent.bannerBody'] = bannerBody;
+  this.storeBanner = function (banner) {
+    $window.localStorage['GoCoStudent.bannerTitle'] = banner.title;
+    $window.localStorage['GoCoStudent.bannerBody'] = banner.body;
   };
 
   this.retrieveBanner = function () {
