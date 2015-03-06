@@ -15,7 +15,7 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
 
     // Banner modal
     $ionicModal.fromTemplateUrl('html/_banner.html', {
-      scope: null
+      scope: $scope
     }).then(function(modal) {
       modalService.banner = modal;
     });
