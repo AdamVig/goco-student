@@ -22,6 +22,10 @@ $text-color: #fff;
     text-transform: uppercase;
     color: $text-color;
   }
+  .text-container {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
 }
 
 // Add border to bottom of bar for advertisement
@@ -55,6 +59,16 @@ $text-color: #fff;
 }
 a {
   text-decoration: none;
+}
+
+// Loading screen
+.chapel-loader-container {
+  .gordon-chapel {
+    margin-bottom: -1.1rem;
+    height: 20em;
+    -webkit-animation: fade 1s infinite alternate;
+            animation: fade 1s infinite alternate;
+  }
 }
 
 // Loader animation (fade in and out)
