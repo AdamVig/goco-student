@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$state', 'StorageService', 'DatabaseFactory', function ($state, StorageService, DatabaseFactory) {
+app.controller('LoginController', ['$state', function ($state) {
 
   var login = this;
   login.userCredentials = {
@@ -13,15 +13,6 @@ app.controller('LoginController', ['$state', 'StorageService', 'DatabaseFactory'
         split('@')[0];
     }
     StorageService.storeCredentials(login.userCredentials);
-
-    // Get banner message from database
-    DatabaseFactory.get('message').then(function (response) {
-      if (response.data) {
-        if (response.data.body != "") {
-          StorageService.storeBanner(response.data);
-        }
-      }
-    });
 
     $state.go('home');
   };

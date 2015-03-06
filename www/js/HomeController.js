@@ -11,4 +11,13 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
   $scope.refreshable = false;
   $scope.banner = StorageService.retrieveBanner();
 
+  // Get banner message from database
+  DatabaseFactory.get('message').then(function (response) {
+    if (response.data) {
+      if (response.data.body != "") {
+        StorageService.storeBanner(response.data);
+      }
+    }
+  });
+
 }]);
