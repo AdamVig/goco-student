@@ -53,6 +53,9 @@ $text-color: #fff;
     }
   }
 }
+a {
+  text-decoration: none;
+}
 
 // Loader animation (fade in and out)
 @-webkit-keyframes fade {
