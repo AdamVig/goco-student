@@ -2,6 +2,7 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
 
   var home = this;
   home.loading = {};
+  home.errorMessage = {};
   home.navHelp = "Tap to load";
   $scope.logout = LogoutService;
   home.userCredentials = StorageService.retrieveCredentials();
