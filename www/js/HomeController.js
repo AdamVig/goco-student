@@ -1,10 +1,16 @@
 app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFactory', 'DataService', 'ModalService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, $ionicModal, DatabaseFactory, DataService, ModalService, LogoutService, StorageService, UsageService) {
 
   var home = this;
-  home.loading = {};
-  home.errorMessage = {};
   home.navHelp = "Tap to load";
   $scope.logout = LogoutService;
+
+  home.loading = {};
+  home.errorMessage = {};
+
+  home.mealPoints = null;
+  home.chapelCredits = null;
+
+  // User credentials
   home.userCredentials = StorageService.retrieveCredentials();
   if (!home.userCredentials) $state.go('login');
 
