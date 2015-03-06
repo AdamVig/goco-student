@@ -2,6 +2,8 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
 
   var home = this;
   $scope.logout = LogoutService;
+  home.userCredentials = StorageService.retrieveCredentials();
+  if (!home.userCredentials) $state.go('login');
 
   // Modals
   ModalService.createModals($scope);
