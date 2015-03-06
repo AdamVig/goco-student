@@ -2,6 +2,7 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
 
   var home = this;
   home.loading = {};
+  home.navHelp = "Tap to load";
   $scope.logout = LogoutService;
   home.userCredentials = StorageService.retrieveCredentials();
   if (!home.userCredentials) $state.go('login');
@@ -18,6 +19,13 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
       StorageService.storeBanner(response.data);
     }
   });
+
+  /**
+   * Handle tap on either chapel credit or meal points button
+   */
+  var handleTap = function () {
+    home.navHelp = "Tap to refresh";
+  };
 
   /**
    * Handle $http error
@@ -37,7 +45,7 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
   };
 
   home.getChapelCredits = function () {
-    ModalService.hideModal('menu');
+    handleTap();
     home.loading.chapelCredits = true;
 
     // Get chapel credits
@@ -56,7 +64,7 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
   };
 
   home.getMealPoints = function () {
-    ModalService.hideModal('menu');
+    handleTap();
     home.loading.mealPoints = true;
 
     // Get meal points
