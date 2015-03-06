@@ -57,7 +57,7 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
       UsageService.log(home.userCredentials.username);
     }).
     error(function(data, status) {
-      home.errorMessage.chapelCredits = handleError(data, status, "meal points");
+      home.errorMessage.chapelCredits = handleError(data, status, "chapel credit");
     }).
     finally(function() {
       home.loading.chapelCredits = false;
