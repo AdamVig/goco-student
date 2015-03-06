@@ -1,4 +1,4 @@
-app.service('StorageService', ['$window', function ($window) {
+app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
 
   /**
    * Store user credentials in localStorage
