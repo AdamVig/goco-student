@@ -40,7 +40,7 @@ app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFa
     } else if (status == 0) {
       return "Oops! Couldn't find your " + description + ".";
     } else {
-      console.error("Error getting data. Status:", status, "Response:", response);
+      console.error("Error getting data. Status:", status, "Response:", data);
       return "Something went horribly wrong. Try again later!"
     }
   };
