@@ -13,6 +13,6 @@ app.controller('LoginController', ['$state', 'StorageService', function ($state,
         split('@')[0];
     }
     StorageService.storeCredentials(login.userCredentials);
-    $state.go('main');
+    $state.go('home');
   };
 }]);
