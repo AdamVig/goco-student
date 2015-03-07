@@ -21,7 +21,6 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
-    "org.apache.cordova.statusbar",
     "com.admob.google"
   ]
 }
