@@ -21,6 +21,7 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
-    "com.admob.google"
+    "com.admob.google",
+    "https://github.com/danwilson/google-analytics-plugin.git"
   ]
 }

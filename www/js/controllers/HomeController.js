@@ -15,6 +15,11 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
   DatabaseFactory.get('message').then(function (response) {
     if (response.data) {
       StorageService.storeBanner(response.data);
+    } else {
+      // Track exception with analytics
+      if (window.analytics) {
+        window.analytics.trackException("Could not retrieve banner.", false);
+      }
     }
   });
 
@@ -25,6 +30,13 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
    * @param {string} description Either "chapel credit" or "meal points"
    */
   var handleError = function (data, status, description) {
+
+    // Track exception with analytics
+    if (window.analytics) {
+      window.analytics.trackException(status + ": " + description, true);
+    }
+
+    // Return error message
     if (status == 401) {
       return "Username and password don't match. Log out and try again!";
     } else if (status === 0) {
@@ -92,7 +104,15 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
 
     // User credentials
     home.userCredentials = StorageService.retrieveCredentials();
-    if (!home.userCredentials) $state.go('login');
+
+    // Go to login page if no user credentials found
+    if (!home.userCredentials) {
+      $state.go('login');
+
+    // Set user ID in analytics
+    } else if (window.analytics) {
+      window.analytics.setUserId(home.userCredentials.username);
+    }
   };
 
   home.resetScope();
