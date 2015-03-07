@@ -1,9 +1,11 @@
 <ion-view class="gordon-blue-background" view-title="Login">
   <ion-content class="login-content center">
-    <img class="gordon-chapel"
-      src="img/logo.svg">
-    <h2 class="login-title">Log In</h2>
-    <form class="login-form"
+    <div class="login-top-half">
+      <img class="gordon-chapel"
+        src="img/logo.svg">
+      <h2 class="login-title">Log In</h2>
+    </div>
+    <form class="login-form login-bottom-half"
       name="loginForm"
       novalidate
       ng-submit="login.loginUser()">
