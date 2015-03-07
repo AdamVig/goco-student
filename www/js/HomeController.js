@@ -34,12 +34,12 @@ app.controller('HomeController', ['$scope', '$state', '$ionicPopover', 'Database
    */
   var handleError = function (data, status, description) {
     if (status == 401) {
-      return "Username and password don't match. Log out and try again!"
-    } else if (status == 0) {
+      return "Username and password don't match. Log out and try again!";
+    } else if (status === 0) {
       return "Oops! Couldn't find your " + description + ".";
     } else {
       console.error("Error getting data. Status:", status, "Response:", data);
-      return "Something went horribly wrong. Try again later!"
+      return "Something went horribly wrong. Try again later!";
     }
   };
 
