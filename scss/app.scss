@@ -8,6 +8,15 @@ $muted-gray: #838C8D;
   font-weight: 700;
   src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
 }
+body {
+  font-family: 'Open Sans';
+}
+.bar.bar-header {
+  h1.title {
+    color: $gordon-blue;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
 // Override default background color
 .view.gordon-blue-background,
 .pane.gordon-blue-background {
@@ -63,7 +72,11 @@ $muted-gray: #838C8D;
     }
   }
 }
-a {
+
+a,
+a:visited {
+  font-family: 'Open Sans';
+  color: $gordon-blue;
   text-decoration: none;
 }
 
