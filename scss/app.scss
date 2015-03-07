@@ -43,15 +43,8 @@ body {
   }
 }
 
-// Add border to bottom of bar for advertisement
-.menu-bar.bar-footer {
-  border-bottom: 1px solid #ddd;
-}
 // Make Modal only cover part of the screen
 .modal {
-  &.menu-modal {
-    top: 55vh;
-  }
   &.banner-modal {
     top: 45vh;
   }
