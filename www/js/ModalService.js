@@ -6,13 +6,6 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
    * @param {object} $scope Scope of controller
    */
   this.createModals = function ($scope) {
-    // Menu modal
-    $ionicModal.fromTemplateUrl('html/_menu.html', {
-      scope: $scope
-    }).then(function(modal) {
-      modalService.menu = modal;
-    });
-
     // Banner modal
     $ionicModal.fromTemplateUrl('html/_banner.html', {
       scope: $scope
