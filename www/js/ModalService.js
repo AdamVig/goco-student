@@ -20,9 +20,11 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
    */
   this.toggleModal = function (modalName) {
     if (modalService[modalName]) {
-      modalService[modalName].isShown() ?
-        modalService[modalName].hide() :
+      if (modalService[modalName].isShown()) {
+        modalService[modalName].hide();
+      } else {
         modalService[modalName].show();
+      }  
     }
   };
 
