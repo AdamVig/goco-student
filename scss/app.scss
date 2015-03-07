@@ -42,7 +42,10 @@ body {
     margin-right: 1em;
   }
 }
-
+// Override Android popover styles to make 'logout' red
+.platform-android .popover .item.assertive {
+  color: $assertive;
+}
 // Make Modal only cover part of the screen
 .modal {
   &.banner-modal {
