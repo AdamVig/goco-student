@@ -18,7 +18,7 @@
           {{home.chapelCredits.credit}}
         </h1>
         <h2>Chapel Credits</h2>
-        <h3 ng-show="home.chapelCredits.required && !home.loading.chapelCredits">
+        <h3 ng-if="home.chapelCredits.required && !home.loading.chapelCredits">
           Out of {{home.chapelCredits.required}}
         </h3>
       </div>
@@ -44,7 +44,7 @@
   </ion-content>
   <ion-footer-bar class="menu-bar bar-balanced"
     align-title="center"
-    ng-show="banner.body"
+    ng-if="banner.body"
     ng-click="modal.toggleModal('banner')">
     <h1 class="title">{{banner.title}}</h1>
   </ion-footer-bar>
