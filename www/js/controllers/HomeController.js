@@ -1,17 +1,6 @@
 app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataService', 'ModalService', 'PopoverService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, DatabaseFactory, DataService, ModalService, PopoverService, LogoutService, StorageService, UsageService) {
 
   var home = this;
-  $scope.logout = LogoutService;
-
-  home.loading = {};
-  home.errorMessage = {};
-
-  home.mealPoints = null;
-  home.chapelCredits = null;
-
-  // User credentials
-  home.userCredentials = StorageService.retrieveCredentials();
-  if (!home.userCredentials) $state.go('login');
 
   // Modals
   ModalService.createModals($scope);
@@ -88,4 +77,23 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
     });
   };
 
+  /**
+   * Instantiate/reset scope variables
+   */
+  home.resetScope = function () {
+
+    // Status
+    home.loading = {};
+    home.errorMessage = {};
+
+    // Data
+    home.mealPoints = null;
+    home.chapelCredits = {};
+
+    // User credentials
+    home.userCredentials = StorageService.retrieveCredentials();
+    if (!home.userCredentials) $state.go('login');
+  };
+
+  home.resetScope();
 }]);
