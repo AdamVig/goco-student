@@ -1,9 +1,11 @@
 <ion-view class="gordon-blue-background" view-title="Home" cache-view="true">
-  <ion-header-bar class="bar-balanced"
-    align-title="center"
-    ng-show="banner.body"
-    ng-click="modal.toggleModal('banner')">
-    <h1 class="title">{{banner.title}}</h1>
+  <ion-header-bar class="bar-light">
+    <h1 class="title">GOCO STUDENT</h1>
+    <div class="buttons">
+      <button class="button button-icon ion-more"
+        ng-click="home.popover.menu.show($event)">
+      </button>
+    </div>
   </ion-header-bar>
   <ion-content class="home-content center text-center">
     <button class="chapel-credit-button button button-full button-positive"
@@ -37,7 +39,10 @@
       </h2>
     </button>
   </ion-content>
-  <ion-footer-bar class="menu-bar bar-light" ng-click="modal.toggleModal('menu')">
-    <h1 class="title">Menu</h1>
+  <ion-footer-bar class="menu-bar bar-balanced"
+    align-title="center"
+    ng-show="banner.body"
+    ng-click="modal.toggleModal('banner')">
+    <h1 class="title">{{banner.title}}</h1>
   </ion-footer-bar>
 </ion-view>
