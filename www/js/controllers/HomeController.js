@@ -35,10 +35,11 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
     }
   };
 
+  /**
+   * Get chapel credits from server
+   */
   home.getChapelCredits = function () {
     home.loading.chapelCredits = true;
-    home.userCredentials = StorageService.retrieveCredentials();
-    home.errorMessage.chapelCredits = null;
 
     // Get chapel credits
     DataService.getChapelCredits(home.userCredentials).
@@ -55,12 +56,11 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
     });
   };
 
+  /**
+   * Get meal points from server
+   */
   home.getMealPoints = function () {
     home.loading.mealPoints = true;
-    home.userCredentials = StorageService.retrieveCredentials();
-    home.errorMessage.mealPoints = null;
-
-    console.log(home.userCredentials);
 
     // Get meal points
     DataService.getMealPoints(home.userCredentials).
@@ -96,4 +96,12 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
   };
 
   home.resetScope();
+
+  /**
+   * Reset scope variables and log user out
+   */
+  $scope.logout = function () {
+    home.resetScope();
+    LogoutService.logout();
+  };
 }]);
