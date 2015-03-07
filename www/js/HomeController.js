@@ -48,11 +48,13 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
 
   home.getChapelCredits = function () {
     home.loading.chapelCredits = true;
+    home.userCredentials = StorageService.retrieveCredentials();
+    home.errorMessage.chapelCredits = null;
 
     // Get chapel credits
     DataService.getChapelCredits(home.userCredentials).
     success(function(data) {
-      home.chapelCredits = data.credit;
+      home.chapelCredits = data;
       home.loading.chapelCredits = false;
       UsageService.log(home.userCredentials.username);
     }).
@@ -66,6 +68,10 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
 
   home.getMealPoints = function () {
     home.loading.mealPoints = true;
+    home.userCredentials = StorageService.retrieveCredentials();
+    home.errorMessage.mealPoints = null;
+
+    console.log(home.userCredentials);
 
     // Get meal points
     DataService.getMealPoints(home.userCredentials).
