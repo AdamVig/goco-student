@@ -1,0 +1,46 @@
+.loading {
+  @extend .animated;
+  @extend .infinite;
+  @extend .fadeCycle;
+}
+
+// Only on grade a and grade b devices
+.grade-a,
+.grade-b {
+
+  // Main buttons slide in from either side
+  .chapel-credit-button,
+  .meal-points-button {
+    @extend .animated;
+  }
+  .chapel-credit-button {
+    @extend .slideInLeft;
+  }
+  .meal-points-button {
+    @extend .slideInRight;
+  }
+
+  // Login slide in effect
+  .login-top-half,
+  .login-bottom-half {
+    @extend .animated;
+  }
+  .login-top-half {
+    @extend .slideInDown;
+  }
+  .login-bottom-half {
+    @extend .slideInUp;
+  }
+}
+
+// Only on grade a devices
+.grade-a {
+  // Chapel credit and meal points zoom in on load
+  .chapel-credit-number,
+  .meal-points-number {
+    &.ng-hide-remove {
+      @extend .animated;
+      @extend .zoomIn;
+    }
+  }
+}
