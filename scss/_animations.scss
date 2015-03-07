@@ -9,14 +9,14 @@
 .grade-b {
 
   // Main buttons slide in from either side
-  .chapel-credit-button,
-  .meal-points-button {
+  .chapel-credit-button > *,
+  .meal-points-button > * {
     @extend .animated;
   }
-  .chapel-credit-button {
+  .chapel-credit-button > * {
     @extend .slideInLeft;
   }
-  .meal-points-button {
+  .meal-points-button > * {
     @extend .slideInRight;
   }
 
