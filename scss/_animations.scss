@@ -8,18 +8,6 @@
 .grade-a,
 .grade-b {
 
-  // Main buttons slide in from either side
-  .chapel-credit-button > *,
-  .meal-points-button > * {
-    @extend .animated;
-  }
-  .chapel-credit-button > * {
-    @extend .slideInLeft;
-  }
-  .meal-points-button > * {
-    @extend .slideInRight;
-  }
-
   // Login slide in effect
   .login-top-half,
   .login-bottom-half {
