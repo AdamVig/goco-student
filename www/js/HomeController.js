@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$scope', '$state', '$ionicPopover', 'DatabaseFactory', 'DataService', 'ModalService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, $ionicPopover, DatabaseFactory, DataService, ModalService, LogoutService, StorageService, UsageService) {
+app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataService', 'ModalService', 'PopoverService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, DatabaseFactory, DataService, ModalService, PopoverService, LogoutService, StorageService, UsageService) {
 
   var home = this;
   $scope.logout = LogoutService;
@@ -16,8 +16,11 @@ app.controller('HomeController', ['$scope', '$state', '$ionicPopover', 'Database
   // Modals
   ModalService.createModals($scope);
   $scope.modal = ModalService;
-  $scope.refreshable = false;
   $scope.banner = StorageService.retrieveBanner();
+
+  //Popovers
+  PopoverService.createPopovers($scope);
+  $scope.popover = PopoverService;
 
   // Get banner message from database
   DatabaseFactory.get('message').then(function (response) {
