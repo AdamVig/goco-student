@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$scope', '$state', '$ionicModal', 'DatabaseFactory', 'DataService', 'ModalService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, $ionicModal, DatabaseFactory, DataService, ModalService, LogoutService, StorageService, UsageService) {
+app.controller('HomeController', ['$scope', '$state', '$ionicPopover', 'DatabaseFactory', 'DataService', 'ModalService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, $ionicPopover, DatabaseFactory, DataService, ModalService, LogoutService, StorageService, UsageService) {
 
   var home = this;
   $scope.logout = LogoutService;
