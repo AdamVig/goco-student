@@ -12,9 +12,13 @@ body {
   font-family: 'Open Sans';
 }
 .bar.bar-header {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   h1.title {
     color: $gordon-blue;
     font-family: 'Open Sans', sans-serif;
+  }
+  .button-icon {
+    color: $gordon-blue;
   }
 }
 // Override default background color
