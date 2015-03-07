@@ -6,36 +6,36 @@
     <h1 class="title">{{banner.title}}</h1>
   </ion-header-bar>
   <ion-content class="home-content center text-center">
-      <button class="chapel-credit-button button button-full button-positive"
-        ng-click="home.getChapelCredits()">
-        <div class="chapel-icon icon"
-          ng-class="{loading: home.loading.chapelCredits}"
-          ng-hide="home.loading.chapelCredits === false"></div>
-        <div ng-hide="home.errorMessage.chapelCredits">
-          <h1 ng-hide="home.loading.chapelCredits">
-            {{home.chapelCredits}}
-          </h1>
-          <h2>Chapel Credits</h2>
-        </div>
-        <h2 ng-show="home.errorMessage.chapelCredits  && !home.loading.chapelCredits">
-          {{home.errorMessage.chapelCredits}}
-        </h2>
-      </button>
-      <button class="meal-points-button button button-full"
-        ng-click="home.getMealPoints()">
-        <div class="meal-points-icon icon"
-          ng-class="{loading: home.loading.mealPoints}"
-          ng-hide="home.loading.mealPoints === false"></div>
-        <div ng-hide="home.errorMessage.mealPoints">
-          <h1 ng-hide="home.loading.mealPoints">
-            {{home.mealPoints}}
-          </h1>
-          <h2>Meal Points</h2>
-        </div>
-        <h2 ng-show="home.errorMessage.mealPoints && !home.loading.mealPoints">
-          {{home.errorMessage.mealPoints}}
-        </h2>
-      </button>
+    <button class="chapel-credit-button button button-full button-positive"
+      ng-click="home.getChapelCredits()">
+      <div class="chapel-icon icon"
+        ng-class="{loading: home.loading.chapelCredits}"
+        ng-hide="home.loading.chapelCredits === false"></div>
+      <div ng-hide="home.errorMessage.chapelCredits">
+        <h1 ng-hide="home.loading.chapelCredits">
+          {{home.chapelCredits}}
+        </h1>
+        <h2>Chapel Credits</h2>
+      </div>
+      <h2 ng-show="home.errorMessage.chapelCredits  && !home.loading.chapelCredits">
+        {{home.errorMessage.chapelCredits}}
+      </h2>
+    </button>
+    <button class="meal-points-button button button-full"
+      ng-click="home.getMealPoints()">
+      <div class="meal-points-icon icon"
+        ng-class="{loading: home.loading.mealPoints}"
+        ng-hide="home.loading.mealPoints === false"></div>
+      <div ng-hide="home.errorMessage.mealPoints">
+        <h1 ng-hide="home.loading.mealPoints">
+          {{home.mealPoints}}
+        </h1>
+        <h2>Meal Points</h2>
+      </div>
+      <h2 ng-show="home.errorMessage.mealPoints && !home.loading.mealPoints">
+        {{home.errorMessage.mealPoints}}
+      </h2>
+    </button>
   </ion-content>
   <ion-footer-bar class="menu-bar bar-light" ng-click="modal.toggleModal('menu')">
     <h1 class="title">Menu</h1>
