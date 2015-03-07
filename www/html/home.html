@@ -14,7 +14,7 @@
         ng-class="{loading: home.loading.chapelCredits}"
         ng-hide="home.loading.chapelCredits === false"></div>
       <div ng-hide="home.errorMessage.chapelCredits">
-        <h1 ng-hide="home.loading.chapelCredits">
+        <h1 ng-hide="!home.chapelCredits.credit || home.loading.chapelCredits">
           {{home.chapelCredits.credit}}
         </h1>
         <h2>Chapel Credits</h2>
