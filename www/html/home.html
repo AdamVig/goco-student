@@ -14,7 +14,8 @@
         ng-class="{loading: home.loading.chapelCredits}"
         ng-hide="home.loading.chapelCredits === false"></div>
       <div ng-hide="home.errorMessage.chapelCredits">
-        <h1 ng-hide="!home.chapelCredits.credit || home.loading.chapelCredits">
+        <h1 class="chapel-credit-number"
+          ng-hide="!home.chapelCredits.credit || home.loading.chapelCredits">
           {{home.chapelCredits.credit}}
         </h1>
         <h2>Chapel Credits</h2>
@@ -32,7 +33,8 @@
         ng-class="{loading: home.loading.mealPoints}"
         ng-hide="home.loading.mealPoints === false"></div>
       <div ng-hide="home.errorMessage.mealPoints">
-        <h1 ng-hide="home.loading.mealPoints">
+        <h1 class="meal-points-number"
+          ng-hide="!home.mealPoints || home.loading.mealPoints">
           {{home.mealPoints}}
         </h1>
         <h2>Meal Points</h2>
