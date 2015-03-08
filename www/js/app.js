@@ -23,7 +23,7 @@ app.run(['$ionicPlatform', function($ionicPlatform) {
 
     if (window.admob) {
       admob.createBannerView({
-        isTesting: false, // @DEBUG REMOVE BEFORE DISTRIBUTION
+        isTesting: false,
         publisherId: admobPublisherId
       });
     }
