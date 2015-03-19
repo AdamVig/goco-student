@@ -8,17 +8,17 @@ Built with the Ionic Framework, AngularJS, and Cordova for iOS and Android.
 ## Version 1.0
 The first version of the app only displayed a user's chapel credit.
 
-![Version 1.0 Login](https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screenshots/1.0.0/iOS/login-4-7.png)
+<img alt="Version 1.0 Login" src="https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screenshots/1.0.0/iOS/login-4-7.png" height="400px">
 
-![Version 1.0 Chapel Credit](https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screenshots/1.0.0/iOS/main-4-7.png)
+<img alt="Version 1.0 Chapel Credit" src="https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screenshots/1.0.0/iOS/main-4-7.png" height="400px">
 
 ## Version 2.0
 The second version involved a technical overhaul of many components of the app
 as well as the addition of meal points and interface animations.
 
-![Version 2.0 Loading Data Animated](https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screencasts/2.0.0/LoadingData.gif)
+<img alt="Version 2.0 Loading Data Animated" src="https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screencasts/2.0.0/LoadingData.gif" height="400px">
 
-![Version 2.0 Logging Out Animated](https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screencasts/2.0.0/LoggingOut.gif)
+<img alt="Version 2.0 Logging Out Animated" src="https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screencasts/2.0.0/LoggingOut.gif" height="400px">
 
 ## Version 3.0
 *In Development*
