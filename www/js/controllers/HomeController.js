@@ -52,6 +52,7 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
    */
   home.getChapelCredits = function () {
     home.loading.chapelCredits = true;
+    home.errorMessage.chapelCredits = null;
 
     // Get chapel credits
     DataService.getChapelCredits(home.userCredentials).
@@ -73,6 +74,7 @@ app.controller('HomeController', ['$scope', '$state', 'DatabaseFactory', 'DataSe
    */
   home.getMealPoints = function () {
     home.loading.mealPoints = true;
+    home.errorMessage.mealPoints = null;
 
     // Get meal points
     DataService.getMealPoints(home.userCredentials).

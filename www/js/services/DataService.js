@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
+app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', function ($http, ApiUrl, RequestTimeout) {
 
   /**
    * Get chapel credit for user from server
@@ -9,7 +9,7 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
 
     var config = {
       params: userCredentials,
-      timeout: 16000
+      timeout: RequestTimeout.chapelcredits
     };
 
     return $http.get(ApiUrl + 'chapelcredit', config);
@@ -24,7 +24,7 @@ app.service('DataService', ['$http', 'ApiUrl', function ($http, ApiUrl) {
 
     var config = {
       params: userCredentials,
-      timeout: 16000
+      timeout: RequestTimeout.mealpoints
     };
 
     return $http.get(ApiUrl + 'mealpoints', config);
