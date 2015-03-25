@@ -53,6 +53,6 @@ constant('DatabaseConstant', {
 }).
 constant('ApiUrl', 'http://data.adamvig.com/').
 constant('RequestTimeout', {
-  'chapelcredits': 1000,
-  'mealpoints': 7000
+  'chapelcredits': 1500,
+  'mealpoints': 8000
 });
