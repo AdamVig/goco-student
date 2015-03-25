@@ -12,6 +12,8 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
     }).then(function(modal) {
       modalService.banner = modal;
     });
+    
+    return modalService;
   };
 
   /**
@@ -24,7 +26,7 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
         modalService[modalName].hide();
       } else {
         modalService[modalName].show();
-      }  
+      }
     }
   };
 

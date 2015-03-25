@@ -11,6 +11,8 @@ app.service('PopoverService', ['$ionicPopover', function ($ionicPopover) {
     }).then(function(popover) {
       popoverService.menu = popover;
     });
+
+    return popoverService;
   };
 
   /**
