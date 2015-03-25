@@ -20,18 +20,26 @@ as well as the addition of meal points and interface animations.
 
 <img alt="Version 2.0 Logging Out Animated" src="https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screencasts/2.0.0/LoggingOut.gif" height="400px">
 
-## Version 3.0
-*In Development*
-
-### Features
-+ Add printer credits
-+ Add eating establishment hours
-+ Add different data layouts to allow users to customize what data they see
-
-### Technical
-+ Separate each interface section into either a directive or an HTML template
-+ Add a configuration step when logging in for the first time
-+ Add more user information to UsageService
-  - Add user interface options to UsageService
-  - Add platform, version, and app version to UsageService
-  - Add number of requests of each data type to UsageService
+## Modular Interface
++ Modules will each have an icon, a label, and a color.
++ Modules will have several set sizes:
+  1. 1/1
+  2. 1/2
+  3. 1/3
+  4. minimum visible size
++ Modules will change size based on the number of modules currently visible
+in the app.
++ Modules will relocate the icon to the left side in their minimum visible size.
++ Modules will be one of two types:
+  1. Data Module, ex: "Meal Points"
+  2. Interaction Module, ex: "See What's Open"
+    + Contains an icon that hints at a state change (such as a rightward arrow).
+    + When clicked, transitions app to another state.
+    + Prompts for interaction.
++ Modules will be configurable by the user.
+  - The user will be able to select which modules are visible on the
+  configuration page.
+  - The configuration page will be available in two places:
+    1. On the user's first login to the app, detected by the lack of a
+    configuration object in the user's data.
+    2. In the menu accessible in the header bar visible in all states.
