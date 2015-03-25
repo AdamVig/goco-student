@@ -1,4 +1,5 @@
-app.constant('DatabaseConstant', {
+app.constant('AppVersion', '2.1').
+constant('DatabaseConstant', {
   'url': 'https://adamvig.cloudant.com',
   'username': 'tedifertordshomilsescepr',
   'password': 'BbvwmD0wrMTJmbF2HMNQRbn1'

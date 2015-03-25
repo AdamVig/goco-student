@@ -59,7 +59,7 @@ app.controller('HomeController', ['$scope', '$state', '$window', '$filter', 'Dat
     success(function(data) {
       home[dataType] = data;
       home.loading[dataType] = false;
-      UsageService.log(home.userCredentials.username);
+      UsageService.log(home.userCredentials.username, dataType);
     }).
     error(function(data, status) {
       var dataDescription = $filter('camelCaseToHuman')(dataType);
