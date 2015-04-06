@@ -1,4 +1,5 @@
 <ion-view class="gordon-blue-background" view-title="Home" cache-view="false">
+  <app-header></app-header>
   <ion-content class="home-content center text-center">
     <info-module
       ng-repeat="module in home.selectedModules"
@@ -7,4 +8,5 @@
       icon-class="module.icon"
       ng-class="home.moduleClass"></info-module>
   </ion-content>
+  <app-banner></app-banner>
 </ion-view>
