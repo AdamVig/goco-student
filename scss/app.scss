@@ -3,6 +3,14 @@ $meal-points-orange: #F2A42C;
 $text-color: #fff;
 $muted-gray: #838C8D;
 
+// Global color classes
+.chapel-credits {
+  background-color: $gordon-blue;
+}
+.meal-points {
+  background-color: $meal-points-orange;
+}
+
 @font-face {
   font-family: 'Open Sans';
   font-weight: 700;
@@ -83,6 +91,8 @@ a:visited {
 
 @import "keyframes";
 @import "animations";
+@import "configuration";
 @import "home";
+@import "infomodule";
 @import "login";
 @import "utility";
