@@ -1,53 +1,10 @@
 <ion-view class="gordon-blue-background" view-title="Home" cache-view="false">
-  <ion-header-bar class="bar-light">
-    <h1 class="title">GOCO STUDENT</h1>
-    <div class="buttons">
-      <button class="button button-icon ion-more"
-        ng-click="popover.showPopover('menu', $event)">
-      </button>
-    </div>
-  </ion-header-bar>
   <ion-content class="home-content center text-center">
-    <button class="chapel-credit-button button button-full button-positive"
-      ng-click="home.load('chapelCredits')">
-      <div class="chapel-icon icon"
-        ng-class="{loading: home.loading.chapelCredits}"
-        ng-hide="home.loading.chapelCredits === false"></div>
-      <div ng-hide="home.errorMessage.chapelCredits">
-        <h1 class="chapel-credit-number"
-          ng-hide="!home.chapelCredits.credit || home.loading.chapelCredits">
-          {{home.chapelCredits.credit}}
-        </h1>
-        <h2>Chapel Credits</h2>
-        <h3 ng-if="home.chapelCredits.required && !home.loading.chapelCredits">
-          Out of {{home.chapelCredits.required}}
-        </h3>
-      </div>
-      <h2 ng-show="home.errorMessage.chapelCredits  && !home.loading.chapelCredits">
-        {{home.errorMessage.chapelCredits}}
-      </h2>
-    </button>
-    <button class="meal-points-button button button-full"
-      ng-click="home.load('mealPoints')">
-      <div class="meal-points-icon icon"
-        ng-class="{loading: home.loading.mealPoints}"
-        ng-hide="home.loading.mealPoints === false"></div>
-      <div ng-hide="home.errorMessage.mealPoints">
-        <h1 class="meal-points-number"
-          ng-hide="!home.mealPoints || home.loading.mealPoints">
-          {{home.mealPoints.mealpoints}}
-        </h1>
-        <h2>Meal Points</h2>
-      </div>
-      <h2 ng-show="home.errorMessage.mealPoints && !home.loading.mealPoints">
-        {{home.errorMessage.mealPoints}}
-      </h2>
-    </button>
+    <info-module
+      ng-repeat="module in home.selectedModules"
+      info-type="module.name"
+      info-label="module.label"
+      icon-class="module.icon"
+      ng-class="home.moduleClass"></info-module>
   </ion-content>
-  <ion-footer-bar class="menu-bar bar-balanced"
-    align-title="center"
-    ng-if="banner.body"
-    ng-click="modal.toggleModal('banner')">
-    <h1 class="title">{{banner.title}}</h1>
-  </ion-footer-bar>
 </ion-view>

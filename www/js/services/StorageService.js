@@ -39,4 +39,28 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
     delete $window.localStorage[storagePrefix + 'username'];
     delete $window.localStorage[storagePrefix + 'password'];
   };
+
+  /**
+   * Store selected modules in localStorage
+   * @param {array} allModules List of module objects, each contains name
+   */
+  this.storeModules = function (allModules) {
+    var keyName = storagePrefix + 'modules';
+    $window.localStorage[keyName] = JSON.stringify(allModules);
+  };
+
+  /**
+   * Retrieve selected modules from localStorage
+   * @return {array}    List of all modules marked as selected or not
+   */
+  this.retrieveModules = function () {
+
+    // Get list of module names from localStorage
+    var keyName = storagePrefix + 'modules';
+
+    if ($window.localStorage[keyName])
+      return JSON.parse($window.localStorage[keyName]);
+    else
+      return null;
+  };
 }]);

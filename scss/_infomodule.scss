@@ -1,0 +1,105 @@
+info-module {
+  height: 100%;
+  .button {
+    margin: 0;
+    border: 0;
+    &.chapel-credits {
+      background-color: $gordon-blue;
+    }
+    &.meal-points {
+      background-color: $meal-points-orange;
+    }
+  }
+  .icon {
+    height: 30vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    &.chapel-icon {
+      background-image: url('../img/chapel.svg');
+    }
+    &.meal-points-icon {
+      background-image: url('../img/silverware.svg');
+    }
+  }
+  .column {
+    float: left;
+    width: 100%;
+  }
+  .info-number {
+    font-size: 20vh;
+  }
+  .info-label {
+    margin-top: 15px;
+  }
+  &.one-half {
+    height: 50%;
+    .icon {
+      height: 25vh;
+    }
+    .info-number {
+      font-size: 15vh;
+    }
+  }
+  &.one-third {
+    height: 33%;
+    .icon {
+      height: 15vh;
+    }
+    .info-number {
+      font-size: 10vh;
+    }
+    .info-error-message {
+      font-size: 5.5vh;
+    }
+  }
+  &.one-fourth {
+    height: 25%;
+    .icon {
+      height: 13vh;
+    }
+    .info-number {
+      margin-top: 30px;
+      font-size: 6.5vh;
+    }
+    .info-error-message {
+      font-size: 4.5vh;
+    }
+  }
+  &.list-item {
+    height: 20%;
+    .icon {
+      height: 11vh;
+      margin-top: 10px;
+    }
+    .info-number {
+      margin-top: 30px;
+      font-size: 6vh;
+    }
+    .info-label {
+      font-size: 5vh;
+    }
+    .info-error-message {
+      font-size: 4.5vh;
+    }
+  }
+  &.one-fourth,
+  &.list-item {
+    .icon {
+      margin-top: 10px;
+    }
+    .info-label {
+      margin-top: 0;
+    }
+    .module-left {
+      width: 40%;
+      padding-left: 10px;
+      text-align: left;
+    }
+    .module-right {
+      width: 60%;
+      margin-top: 10px;
+    }
+  }
+}

@@ -1,10 +1,6 @@
-app.controller('HomeController', ['$scope', '$state', '$window', '$filter', 'DataTypes', 'DatabaseFactory', 'DataService', 'ModalService', 'PopoverService', 'LogoutService', 'StorageService', 'UsageService', function ($scope, $state, $window, $filter, DataTypes, DatabaseFactory, DataService, ModalService, PopoverService, LogoutService, StorageService, UsageService) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DatabaseFactory', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'LogoutService', 'StorageService', 'UsageService', function ($rootScope, $scope, $state, $window, $filter, Modules, DatabaseFactory, DataService, ModalService, ModuleService, PopoverService, LogoutService, StorageService, UsageService) {
 
   var home = this;
-
-  // Instantiate modals and popovers
-  $scope.modal = ModalService.createModals($scope);
-  $scope.popover = PopoverService.createPopovers($scope);
 
   // Refresh banner message
   home.refreshBanner = function () {
@@ -27,6 +23,12 @@ app.controller('HomeController', ['$scope', '$state', '$window', '$filter', 'Dat
     // User credentials
     home.userCredentials = StorageService.retrieveCredentials();
 
+    // Module settings
+    $scope.modules = StorageService.retrieveModules() || Modules;
+    $scope.modules = ModuleService.addMissingModules($scope.modules);
+    StorageService.storeModules($scope.modules);
+    $scope.updateModules();
+
     // Go to login page if no user credentials found
     if (!home.userCredentials) {
       $state.go('login');
@@ -37,45 +39,29 @@ app.controller('HomeController', ['$scope', '$state', '$window', '$filter', 'Dat
     }
   };
 
-  /**
-   * Load data
-   * @param  {String} dataType Type of data to load, ex: 'chapelCredits'
-   */
-  home.load = function (dataType) {
-
-    // Check for unsupported data type
-    if (DataTypes.indexOf(dataType) == -1) {
-      console.error("Data Type", dataType, "is not supported.");
-      return;
-    }
-
-    home.refreshBanner();
-
-    home.loading[dataType] = true;
-    home.errorMessage[dataType] = null;
-
-    // Get data from server
-    DataService.get(dataType, home.userCredentials).
-    success(function(data) {
-      home[dataType] = data;
-      home.loading[dataType] = false;
-      UsageService.log(home.userCredentials.username, dataType);
-    }).
-    error(function(data, status) {
-      var dataDescription = $filter('camelCaseToHuman')(dataType);
-      home.errorMessage[dataType] = DataService.handleError(data, status, dataDescription);
-    }).
-    finally(function() {
-      home.loading[dataType] = false;
-    });
-  };
-
-  home.refreshBanner();
-  home.resetScope();
-
   // Reset scope variables and log user out
   $scope.logout = function () {
     home.resetScope();
     LogoutService.logout();
   };
+
+  // Update selected modules
+  $scope.updateModules = function () {
+    home.selectedModules = ModuleService.getSelectedModules($scope.modules);
+    home.moduleClass = ModuleService.makeModuleClass(home.selectedModules.length);
+    StorageService.storeModules($scope.modules);
+  };
+
+  // Reorder module in modules array
+  $scope.reorderModule = function(item, fromIndex, toIndex) {
+    $scope.modules.splice(fromIndex, 1);
+    $scope.modules.splice(toIndex, 0, item);
+    $scope.updateModules();
+  };
+
+  home.refreshBanner();
+  home.resetScope();
+
+  $scope.modal = ModalService.createModals($scope);
+  $scope.popover = PopoverService.createPopovers($scope);
 }]);

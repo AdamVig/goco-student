@@ -9,7 +9,19 @@ constant('RequestTimeout', {
   'chapelCredits': 1500,
   'mealPoints': 8000
 }).
-constant('DataTypes', [
-  "chapelCredits",
-  "mealPoints"
+constant('Modules', [
+  {
+    name: 'chapelCredits',
+    label: 'CL&W Credits',
+    icon: 'chapel-icon',
+    color: 'chapel-credits',
+    selected: true
+  },
+  {
+    name: 'mealPoints',
+    label: 'Meal Points',
+    icon: 'meal-points-icon',
+    color: 'meal-points',
+    selected: true
+  }
 ]);
