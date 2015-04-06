@@ -1,4 +1,5 @@
 app.service('ModalService', ['$ionicModal', function ($ionicModal) {
+
   var modalService = this;
 
   /**
@@ -6,13 +7,15 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
    * @param {object} $scope Scope of controller
    */
   this.createModals = function ($scope) {
-    // Banner modal
-    $ionicModal.fromTemplateUrl('html/_banner.html', {
-      scope: $scope
-    }).then(function(modal) {
-      modalService.banner = modal;
-    });
-    
+
+    var modals = ['banner', 'configuration'];
+
+    // Create modals
+    for (var i = 0; i < modals.length; i++) {
+      var modalName = modals[i];
+      makeModal(modalName, $scope);
+    }
+
     return modalService;
   };
 
@@ -39,4 +42,20 @@ app.service('ModalService', ['$ionicModal', function ($ionicModal) {
       modalService[modalName].hide();
     }
   };
+
+  /**
+   * Make modal and add to modalService object
+   * Uses $ionicModal internally
+   * Expects html/_modalname.html to exist
+   * @param {String} modalName Name of modal
+   * @param {Object} $scope    $scope object to pass to modal
+   */
+  function makeModal(modalName, $scope) {
+    $ionicModal.fromTemplateUrl(
+      'html/_' + modalName + '.html',
+      { scope: $scope }
+    ).then(function (modal) {
+      modalService[modalName] = modal;
+    });
+  }
 }]);
