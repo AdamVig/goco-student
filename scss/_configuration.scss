@@ -1,0 +1,45 @@
+.configuration-modal {
+  top: 400px;
+  .item-checkbox .item-content {
+    background-color: inherit;
+  }
+  .item p.item-title,
+  .item-reorder .button.icon {
+    color: $text-color;
+  }
+  .item p.item-title {
+    padding-left: 55px;
+    font-size: 20px;
+  }
+  .item-checkbox {
+    padding-left: 10px;
+  }
+  .goco-checkbox {
+    position: relative;
+    display: inline-block;
+    padding: ($checkbox-height / 4) ($checkbox-width / 4);
+    cursor: pointer;
+    input {
+      display: none !important;
+    }
+    &.ion-checkmark:before,
+    &.ion-close:before {
+      color: $text-color;
+      font-size: 30px;
+      position: absolute;
+      top: 33%;
+      left: 25%;
+      display: table;
+      width: ($checkbox-width / 2);
+      height: ($checkbox-width / 4) - 1;
+    }
+  }
+
+  .item-checkbox .goco-checkbox {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    z-index: $z-index-item-checkbox;
+    margin-top: (($checkbox-height + ($checkbox-height / 2)) / 2) * -1;
+  }
+}
