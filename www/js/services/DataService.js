@@ -14,11 +14,6 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'Dat
       timeout: RequestTimeout[dataType]
     };
 
-    // Fix chapel credits endpoint
-    if (dataType == 'chapelCredits') {
-      dataType = 'chapelCredit';
-    }
-
     return $http.get(ApiUrl + dataType.toLowerCase(), config);
   };
 
