@@ -63,6 +63,26 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'Dat
   };
 
   /**
+   * Strip decimal from a number
+   * @param {String} num Number in string format, potentially with a
+   *                     decimal in it
+   */
+  this.stripDecimal = function (num) {
+
+    // Contains a decimal point
+    if (num.indexOf('.') > -1) {
+      var parts = num.split('.');
+
+      // If part after decimal point is in fact a decimal
+      if (parts[1].length == 2) {
+        num = parts[0];
+      }
+    }
+
+    return num;
+  };
+
+  /**
    * Remove CouchDB properties from doc object
    * @param {object} doc Contains _id, _rev, and other properties
    * @return {object}    Contains properties
