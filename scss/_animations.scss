@@ -24,8 +24,7 @@
 // Only on grade a devices
 .grade-a {
   // Chapel credit and meal points zoom in on load
-  .chapel-credit-number,
-  .meal-points-number {
+  .info-number {
     &.ng-hide-remove {
       @extend .animated;
       @extend .zoomIn;
