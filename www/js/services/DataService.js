@@ -58,12 +58,12 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'Dat
 
     // Return error message
     if (status == 401) {
-      return "Username and password don't match. Log out and try again!";
+      return "Bad login. Log out and try again.";
     } else if (status === 0) {
-      return "Oops! Couldn't find your " + description + ".";
+      return "Oops! Error. Tap to try again.";
     } else {
       console.error("Error getting data. Status:", status, "Response:", data);
-      return "Something went horribly wrong. Try again later!";
+      return "Something went wrong. Try again later!";
     }
   };
 
