@@ -6,7 +6,7 @@ app.directive('infoModule', function () {
       infoLabel: '=',
       iconClass: '='
     },
-    templateUrl: '../html/directives/_infomodule.html',
+    templateUrl: 'html/directives/_infomodule.html',
     controllerAs: 'module',
     controller: ['$scope', '$filter', 'DataService', 'StorageService', 'UsageService', 'Modules', function ($scope, $filter, DataService, StorageService, UsageService, Modules) {
 

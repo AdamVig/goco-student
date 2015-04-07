@@ -1,5 +1,5 @@
 app.directive('appHeader', function () {
   return {
-    templateUrl: '../html/directives/_appheader.html'
+    templateUrl: 'html/directives/_appheader.html'
   };
 });

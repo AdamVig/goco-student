@@ -4,6 +4,6 @@ app.directive('interactionModule', function () {
     scope: {
 
     },
-    templateUrl: '../html/directives/_interactionmodule.html'
+    templateUrl: 'html/directives/_interactionmodule.html'
   };
 });
