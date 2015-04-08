@@ -25,7 +25,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
 
     // Module settings
     $scope.modules = StorageService.retrieveModules() || Modules;
-    $scope.modules = ModuleService.addMissingModules($scope.modules);
+    $scope.modules = ModuleService.updateDefaultModules($scope.modules);
     StorageService.storeModules($scope.modules);
     $scope.updateModules();
 

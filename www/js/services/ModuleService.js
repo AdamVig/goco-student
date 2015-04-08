@@ -25,30 +25,50 @@ app.service('ModuleService', ['Modules', function (Modules) {
   };
 
   /**
-   * Add missing default modules to list of modules
-   * @param {array} modulesList List of modules
+   * Add missing default modules to list of modules and
+   * remove modules that are no longer in the list of default modules
+   * @param {array} userModules List of modules from user configuration
    * @return {array}            List of modules with missing default modules
    *                            added in
    */
-  this.addMissingModules = function (modulesList) {
+  this.updateDefaultModules = function (userModules) {
 
-    // Go through list of default modules
-    for (var i = 0; i < Modules.length; i++) {
-      var currentModule = Modules[i];
+    var i, currentModule, matchingModules;
+
+    // Go through list of user modules
+    for (i = 0; i < userModules.length; i++) {
+      currentModule = userModules[i];
 
       /* jshint -W083 */
       // Check for matching module in modulesList
-      var matchingModules = modulesList.filter(function (m) {
+      matchingModules = Modules.filter(function (m) {
+        return m.name == currentModule.name;
+      });
+
+      // Remove module
+      if (matchingModules.length === 0) {
+        userModules.splice(i, 1);
+      }
+    }
+
+
+    // Go through list of default modules
+    for (i = 0; i < Modules.length; i++) {
+      currentModule = Modules[i];
+
+      /* jshint -W083 */
+      // Check for matching module in modulesList
+      matchingModules = userModules.filter(function (m) {
         return m.name == currentModule.name;
       });
 
       // Add missing default module
       if (matchingModules.length === 0) {
-        modulesList.push(currentModule);
+        userModules.push(currentModule);
       }
     }
 
-    return modulesList;
+    return userModules;
   };
 
 }]);
