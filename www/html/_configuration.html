@@ -14,11 +14,12 @@
         ng-repeat="module in modules"
         ng-class="{'{{module.color}}': true, 'item-placeholder': !module.selected}">
         <label class="ion-checkmark goco-checkbox"
-          ng-class="{'ion-checkmark': module.selected, 'ion-close': !module.selected}"
+          ng-class="{'ion-checkmark': module.selected, 'ion-close': !module.selected, 'disabled': (selectedModules.length == 1) && (module.selected)}"
           ng-hide="showReorder">
           <input type="checkbox"
             ng-model="module.selected"
-            ng-change="updateModules()">
+            ng-change="updateModules()"
+            ng-disabled="(selectedModules.length == 1) && (module.selected)">
         </label>
         <p class="item-title">{{ module.name | camelCaseToHuman | titleCase }}</p>
         <ion-reorder-button class="ion-navicon"

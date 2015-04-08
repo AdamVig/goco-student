@@ -33,6 +33,9 @@
       width: ($checkbox-width / 2);
       height: ($checkbox-width / 4) - 1;
     }
+    &.disabled {
+      opacity: 0.5;
+    }
   }
 
   .item-checkbox .goco-checkbox {

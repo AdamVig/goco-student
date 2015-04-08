@@ -47,8 +47,8 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
 
   // Update selected modules
   $scope.updateModules = function () {
-    home.selectedModules = ModuleService.getSelectedModules($scope.modules);
-    home.moduleClass = ModuleService.makeModuleClass(home.selectedModules.length);
+    $scope.selectedModules = ModuleService.getSelectedModules($scope.modules);
+    home.moduleClass = ModuleService.makeModuleClass($scope.selectedModules.length);
     StorageService.storeModules($scope.modules);
   };
 
