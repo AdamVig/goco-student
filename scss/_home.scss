@@ -1,15 +1,11 @@
 .home-content {
-  .scroll,
-  .button {
+  .scroll {
     height: 100%;
   }
   .scroll,
-  .button,
-  info-module,
   .module-content {
     width: 100%;
   }
-  info-module,
   .column {
     display: flex;
     align-items: center;

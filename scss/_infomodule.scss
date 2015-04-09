@@ -1,6 +1,12 @@
 info-module {
   height: 100%;
+  width: 100%;
+  display: block;
+  align-items: center;
+  justify-content: center;
   .button {
+    height: 100%;
+    width: 100%;
     margin: 0;
     border: 0;
     &.chapel-credits {
@@ -8,6 +14,9 @@ info-module {
     }
     &.meal-points {
       background-color: $meal-points-orange;
+    }
+    &.button-full {
+      margin-top: 0;
     }
   }
   .icon {
