@@ -12,21 +12,25 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
   // Instantiate/reset scope variables
   home.resetScope = function () {
 
-    // Status
     home.loading = {};
     home.errorMessage = {};
-
-    // Data
     home.mealPoints = null;
     home.chapelCredits = {};
-
-    // User credentials
     home.userCredentials = StorageService.retrieveCredentials();
 
     // Module settings
-    $scope.modules = StorageService.retrieveModules() || Modules;
-    $scope.modules = ModuleService.updateDefaultModules($scope.modules);
-    StorageService.storeModules($scope.modules);
+    $scope.modules = StorageService.retrieveModules();
+
+    // No stored modules: set to default and show configuration
+    if (!$scope.modules) {
+      $scope.modules = Modules;
+      $scope.modal.showModal('configuration');
+
+    // Stored modules: reconcile with default modules and store again
+    } else {
+      $scope.modules = ModuleService.updateDefaultModules($scope.modules);
+      StorageService.storeModules($scope.modules);
+    }
     $scope.updateModules();
 
     // Go to login page if no user credentials found
@@ -59,9 +63,10 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     $scope.updateModules();
   };
 
-  home.refreshBanner();
-  home.resetScope();
-
-  $scope.modal = ModalService.createModals($scope);
   $scope.popover = PopoverService.createPopovers($scope);
+  ModalService.createModals($scope).then(function (modalService) {
+    $scope.modal = modalService;
+    home.refreshBanner();
+    home.resetScope();
+  });
 }]);
