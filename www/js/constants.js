@@ -26,9 +26,16 @@ constant('Modules', [
   },
   {
     name: 'mealPointsPerDay',
-    label: 'Mealpoints/Day',
+    label: 'Mealpoints Left Per Day',
     icon: 'calculator-icon',
     color: 'meal-points-per-day',
+    selected: false
+  },
+  {
+    name: 'daysLeftInSemester',
+    label: 'Days Left In Semester',
+    icon: 'calendar-icon',
+    color: 'days-left-in-semester',
     selected: false
   }
 ]);

@@ -21,6 +21,9 @@ info-module {
     &.meal-points-per-day {
       background-color: $meal-points-per-day;
     }
+    &.days-left-in-semester {
+      background-color: $days-left-in-semester;
+    }
   }
   .icon {
     height: 30vh;
@@ -39,6 +42,9 @@ info-module {
     }
     &.calculator-icon {
       background-image: url('../img/calculator.svg');
+    }
+    &.calendar-icon {
+      background-image: url('../img/calendar.svg');
     }
   }
   .column {
