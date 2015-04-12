@@ -1,11 +1,12 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DatabaseFactory', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'LogoutService', 'StorageService', 'UsageService', function ($rootScope, $scope, $state, $window, $filter, Modules, DatabaseFactory, DataService, ModalService, ModuleService, PopoverService, LogoutService, StorageService, UsageService) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DatabaseFactory', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'LogoutService', 'StorageService', function ($rootScope, $scope, $state, $window, $filter, Modules, DatabaseFactory, DataService, ModalService, ModuleService, PopoverService, LogoutService, StorageService) {
 
   var home = this;
 
   // Refresh banner message
   home.refreshBanner = function () {
-    DataService.getBanner().then(function (banner) {
-      $scope.banner = banner;
+    DataService.getAppInfo().then(function (appInfo) {
+      $scope.banner = appInfo.banner;
+      home.appInfo = appInfo;
     });
   };
 

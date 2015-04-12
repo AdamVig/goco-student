@@ -8,7 +8,7 @@ app.directive('infoModule', function () {
     },
     templateUrl: 'html/directives/_infomodule.html',
     controllerAs: 'module',
-    controller: ['$scope', '$filter', 'DataService', 'StorageService', 'UsageService', 'Modules', function ($scope, $filter, DataService, StorageService, UsageService, Modules) {
+    controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', function ($scope, $filter, DataService, StorageService, Modules) {
 
       var module = this;
       module.dataType = $scope.infoType;
@@ -24,20 +24,16 @@ app.directive('infoModule', function () {
 
         // Get data from server
         DataService.get(module.dataType, module.userCredentials).
-        success(function(data) {
+        success(function(response) {
 
-          // Account for different data format in mealpoints endpoint
-          if (module.dataType != 'mealPoints') module.data = data.amount;
-          else module.data = DataService.stripDecimal(data.mealpoints);
+          module.data = response.data;
 
           // Get "out of" amount if provided
-          if (data.outof) module.outOf = data.outof;
-          module.loading = false;
-          UsageService.log(module.userCredentials.username, module.dataType);
+          if (response.outof) module.outOf = response.outof;
         }).
-        error(function(data, status) {
+        error(function(response, status) {
           console.error("Could not find", module.label);
-          module.errorMessage = DataService.handleError(data, status, module.label);
+          module.errorMessage = DataService.handleError(response, status, module.label);
         }).
         finally(function() {
           module.loading = false;

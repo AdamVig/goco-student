@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'DatabaseFactory', 'StorageService', function ($http, $window, ApiUrl, RequestTimeout, DatabaseFactory, StorageService) {
+app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'DatabaseFactory', 'StorageService', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, DatabaseFactory, StorageService) {
 
   /**
    * Get data for user from server
@@ -8,21 +8,23 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'Dat
    */
   this.get = function (dataType, userCredentials) {
 
+    var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+
     // Request configuration
     var config = {
       params: userCredentials,
       timeout: RequestTimeout[dataType]
     };
 
-    return $http.get(ApiUrl + dataType.toLowerCase(), config);
+    return $http.get(url, config);
   };
 
   /**
-   * Get banner message from database
+   * Get app info from database
    */
-  this.getBanner = function () {
+  this.getAppInfo = function () {
 
-    return DatabaseFactory.get('message').then(function (response) {
+    return DatabaseFactory.get('info').then(function (response) {
 
       if (response.data) {
 
@@ -31,7 +33,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'Dat
 
         // Track exception with analytics
         if ($window.analytics) {
-          $window.analytics.trackException("Could not retrieve banner.", false);
+          $window.analytics.trackException("Could not retrieve app info.", false);
         }
         return null;
       }
@@ -60,26 +62,6 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'RequestTimeout', 'Dat
       console.error("Error getting data. Status:", status, "Response:", data);
       return "Something went wrong. Try again later!";
     }
-  };
-
-  /**
-   * Strip decimal from a number
-   * @param {String} num Number in string format, potentially with a
-   *                     decimal in it
-   */
-  this.stripDecimal = function (num) {
-
-    // Contains a decimal point
-    if (num.indexOf('.') > -1) {
-      var parts = num.split('.');
-
-      // If part after decimal point is in fact a decimal
-      if (parts[1].length == 2) {
-        num = parts[0];
-      }
-    }
-
-    return num;
   };
 
   /**
