@@ -4,7 +4,8 @@ app.directive('infoModule', function () {
     scope: {
       infoType: '=',
       infoLabel: '=',
-      iconClass: '='
+      iconClass: '=',
+      infoPrefix: '='
     },
     templateUrl: 'html/directives/_infomodule.html',
     controllerAs: 'module',
@@ -12,6 +13,7 @@ app.directive('infoModule', function () {
 
       var module = this;
       module.dataType = $scope.infoType;
+      module.prefix = $scope.infoPrefix;
       module.label = $scope.infoLabel;
       module.className = $filter('camelCaseToDashSeparated')(module.dataType);
       module.iconClass = $scope.iconClass;
