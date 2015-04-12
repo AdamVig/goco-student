@@ -1,5 +1,6 @@
 $gordon-blue: #014983;
 $meal-points-orange: #F2A42C;
+$meal-points-per-day: #9650BF;
 $text-color: #fff;
 $muted-gray: #838C8D;
 
@@ -9,6 +10,9 @@ $muted-gray: #838C8D;
 }
 .meal-points {
   background-color: $meal-points-orange;
+}
+.meal-points-per-day {
+  background-color: $meal-points-per-day;
 }
 
 @font-face {

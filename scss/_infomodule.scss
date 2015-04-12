@@ -9,14 +9,17 @@ info-module {
     width: 100%;
     margin: 0;
     border: 0;
+    &.button-full {
+      margin-top: 0;
+    }
     &.chapel-credits {
       background-color: $gordon-blue;
     }
     &.meal-points {
       background-color: $meal-points-orange;
     }
-    &.button-full {
-      margin-top: 0;
+    &.meal-points-per-day {
+      background-color: $meal-points-per-day;
     }
   }
   .icon {
@@ -25,11 +28,17 @@ info-module {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    &:before {
+      color: $text-color;
+    }
     &.chapel-icon {
       background-image: url('../img/chapel.svg');
     }
     &.meal-points-icon {
       background-image: url('../img/silverware.svg');
+    }
+    &.calculator-icon {
+      background-image: url('../img/calculator.svg');
     }
   }
   .column {

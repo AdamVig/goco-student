@@ -19,9 +19,16 @@ constant('Modules', [
   },
   {
     name: 'mealPoints',
-    label: 'Meal Points',
+    label: 'Mealpoints',
     icon: 'meal-points-icon',
     color: 'meal-points',
     selected: true
+  },
+  {
+    name: 'mealPointsPerDay',
+    label: 'Mealpoints/Day',
+    icon: 'calculator-icon',
+    color: 'meal-points-per-day',
+    selected: false
   }
 ]);
