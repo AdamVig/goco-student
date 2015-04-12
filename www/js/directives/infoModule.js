@@ -30,6 +30,11 @@ app.directive('infoModule', function () {
 
           module.data = response.data;
 
+          // Round mealpoints
+          if (module.dataType == 'mealPoints') {
+            module.data = Math.round(module.data);
+          }
+
           // Get "out of" amount if provided
           if (response.outof) module.outOf = response.outof;
         }).
