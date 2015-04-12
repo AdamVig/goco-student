@@ -46,7 +46,7 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    */
   this.storeModules = function (allModules) {
     var keyName = storagePrefix + 'modules';
-    $window.localStorage[keyName] = JSON.stringify(allModules);
+    $window.localStorage[keyName] = angular.toJson(allModules);
   };
 
   /**
