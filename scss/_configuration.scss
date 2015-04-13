@@ -46,3 +46,8 @@
     margin-top: (($checkbox-height + ($checkbox-height / 2)) / 2) * -1;
   }
 }
+.platform-ios.platform-cordova:not(.fullscreen) {
+  .configuration-modal {
+    top: $ios-statusbar-height;
+  }
+}
