@@ -21,30 +21,37 @@ app.directive('infoModule', function () {
 
       module.load = function () {
 
-        module.loading = true;
-        module.errorMessage = null;
+        // Do not try to get data if already loading
+        if (!module.loading) {
 
-        // Get data from server
-        DataService.get(module.dataType, module.userCredentials).
-        success(function(response) {
+          module.loading = true;
+          module.errorMessage = null;
 
-          module.data = response.data;
+          // Get data from server
+          DataService.get(module.dataType, module.userCredentials).
+          success(function(response) {
 
-          // Round mealpoints
-          if (module.dataType == 'mealPoints') {
-            module.data = Math.round(module.data);
-          }
+            module.data = response.data;
 
-          // Get "out of" amount if provided
-          if (response.outof) module.outOf = response.outof;
-        }).
-        error(function(response, status) {
-          console.error("Could not find", module.label);
-          module.errorMessage = DataService.handleError(response, status, module.label);
-        }).
-        finally(function() {
-          module.loading = false;
-        });
+            // Round mealpoints
+            if (module.dataType == 'mealPoints' ||
+                module.dataType == 'mealPointsPerDay') {
+              module.data = Math.round(module.data);
+            }
+
+
+            // Get "out of" amount if provided
+            if (response.outof) module.outOf = response.outof;
+          }).
+          error(function(response, status) {
+            console.error(module.label, "error, got response", response);
+            console.log(status);
+            module.errorMessage = DataService.handleError(response, status, module.label);
+          }).
+          finally(function() {
+            module.loading = false;
+          });
+        }
       };
     }]
   };
