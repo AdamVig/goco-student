@@ -28,7 +28,7 @@ constant('Modules', [
   },
   {
     name: 'mealPointsPerDay',
-    label: 'Mealpoints Left Per Day',
+    label: 'Mealpoints Left/Day',
     icon: 'calculator-icon',
     color: 'meal-points-per-day',
     prefix: '$',

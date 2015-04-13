@@ -50,6 +50,9 @@ info-module {
   .column {
     float: left;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .info-number {
     font-size: 20vh;
@@ -69,7 +72,8 @@ info-module {
   &.one-third {
     height: 33%;
     .icon {
-      height: 15vh;
+      margin-top: 10px;
+      height: 14vh;
     }
     .info-label {
       font-size: 4.75vh;
@@ -86,41 +90,15 @@ info-module {
     .icon {
       height: 13vh;
     }
-    .info-label {
-      margin-top: 15px;
-      font-size: 4vh;
-    }
-    .info-number {
-      margin-top: 30px;
-      font-size: 6.5vh;
-    }
-    .info-error-message {
-      font-size: 4.5vh;
-    }
   }
   &.list-item {
     height: 20%;
     .icon {
       height: 11vh;
-      margin-top: 10px;
-    }
-    .info-number {
-      margin-top: 30px;
-      font-size: 6vh;
-    }
-    .info-label {
-      margin-top: 0;
-      font-size: 5vh;
-    }
-    .info-error-message {
-      font-size: 4.5vh;
     }
   }
   &.one-fourth,
   &.list-item {
-    .icon {
-      margin-top: 10px;
-    }
     .module-left {
       width: 40%;
       padding-left: 10px;
@@ -128,7 +106,23 @@ info-module {
     }
     .module-right {
       width: 60%;
+      vertical-align: middle;
+    }
+    .module-content,
+    .column,
+    .module-right {
+      height: 100%;
+    }
+    .info-number {
       margin-top: 10px;
+      font-size: 6vh;
+    }
+    .info-label {
+      margin: 0;
+      font-size: 4vh;
+    }
+    .info-error-message {
+      font-size: 4.5vh;
     }
   }
 }
