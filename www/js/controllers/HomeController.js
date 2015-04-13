@@ -22,25 +22,24 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     // Module settings
     $scope.modules = StorageService.retrieveModules();
 
-    // No stored modules: set to default and show configuration
-    if (!$scope.modules) {
-      $scope.modules = Modules;
-      $scope.modal.showModal('configuration');
-
-    // Stored modules: reconcile with default modules and store again
-    } else {
-      $scope.modules = ModuleService.updateDefaultModules($scope.modules);
-      StorageService.storeModules($scope.modules);
-    }
-    $scope.updateModules();
-
     // Go to login page if no user credentials found
     if (!home.userCredentials) {
       $state.go('login');
 
-    // Set user ID in analytics
-    } else if ($window.analytics) {
-      $window.analytics.setUserId(home.userCredentials.username);
+    // Otherwise get stored modules or create new defaults
+    } else {
+
+      // No stored modules: set to default and show configuration
+      if (!$scope.modules) {
+        $scope.modules = Modules;
+        $scope.modal.showModal('configuration');
+
+      // Stored modules: reconcile with default modules and store again
+      } else {
+        $scope.modules = ModuleService.updateDefaultModules($scope.modules);
+        StorageService.storeModules($scope.modules);
+      }
+      $scope.updateModules();
     }
   };
 
