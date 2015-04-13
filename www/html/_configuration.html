@@ -21,7 +21,7 @@
             ng-change="updateModules()"
             ng-disabled="(selectedModules.length == 1) && (module.selected)">
         </label>
-        <p class="item-title">{{ module.name | camelCaseToHuman | titleCase }}</p>
+        <p class="item-title">{{ module.label }}</p>
         <ion-reorder-button class="ion-navicon"
             on-reorder="reorderModule(module, $fromIndex, $toIndex)">
         </ion-reorder-button>
