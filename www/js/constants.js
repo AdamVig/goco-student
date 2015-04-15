@@ -6,8 +6,7 @@ constant('DatabaseConstant', {
 }).
 constant('ApiUrl', 'http://api.adamvig.com/gocostudent/').
 constant('RequestTimeout', {
-  'chapelCredits': 1500,
-  'mealPoints': 8000
+  'default': 25000
 }).
 constant('Modules', [
   {

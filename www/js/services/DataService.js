@@ -13,7 +13,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     // Request configuration
     var config = {
       params: userCredentials,
-      timeout: RequestTimeout[dataType]
+      timeout: RequestTimeout['default']
     };
 
     return $http.get(url, config);

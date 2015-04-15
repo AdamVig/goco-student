@@ -39,13 +39,11 @@ app.directive('infoModule', function () {
               module.data = Math.round(module.data);
             }
 
-
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
           }).
           error(function(response, status) {
             console.error(module.label, "error, got response", response);
-            console.log(status);
             module.errorMessage = DataService.handleError(response, status, module.label);
           }).
           finally(function() {
