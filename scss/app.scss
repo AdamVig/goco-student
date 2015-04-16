@@ -62,6 +62,10 @@ body {
 .platform-android .popover .item.assertive {
   color: $assertive;
 }
+// Override Android popover styles to make 'options' blue
+.platform-android .popover .item.positive {
+  color: $positive;
+}
 // Make Modal only cover part of the screen
 .modal {
   &.banner-modal {
