@@ -13,7 +13,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     // Request configuration
     var config = {
       params: userCredentials,
-      timeout: RequestTimeout['default']
+      timeout: RequestTimeout.default
     };
 
     return $http.get(url, config);
@@ -57,7 +57,10 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     if (status == 401) {
       return "Bad login. Log out and try again.";
     } else if (status === 0) {
+      console.error(module.label, "error, got response", response);
       return "Oops! Error. Tap to try again.";
+    } else if (status == "timeout") {
+      return "Request took too long. Tap to try again.";
     } else {
       console.error("Error getting data. Status:", status, "Response:", data);
       return "Something went wrong. Try again later!";
