@@ -5,7 +5,8 @@ app.directive('infoModule', function () {
       infoType: '=',
       infoLabel: '=',
       iconClass: '=',
-      infoPrefix: '='
+      infoPrefix: '=',
+      loadCallback: '&'
     },
     templateUrl: 'html/directives/_infomodule.html',
     controllerAs: 'module',
@@ -20,6 +21,8 @@ app.directive('infoModule', function () {
       module.userCredentials = StorageService.retrieveCredentials();
 
       module.load = function () {
+
+        $scope.loadCallback();
 
         // Do not try to get data if already loading
         if (!module.loading) {

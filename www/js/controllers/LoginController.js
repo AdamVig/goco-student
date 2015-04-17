@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$state', 'StorageService', function ($state, StorageService) {
+app.controller('LoginController', ['$state', 'StorageService', 'DataService', function ($state, StorageService, DataService) {
 
   var login = this;
   login.userCredentials = {
@@ -13,6 +13,7 @@ app.controller('LoginController', ['$state', 'StorageService', function ($state,
         split('@')[0];
     }
     StorageService.storeCredentials(login.userCredentials);
+    DataService.get('createuser', StorageService.retrieveCredentials());
 
     $state.go('home');
   };

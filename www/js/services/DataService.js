@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'DatabaseFactory', 'StorageService', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, DatabaseFactory, StorageService) {
+app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'StorageService', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, StorageService) {
 
   /**
    * Get data for user from server
@@ -17,27 +17,6 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     };
 
     return $http.get(url, config);
-  };
-
-  /**
-   * Get app info from database
-   */
-  this.getAppInfo = function () {
-
-    return DatabaseFactory.get('info').then(function (response) {
-
-      if (response.data) {
-
-        return removeCouchProperties(response.data);
-      } else {
-
-        // Track exception with analytics
-        if ($window.analytics) {
-          $window.analytics.trackException("Could not retrieve app info.", false);
-        }
-        return null;
-      }
-    });
   };
 
   /**
