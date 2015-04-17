@@ -4,6 +4,12 @@
   @extend .fadeCycle;
 }
 
+.button-animated {
+  @extend .animated;
+  @extend .infinite;
+  @extend .moduleColorCycle;
+}
+
 // Only on grade a and grade b devices
 .grade-a,
 .grade-b {

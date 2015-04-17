@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'LogoutService', 'StorageService', 'ApiUrl', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, LogoutService, StorageService, ApiUrl) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl) {
 
   var home = this;
 
@@ -33,6 +33,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
       if (!$scope.modules) {
         $scope.modules = Modules;
         $scope.modal.showModal('configuration');
+        $scope.popup.showPopup('configuration');
 
       // Stored modules: reconcile with default modules and store again
       } else {
@@ -64,6 +65,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
   };
 
   $scope.popover = PopoverService.createPopovers($scope);
+  $scope.popup = PopupService;
   ModalService.createModals($scope).then(function (modalService) {
     $scope.modal = modalService;
     home.refreshBanner();
