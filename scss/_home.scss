@@ -1,8 +1,7 @@
 .home-content {
-  .scroll {
-    height: 100%;
+  &.center {
+    display: block;
   }
-  .scroll,
   .module-content {
     width: 100%;
   }
