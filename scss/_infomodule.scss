@@ -99,19 +99,14 @@ info-module {
   }
   &.one-fourth,
   &.list-item {
+    .module-content {
+      @extend .center;
+    }
     .module-left {
       width: 40%;
-      padding-left: 10px;
-      text-align: left;
     }
     .module-right {
       width: 60%;
-      vertical-align: middle;
-    }
-    .module-content,
-    .column,
-    .module-right {
-      height: 100%;
     }
     .info-number {
       margin-top: 10px;
