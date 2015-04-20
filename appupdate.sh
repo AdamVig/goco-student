@@ -57,9 +57,9 @@ if [ $yn == "y" ]; then
   cordova build --release android >& /dev/null && wait
 
   # Sign APK
-  jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 \
-    -keystore $keystorePath \
   cecho blue "Signing APK."
+  jarsigner -sigalg SHA1withRSA -digestalg SHA1 \
+    -tsa http://timestamp.digicert.com \
     -keystore $KEYSTOREPATH \
     platforms/android/ant-build/CordovaApp-release-unsigned.apk \
     $KEYSTOREALIAS
