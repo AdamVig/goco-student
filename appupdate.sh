@@ -64,7 +64,9 @@ if [ $yn == "y" ]; then
     platforms/android/ant-build/CordovaApp-release-unsigned.apk \
     $KEYSTOREALIAS
 
+  # Remove existing APK and zipalign new APK in its place
   cecho blue "Zipaligning and renaming APK."
+  rm "$APKNAME.apk" 2> /dev/null
   zipalign -v 4 platforms/android/ant-build/CordovaApp-release-unsigned.apk \
     "$APKNAME.apk" >& /dev/null
 
