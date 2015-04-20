@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# App Defaults
+APKNAME="GoCoStudent"
+KEYSTOREPATH="gocostudent.keystore"
+KEYSTOREALIAS="gocostudent"
+
 # Colors
 cecho() {
   local code="\033["
@@ -51,21 +56,17 @@ if [ $yn == "y" ]; then
   cecho blue "Building app for Android."
   cordova build --release android >& /dev/null && wait
 
-  # Get keystore information
-  read -p "Path to keystore file: " keystorePath
-  read -p "Keystore alias: " keystoreAlias
-
   # Sign APK
   jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 \
     -keystore $keystorePath \
   cecho blue "Signing APK."
+    -keystore $KEYSTOREPATH \
     platforms/android/ant-build/CordovaApp-release-unsigned.apk \
-    $keystoreAlias
+    $KEYSTOREALIAS
 
-  read -p "Name of app: " appName
   cecho blue "Zipaligning and renaming APK."
   zipalign -v 4 platforms/android/ant-build/CordovaApp-release-unsigned.apk \
-    "$appName.apk"
+    "$APKNAME.apk" >& /dev/null
 
   cecho yellow  "Done. Android app is ready for distribution."
 fi
