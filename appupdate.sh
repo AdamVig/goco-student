@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-devices=( "iPhone-4s" "iPhone-5" "iPhone-6" "iPhone-6-Plus" "iPad Air" )
+devices=( "iPhone-4s" "iPhone-5" "iPhone-6" "iPhone-6-Plus" "iPad-Air" )
 
 echo "Welcome to AdamVig App Update."
 
@@ -10,8 +10,7 @@ if [ $yn == "y" ]; then
   for i in "${devices[@]}"; do
 
     # Emulate device
-    echo "Emulating $i."
-    ionic emulate ios --target="$i" >& /dev/null && wait
+    cordova emulate ios --target="$i" >& /dev/null
     echo "$i emulator started."
 
     # Bring iOS simulator window to front
@@ -19,7 +18,6 @@ if [ $yn == "y" ]; then
       -e 'tell application "iOS Simulator"' \
       -e 'activate' \
       -e 'end tell'
-
 
     read -p "Press any key to continue... " -n1 -s
     echo
