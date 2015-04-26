@@ -7,25 +7,26 @@ app.run(['$ionicPlatform', function($ionicPlatform) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
-    var admobPublisherId, analyticsId;
-
-    if (ionic.Platform.isIOS()) {
-      admobPublisherId = "ca-app-pub-9660792847854450/5221580058";
-      analyticsId = "UA-60428326-3";
-    } else {
-      admobPublisherId = "ca-app-pub-9660792847854450/1366364053";
-      analyticsId = "UA-60428326-2";
-    }
+    // CORDOVA INSTALL PLUGIN com.admob.google com.ios.libgoogleadmobads
+    // var admobPublisherId, analyticsId;
+    //
+    // if (ionic.Platform.isIOS()) {
+    //   admobPublisherId = "ca-app-pub-9660792847854450/5221580058";
+    //   analyticsId = "UA-60428326-3";
+    // } else {
+    //   admobPublisherId = "ca-app-pub-9660792847854450/1366364053";
+    //   analyticsId = "UA-60428326-2";
+    // }
+    //
+    // if (window.admob) {
+    //   admob.createBannerView({
+    //     isTesting: false,
+    //     publisherId: admobPublisherId
+    //   });
+    // }
 
     if (window.analytics) {
       window.analytics.startTrackerWithId(analyticsId);
-    }
-
-    if (window.admob) {
-      admob.createBannerView({
-        isTesting: false,
-        publisherId: admobPublisherId
-      });
     }
   });
 }]).
