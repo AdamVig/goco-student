@@ -80,6 +80,9 @@ body {
   font-size: 1.2rem;
   line-height: 1.5rem;
 }
+app-banner > ion-footer-bar.bar {
+  z-index: 11;
+}
 // Override bar-header height change in iOS modal
 .platform-ios.platform-cordova:not(.fullscreen) {
   .modal {

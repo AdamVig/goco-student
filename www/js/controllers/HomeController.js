@@ -11,7 +11,10 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     // Refresh if it has been more than five seconds since last refresh
     if (timeDiff > AppInfoRefreshTime) {
       DataService.get('AppInfo').then(function (response) {
+
         $scope.banner = response.data.banner;
+        if ($scope.banner.title) home.hasBanner = true;
+
         home.appInfo = response.data;
         lastAppInfoRefresh = now;
       });
@@ -26,6 +29,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     home.mealPoints = null;
     home.chapelCredits = {};
     home.userCredentials = StorageService.retrieveCredentials();
+    home.hasBanner = false;
 
     // Module settings
     $scope.modules = StorageService.retrieveModules();
