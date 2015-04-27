@@ -19,6 +19,11 @@ $dark:                            #444 !default;
 $popover-width: 275px;
 $popover-height: 225px;
 
+$modal-inset-mode-bottom: 0;
+$modal-inset-mode-top: 40%;
+$modal-inset-mode-right: 10%;
+$modal-inset-mode-left: 10%;
+
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 

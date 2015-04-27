@@ -1,3 +1,6 @@
+$configuration-item-height: 20px;
+$configuration-item-height-big: 40px;
+
 .configuration-modal {
   .item-checkbox .item-content {
     background-color: inherit;
@@ -9,6 +12,13 @@
   .item p.item-title {
     padding-left: 55px;
     font-size: 5vw;
+    line-height: $configuration-item-height;
+  }
+  @media (min-width: $modal-inset-mode-break-point) {
+    .item p.item-title {
+      font-size: 3vw;
+      line-height: $configuration-item-height-big;
+    }
   }
   .item-checkbox {
     padding-left: 10px;
@@ -47,7 +57,9 @@
   }
 }
 .platform-ios.platform-cordova:not(.fullscreen) {
-  .configuration-modal {
-    top: $ios-statusbar-height;
+  @media (max-width: $modal-inset-mode-break-point) {
+    .configuration-modal {
+      top: $ios-statusbar-height;
+    }
   }
 }
