@@ -27,6 +27,12 @@ devices=( "iPhone-4s" "iPhone-5" "iPhone-6" "iPhone-6-Plus" "iPad-Air" )
 
 cecho cyan "Welcome to AdamVig App Update."
 
+# Increment app version numbers
+read -p "Open files to increment version number? (y/n) " yn
+if [ $yn == "y" ]; then
+  atom config.xml www/js/constants.js
+fi
+
 # Emulate iOS devices
 read -p "Emulate all possible iOS devices? (y/n) " yn
 if [ $yn == "y" ]; then
