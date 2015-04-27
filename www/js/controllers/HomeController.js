@@ -1,13 +1,21 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl, AppInfoRefreshTime) {
 
-  var home = this;
+  var home = this,
+      lastAppInfoRefresh = new Date(0); // Some day in 1970
 
-  // Refresh banner message
-  home.refreshBanner = function () {
-    DataService.get('AppInfo').then(function (response) {
-      $scope.banner = response.data.banner;
-      home.appInfo = response.data;
-    });
+  // Refresh app info including banner
+  home.refreshAppInfo = function () {
+    var now = Date.now();
+    var timeDiff = now - lastAppInfoRefresh;
+
+    // Refresh if it has been more than five seconds since last refresh
+    if (timeDiff > AppInfoRefreshTime) {
+      DataService.get('AppInfo').then(function (response) {
+        $scope.banner = response.data.banner;
+        home.appInfo = response.data;
+        lastAppInfoRefresh = now;
+      });
+    }
   };
 
   // Instantiate/reset scope variables
@@ -68,7 +76,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
   $scope.popup = PopupService;
   ModalService.createModals($scope).then(function (modalService) {
     $scope.modal = modalService;
-    home.refreshBanner();
+    home.refreshAppInfo();
     home.resetScope();
   });
 }]);

@@ -8,6 +8,7 @@ constant('ApiUrl', 'http://api.adamvig.com/gocostudent/').
 constant('RequestTimeout', {
   'default': 25000
 }).
+constant('AppInfoRefreshTime', 15000).
 constant('Modules', [
   {
     name: 'chapelCredits',

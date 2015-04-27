@@ -22,8 +22,6 @@ app.directive('infoModule', function () {
 
       module.load = function () {
 
-        $scope.loadCallback();
-
         // Do not try to get data if already loading
         if (!module.loading) {
 
@@ -57,6 +55,7 @@ app.directive('infoModule', function () {
           }).
           finally(function() {
             module.loading = false;
+            $scope.loadCallback();
           });
         }
       };
