@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
+# Enable error checking
+set -e
+
 # App Defaults
 APKNAME="GoCoStudent"
+APKBUILDPATH="platforms/android/ant-build/MainActivity-release-unsigned.apk"
 KEYSTOREPATH="gocostudent.keystore"
 KEYSTOREALIAS="gocostudent"
 
@@ -30,7 +34,7 @@ cecho cyan "Welcome to AdamVig App Update."
 # Increment app version numbers
 read -p "Open files to increment version number? (y/n) " yn
 if [ $yn == "y" ]; then
-  atom config.xml www/js/constants.js
+  atom config.xml www/js/constants.js package.json
 fi
 
 # Emulate iOS devices
@@ -50,7 +54,11 @@ if [ $yn == "y" ]; then
 
     read -p "Press any key to continue... " -n1 -s
     echo
+
+    # Temporarily disable error checking and kill iOS Simulator
+    set +e
     killall "iOS Simulator" 2> /dev/null
+    set -e
   done
 fi
 
@@ -60,21 +68,26 @@ if [ $yn == "y" ]; then
 
   # Build app for Android
   cecho blue "Building app for Android."
-  cordova build --release android >& /dev/null && wait
+  cordova build --release android 1> /dev/null && wait
 
   # Sign APK
   cecho blue "Signing APK."
+
+  # NOTE: Can't redirect to /dev/null due to password input
   jarsigner -sigalg SHA1withRSA -digestalg SHA1 \
     -tsa http://timestamp.digicert.com \
-    -keystore $KEYSTOREPATH \
-    platforms/android/ant-build/CordovaApp-release-unsigned.apk \
-    $KEYSTOREALIAS
+    -keystore "$KEYSTOREPATH" "$APKBUILDPATH" "$KEYSTOREALIAS"
 
   # Remove existing APK and zipalign new APK in its place
   cecho blue "Zipaligning and renaming APK."
-  rm "$APKNAME.apk" 2> /dev/null
-  zipalign -v 4 platforms/android/ant-build/CordovaApp-release-unsigned.apk \
-    "$APKNAME.apk" >& /dev/null
+
+  # Temporarily disable error checking
+  set +e
+  rm "$APKNAME.apk.bak" 2> /dev/null
+  mv "$APKNAME.apk" "$APKNAME.apk.bak" 2> /dev/null
+  set -e
+
+  zipalign -v 4 "$APKBUILDPATH" "$APKNAME.apk" 1> /dev/null
 
   cecho yellow  "Done. Android app is ready for distribution."
 fi
