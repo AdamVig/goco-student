@@ -1,6 +1,6 @@
 {
   "name": "goco-student",
-  "version": "1.0.0",
+  "version": "2.1.5",
   "description": "GoCo Student: An Ionic project",
   "dependencies": {
     "bufferstreams": "0.0.2",
@@ -22,5 +22,9 @@
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
     "https://github.com/danwilson/google-analytics-plugin.git"
+  ],
+  "cordovaPlatforms": [
+    "android",
+    "ios"
   ]
 }
