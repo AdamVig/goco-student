@@ -2,6 +2,7 @@ $gordon-blue: #014983;
 $meal-points-orange: #F2A42C;
 $meal-points-per-day: #9650BF;
 $days-left-in-semester: #58F5A7;
+$student-id: #F2726D;
 $text-color: #fff;
 $muted-gray: #838C8D;
 
@@ -17,6 +18,9 @@ $muted-gray: #838C8D;
 }
 .days-left-in-semester {
   background-color: $days-left-in-semester;
+}
+.student-id {
+  background-color: $student-id;
 }
 
 @font-face {

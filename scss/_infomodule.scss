@@ -24,6 +24,9 @@ info-module {
     &.days-left-in-semester {
       background-color: $days-left-in-semester;
     }
+    &.student-i-d {
+      background-color: $student-id;
+    }
   }
   .icon {
     height: 30vh;
@@ -45,6 +48,9 @@ info-module {
     }
     &.calendar-icon {
       background-image: url('../img/calendar.svg');
+    }
+    &.person-icon {
+      background-image: url('../img/person.svg');
     }
   }
   .column {

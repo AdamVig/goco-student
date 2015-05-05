@@ -41,5 +41,13 @@ constant('Modules', [
     color: 'days-left-in-semester',
     prefix: '',
     selected: false
+  },
+  {
+    name: 'studentID',
+    label: 'Student ID',
+    icon: 'person-icon',
+    color: 'student-id',
+    prefix: '',
+    selected: false
   }
 ]);
