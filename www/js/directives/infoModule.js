@@ -41,6 +41,13 @@ app.directive('infoModule', function () {
               module.data = Math.round(module.data);
             }
 
+            // Add space to student ID
+            if (module.dataType == 'studentID') {
+              module.data = module.data.toString();
+              module.data = module.data.substr(0, 4) + ' ' +
+                module.data.substr(4, 4);
+            }
+
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
           }).
