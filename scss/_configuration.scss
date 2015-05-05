@@ -1,13 +1,10 @@
-$configuration-item-height: 20px;
-$configuration-item-height-big: 40px;
-
 .configuration-modal {
   .item-checkbox .item-content {
     background-color: inherit;
   }
   .item p.item-title,
   .item-reorder .button.icon {
-    color: $text-color;
+    color: color(white);
   }
   .item p.item-title {
     padding-left: 55px;
@@ -35,7 +32,7 @@ $configuration-item-height-big: 40px;
     }
     &.ion-checkmark:before,
     &.ion-close:before {
-      color: $text-color;
+      color: color(white);
       font-size: 30px;
       position: absolute;
       left: 0;

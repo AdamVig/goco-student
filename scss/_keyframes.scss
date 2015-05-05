@@ -282,37 +282,43 @@
 
 @-webkit-keyframes moduleColorCycle {
   0%, 100% {
-    background-color: rgba($gordon-blue, 0.90);
+    background-color: rgba(color(blue), 0.90);
   }
-  25% {
-    background-color: rgba($meal-points-orange, 0.90);
+  20% {
+    background-color: rgba(color(orange), 0.90);
   }
-  50% {
-    background-color: rgba($meal-points-per-day, 0.90);
+  40% {
+    background-color: rgba(color(purple), 0.90);
   }
-  75% {
-    background-color: rgba($days-left-in-semester, 0.90);
+  60% {
+    background-color: rgba(color(mint-green), 0.90);
+  }
+  80% {
+    background-color: rgba(color(light-red), 0.90);
   }
 }
 
 @keyframes moduleColorCycle {
   0%, 100% {
-    background-color: rgba($gordon-blue, 0.90);
+    background-color: rgba(color(blue), 0.90);
   }
-  25% {
-    background-color: rgba($meal-points-orange, 0.90);
+  20% {
+    background-color: rgba(color(orange), 0.90);
   }
-  50% {
-    background-color: rgba($meal-points-per-day, 0.90);
+  40% {
+    background-color: rgba(color(purple), 0.90);
   }
-  75% {
-    background-color: rgba($days-left-in-semester, 0.90);
+  60% {
+    background-color: rgba(color(mint-green), 0.90);
+  }
+  80% {
+    background-color: rgba(color(light-red), 0.90);
   }
 }
 
 .moduleColorCycle {
-  -webkit-animation-duration: 3s;
-          animation-duration: 3s;
+  -webkit-animation-duration: 2.25s;
+          animation-duration: 2.25s;
   -webkit-animation-name: moduleColorCycle;
           animation-name: moduleColorCycle;
 }

@@ -5,6 +5,7 @@ app.directive('infoModule', function () {
       infoType: '=',
       infoLabel: '=',
       iconClass: '=',
+      colorClass: '=',
       infoPrefix: '=',
       loadCallback: '&'
     },
@@ -13,10 +14,10 @@ app.directive('infoModule', function () {
     controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout) {
 
       var module = this;
-      module.dataType = $scope.infoType;
       module.prefix = $scope.infoPrefix;
       module.label = $scope.infoLabel;
-      module.className = $filter('camelCaseToDashSeparated')(module.dataType);
+      module.className = $filter('camelCaseToDashSeparated')($scope.infoType);
+      module.fullClass = module.className + ' ' + $scope.colorClass;
       module.iconClass = $scope.iconClass;
       module.userCredentials = StorageService.retrieveCredentials();
 

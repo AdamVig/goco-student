@@ -1,26 +1,10 @@
-$gordon-blue: #014983;
-$meal-points-orange: #F2A42C;
-$meal-points-per-day: #9650BF;
-$days-left-in-semester: #58F5A7;
-$student-id: #F2726D;
-$text-color: #fff;
-$muted-gray: #838C8D;
+@import "variables";
+@import "functions";
 
-// Global color classes
-.chapel-credits {
-  background-color: $gordon-blue;
-}
-.meal-points {
-  background-color: $meal-points-orange;
-}
-.meal-points-per-day {
-  background-color: $meal-points-per-day;
-}
-.days-left-in-semester {
-  background-color: $days-left-in-semester;
-}
-.student-id {
-  background-color: $student-id;
+@each $color, $hex in $colors {
+  .#{$color} {
+    background-color: $hex !important;
+  }
 }
 
 @font-face {
@@ -34,17 +18,17 @@ body {
 .bar.bar-header {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   h1.title {
-    color: $gordon-blue;
+    color: color(blue);
     font-family: 'Open Sans', sans-serif;
   }
   .button-icon {
-    color: $gordon-blue;
+    color: color(blue);
   }
 }
 // Override default background color
 .view.gordon-blue-background,
 .pane.gordon-blue-background {
-  background-color: $gordon-blue;
+  background-color: color(blue);
 }
 // Override default font sizes
 .scroll-content {
@@ -55,7 +39,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    color: $text-color;
+    color: color(white);
   }
   .text-container {
     margin-left: 1em;
@@ -77,7 +61,7 @@ body {
   }
 }
 .button-animated {
-  color: $text-color;
+  color: color(white);
 }
 .banner-content {
   padding: 15px;
@@ -107,7 +91,7 @@ app-banner > ion-footer-bar.bar {
 a,
 a:visited {
   font-family: 'Open Sans';
-  color: $gordon-blue;
+  color: color(blue);
   text-decoration: none;
 }
 

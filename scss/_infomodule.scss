@@ -12,21 +12,6 @@ info-module {
     &.button-full {
       margin-top: 0;
     }
-    &.chapel-credits {
-      background-color: $gordon-blue;
-    }
-    &.meal-points {
-      background-color: $meal-points-orange;
-    }
-    &.meal-points-per-day {
-      background-color: $meal-points-per-day;
-    }
-    &.days-left-in-semester {
-      background-color: $days-left-in-semester;
-    }
-    &.student-i-d {
-      background-color: $student-id;
-    }
   }
   .icon {
     height: 30vh;
@@ -35,7 +20,7 @@ info-module {
     background-size: contain;
     background-position: center;
     &:before {
-      color: $text-color;
+      color: color(white);
     }
     &.chapel-icon {
       background-image: url('../img/chapel.svg');
