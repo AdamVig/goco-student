@@ -15,6 +15,7 @@ constant('Modules', [
     label: 'CL&W Credits',
     icon: 'chapel-icon',
     color: 'blue',
+    fontSize: '',
     prefix: '',
     selected: true
   },
@@ -23,6 +24,7 @@ constant('Modules', [
     label: 'Mealpoints',
     icon: 'meal-points-icon',
     color: 'orange',
+    fontSize: '',
     prefix: '$',
     selected: true
   },
@@ -31,6 +33,7 @@ constant('Modules', [
     label: 'Mealpoints Left/Day',
     icon: 'calculator-icon',
     color: 'purple',
+    fontSize: '',
     prefix: '$',
     selected: false
   },
@@ -39,6 +42,7 @@ constant('Modules', [
     label: 'Days Left In Semester',
     icon: 'calendar-icon',
     color: 'mint-green',
+    fontSize: '',
     prefix: '',
     selected: false
   },
@@ -47,6 +51,7 @@ constant('Modules', [
     label: 'Student ID',
     icon: 'person-icon',
     color: 'light-red',
+    fontSize: 'data-small',
     prefix: '',
     selected: false
   }

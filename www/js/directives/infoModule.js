@@ -7,6 +7,7 @@ app.directive('infoModule', function () {
       iconClass: '=',
       colorClass: '=',
       infoPrefix: '=',
+      fontSize: '=',
       loadCallback: '&'
     },
     templateUrl: 'html/directives/_infomodule.html',
@@ -14,11 +15,14 @@ app.directive('infoModule', function () {
     controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout) {
 
       var module = this;
+      module.dataType = $scope.infoType;
       module.prefix = $scope.infoPrefix;
       module.label = $scope.infoLabel;
       module.fullClass = $scope.colorClass;
       module.iconClass = $scope.iconClass;
       module.userCredentials = StorageService.retrieveCredentials();
+
+      if ($scope.fontSize) module.fullClass += ' ' + $scope.fontSize;
 
       module.load = function () {
 
