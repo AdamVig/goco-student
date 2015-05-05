@@ -28,3 +28,9 @@ for the developer to easily add new modules to the app.
 <img alt="Version 2.1 Four Modules"
 src="https://raw.githubusercontent.com/AdamVig/GoCoStudent/master/resources/screenshots/2.1.0/Android/four-modules.png"
 height="400px">
+
+## Version 2.1.5
+The fourth version was a minor update that fixed the banner (it was hidden behind
+the main content after the removal of the ion-scroll element) and removed the
+advertising (my AdMob account was suspended because all of the advertisement clicks
+come from the single IP address of Gordon College).
