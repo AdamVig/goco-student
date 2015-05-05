@@ -16,8 +16,7 @@ app.directive('infoModule', function () {
       var module = this;
       module.prefix = $scope.infoPrefix;
       module.label = $scope.infoLabel;
-      module.className = $filter('camelCaseToDashSeparated')($scope.infoType);
-      module.fullClass = module.className + ' ' + $scope.colorClass;
+      module.fullClass = $scope.colorClass;
       module.iconClass = $scope.iconClass;
       module.userCredentials = StorageService.retrieveCredentials();
 
