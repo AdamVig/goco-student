@@ -2,7 +2,7 @@
 @import "functions";
 
 @each $color, $hex in $colors {
-  .#{$color} {
+  .#{"" + $color} {
     background-color: $hex !important;
   }
 }
