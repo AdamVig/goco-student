@@ -1,4 +1,4 @@
-app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
+app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($window, $sce, AppVersion) {
 
   // String to prefix all keys in localStorage with
   var storagePrefix = "GoCoStudent.";
@@ -46,7 +46,16 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    */
   this.storeModules = function (allModules) {
     var keyName = storagePrefix + 'modules';
+    $window.localStorage[storagePrefix + 'version'] = AppVersion;
     $window.localStorage[keyName] = angular.toJson(allModules);
+  };
+
+  /**
+   * Retrieve stored app version
+   */
+  this.retrieveAppVersion = function () {
+    var keyName = storagePrefix + 'version';
+    return $window.localStorage[keyName];
   };
 
   /**
