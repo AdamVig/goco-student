@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl, AppInfoRefreshTime) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
 
   var home = this,
       lastAppInfoRefresh = new Date(0); // Some day in 1970
@@ -41,15 +41,16 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     // Otherwise get stored modules or create new defaults
     } else {
 
-      // No stored modules: set to default and show configuration
+      var storedAppVersion = StorageService.retrieveAppVersion();
+
       if (!$scope.modules) {
         $scope.modules = Modules;
         $scope.modal.showModal('configuration');
         $scope.popup.showPopup('configuration');
-
-      // Stored modules: reconcile with default modules and store again
+      } else if (storedAppVersion != AppVersion) {
+        $scope.modules = Modules;
+        $scope.modal.showModal('configuration');
       } else {
-        $scope.modules = ModuleService.updateDefaultModules($scope.modules);
         StorageService.storeModules($scope.modules);
       }
       $scope.updateModules();
