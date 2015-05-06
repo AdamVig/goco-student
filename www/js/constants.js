@@ -1,9 +1,4 @@
 app.constant('AppVersion', 2.2).
-constant('DatabaseConstant', {
-  'url': 'https://adamvig.cloudant.com',
-  'username': 'tedifertordshomilsescepr',
-  'password': 'BbvwmD0wrMTJmbF2HMNQRbn1'
-}).
 constant('ApiUrl', 'http://api.adamvig.com/gocostudent/').
 constant('RequestTimeout', {
   'default': 25000
