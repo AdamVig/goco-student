@@ -1,4 +1,4 @@
-app.constant('AppVersion', '2.1.5').
+app.constant('AppVersion', '2.2').
 constant('DatabaseConstant', {
   'url': 'https://adamvig.cloudant.com',
   'username': 'tedifertordshomilsescepr',
