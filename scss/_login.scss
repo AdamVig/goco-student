@@ -1,19 +1,17 @@
 .login-content {
   .gordon-chapel {
     @extend .horizontal-center;
-    width: 34vw;
-    margin-top: 1rem;
+    width: 30vw;
+    margin-top: 2.5vh;
   }
   .login-title {
     margin-top: 0;
     text-align: center;
   }
   .login-form {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
     .item {
       margin-top: 5px;
-      margin-bottom: 5px;
+      margin-bottom: 0;
       &.has-error {
         border-bottom: 2px solid red;
         .input-label {
@@ -28,13 +26,12 @@
       }
     }
     .login-info {
-      margin-top: 2rem;
-      font-size: 1.2rem;
+      margin-top: 2.5vh;
+      font-size: 1rem;
       font-family: sans-serif;
       color: color(white);
     }
     .login-errors {
-      margin-left: 1rem;
       text-align: left;
       font-weight: 500;
       color: red;
