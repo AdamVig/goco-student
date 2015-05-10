@@ -41,7 +41,7 @@ app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($windo
   };
 
   /**
-   * Store selected modules in localStorage
+   * Store user-selected modules in localStorage
    * @param {array} allModules List of module objects, each contains name
    */
   this.storeModules = function (allModules) {
@@ -71,5 +71,13 @@ app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($windo
       return JSON.parse($window.localStorage[keyName]);
     else
       return null;
+  };
+
+  /**
+   * Erase user-selected modules in localStorage
+   */
+  this.eraseModules = function () {
+    var keyName = storagePrefix + 'modules';
+    delete $window.localStorage[keyName];
   };
 }]);
