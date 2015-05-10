@@ -1,0 +1,46 @@
+.post-login-content {
+  -webkit-transition: all 1s;
+          transition: all 1s;
+  .button {
+    width: 75vw;
+    margin-top: 2.5vh;
+    font-size: 1.75rem;
+  }
+  .status-icon {
+    @extend .horizontal-center;
+    width: 25vh;
+    font-size: 25vh;
+    color: color(white);
+  }
+  svg {
+    stroke: color(white);
+    width: 25vh;
+    height: 25vh;
+  }
+  .login-check-timeout {
+    margin-top: 20vh;
+  }
+  &.checking {
+    .button {
+      color: color(blue);
+    }
+  }
+  &.valid {
+    background-color: color(dark-green);
+    .button {
+      color: color(dark-green);
+    }
+  }
+  &.invalid {
+    background-color: color(dark-red);
+    .button {
+      color: color(dark-red);
+    }
+  }
+  &.unknown {
+    background-color: color(dark-yellow);
+    .button {
+      color: color(dark-yellow);
+    }
+  }
+}

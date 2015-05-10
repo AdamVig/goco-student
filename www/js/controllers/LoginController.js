@@ -5,6 +5,8 @@ app.controller('LoginController', ['$state', 'StorageService', 'DataService', fu
     "username": "",
     "password": ""
   };
+
+  /* Process credentials, create user in database, redirect to next view */
   login.loginUser = function () {
 
     // Remove email domain if entered
@@ -12,9 +14,13 @@ app.controller('LoginController', ['$state', 'StorageService', 'DataService', fu
       login.userCredentials.username = login.userCredentials.username.
         split('@')[0];
     }
+
+    // Store credentials and base64 encode password
     StorageService.storeCredentials(login.userCredentials);
+
+    // Attempt to create user in database
     DataService.get('createuser', StorageService.retrieveCredentials());
 
-    $state.go('home');
+    $state.go('postLogin');
   };
 }]);

@@ -1,0 +1,44 @@
+<ion-view class="gordon-blue-background" view-title="Post Login" cache-view="false">
+  <ion-content class="post-login-content center text-center"
+    ng-class="postLogin.status">
+    <div ng-show="postLogin.status == 'checking'">
+      <ion-spinner icon="lines"></ion-spinner>
+      <h2>Checking Login...</h2>
+      <div class="login-check-timeout text-center"
+        ng-show="postLogin.timeout === true">
+        <h3>Taking too long?</h3>
+        <button ng-click="postLogin.go('home')"
+          class="button button-light">
+          Continue anyway →
+        </button>
+      </div>
+    </div>
+    <div ng-show="postLogin.status == 'invalid'"
+      class="login-invalid">
+      <div class="ion-close status-icon"></div>
+      <h2>Invalid Login</h2>
+      <button ng-click="postLogin.go('login')"
+        class="button button-light">
+        ← Try again
+      </button>
+    </div>
+    <div ng-show="postLogin.status == 'unknown'"
+      class="login-unknown">
+      <div class="ion-help status-icon"></div>
+      <h2>Something went wrong.</h2>
+      <button ng-click="postLogin.go('home')"
+        class="button button-light">
+        Continue anyway →
+      </button>
+    </div>
+    <div ng-show="postLogin.status == 'valid'"
+      class="login-valid">
+      <div class="ion-checkmark status-icon"></div>
+      <h2>Valid Login</h2>
+      <button ng-click="postLogin.go('home')"
+        class="button button-light horizontal-center">
+        Continue →
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

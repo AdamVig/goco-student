@@ -322,3 +322,16 @@
   -webkit-animation-name: moduleColorCycle;
           animation-name: moduleColorCycle;
 }
+
+.addTopMargin {
+  -webkit-animation-name: addTopMargin;
+          animation-name: addTopMargin;
+}
+@-webkit-keyframes addTopMargin {
+  0% { margin-top: 0; }
+  100% { margin-top: 20vh; }
+}
+@keyframes addTopMargin {
+  0% { margin-top: 0; }
+  100% { margin-top: 20vh; }
+}
