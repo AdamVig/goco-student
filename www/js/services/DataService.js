@@ -2,18 +2,27 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
 
   /**
    * Get data for user from server
-   * @param  {String} dataType        Type of data to get, ex: 'chapelCredits'
-   * @param  {object}  userCredentials Contains username and password
-   * @return {promise}                 Fulfilled by response from server
+   * @param  {String}   dataType        Type of data to get, ex: 'chapelCredits'
+   * @param  {object}   userCredentials Contains username and password
+   * @param  {number}   timeout         Custom timeout in milliseconds
+   * @param  {function} timeout         Custom timeout function
+   * @return {promise}                  Fulfilled by response from server
    */
-  this.get = function (dataType, userCredentials) {
+  this.get = function (dataType, userCredentials, timeout) {
 
     var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+
+    // Prepare timeout $q instance
+    if (timeout) {
+      if (timeout.promise) {
+        timeout = timeout.promise;
+      }
+    }
 
     // Request configuration
     var config = {
       params: userCredentials,
-      timeout: RequestTimeout.default
+      timeout: timeout || RequestTimeout.default
     };
 
     return $http.get(url, config);
