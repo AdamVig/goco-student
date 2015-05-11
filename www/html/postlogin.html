@@ -7,7 +7,7 @@
       <div class="login-check-timeout text-center"
         ng-show="postLogin.timeout === true">
         <h3>Taking too long?</h3>
-        <button ng-click="postLogin.go('home')"
+        <button ng-click="postLogin.goHome()"
           class="button button-light">
           Continue anyway →
         </button>
@@ -17,7 +17,7 @@
       class="login-invalid">
       <div class="ion-close status-icon"></div>
       <h2>Invalid Login</h2>
-      <button ng-click="postLogin.go('login')"
+      <button ng-click="postLogin.goLogin()"
         class="button button-light">
         ← Try again
       </button>
@@ -26,7 +26,7 @@
       class="login-unknown">
       <div class="ion-help status-icon"></div>
       <h2>Something went wrong.</h2>
-      <button ng-click="postLogin.go('home')"
+      <button ng-click="postLogin.goHome()"
         class="button button-light">
         Continue anyway →
       </button>
@@ -35,7 +35,7 @@
       class="login-valid">
       <div class="ion-checkmark status-icon"></div>
       <h2>Valid Login</h2>
-      <button ng-click="postLogin.go('home')"
+      <button ng-click="postLogin.goHome()"
         class="button button-light horizontal-center">
         Continue →
       </button>
@@ -52,11 +52,11 @@
         <br><br>
         Tap "Continue storing data" to agree to this privacy policy.
       </p>
-      <button ng-click="postLogin.optOut()"
+      <button ng-click="postLogin.goFromPrivacyPolicy(false)"
         class="button button-opt-out">
         Opt Out
       </button>
-      <button ng-click="postLogin.go('home')"
+      <button ng-click="postLogin.goFromPrivacyPolicy(true)"
         class="button button-continue">
         Continue storing data →
       </button>
