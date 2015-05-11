@@ -20,6 +20,29 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
   };
 
   /**
+   * Set property in user data
+   * @param {object} userCredentials Contains username and password
+   * @param {String} property        Name of property to set
+   * @param {String} value           Value of property to set
+   */
+  this.setProperty = function (userCredentials, property, value) {
+
+    var url = ApiUrl + AppVersion + '/' + 'setproperty',
+        params = userCredentials;
+
+    params.property = property;
+    params.value = value;
+
+    // Request configuration
+    var config = {
+      params: params,
+      timeout: RequestTimeout.default
+    };
+
+    return $http.get(url, config);
+  };
+
+  /**
    * Handle $http error
    * @param {object} data        Contains payload from $http response
    * @param {number} status      HTTP status from $http response
