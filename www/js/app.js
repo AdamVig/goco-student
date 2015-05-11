@@ -3,7 +3,8 @@ var app = angular.module('gocostudent', ['ionic', 'ngMessages']);
 app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatform, StorageService, AppVersion) {
   $ionicPlatform.ready(function() {
 
-    var storedAppVersion = StorageService.retrieveAppVersion();
+    var storedAppVersion = StorageService.retrieveAppVersion(),
+        analyticsID;
 
     // Reset stored data and force user to re-login if app is updated
     if (storedAppVersion != AppVersion) {
@@ -16,8 +17,14 @@ app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatfo
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
+    if (ionic.Platform.isIOS()) {
+      analyticsId = "UA-60428326-3";
+    } else {
+      analyticsId = "UA-60428326-2";
+    }
+
     if (window.analytics) {
-      window.analytics.startTrackerWithId(analyticsId);
+      window.analytics.startTrackerWithId(analyticsID);
     }
   });
 }]).
