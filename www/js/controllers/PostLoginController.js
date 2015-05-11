@@ -1,8 +1,9 @@
-app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'StorageService', 'PopupService', function ($timeout, $state, DataService, StorageService, PopupService) {
+app.controller('PostLoginController', ['$timeout', '$state', '$q', 'DataService', 'StorageService', 'PopupService', function ($timeout, $state, $q, DataService, StorageService, PopupService) {
 
   var postLogin = this,
     minimumCheckingTimeMs = 250,
-    maximumCheckingTimeMs = 2000;
+    maximumCheckingTimeMs = 3000,
+    timeoutPromise = null;
   postLogin.status = 'checking';
   postLogin.user = {};
   postLogin.timeout = false;
@@ -11,17 +12,22 @@ app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'Sto
   // Check if user credentials are valid
   postLogin.checkLogin = function () {
 
-    DataService.get('checklogin', userCredentials).
+    timeoutPromise = $q.defer();
+
+    DataService.get('checklogin', userCredentials, timeoutPromise).
     success(function (response) {
+
+      postLogin.user = response.data;
       $timeout(function () {
         postLogin.status = 'valid';
       }, minimumCheckingTimeMs);
     }).
     error(function (response, status) {
+
       $timeout(function () {
         if (status == 401) {
           postLogin.status = 'invalid';
-        } else {
+        } else if (status !== 0) {
           postLogin.status = 'unknown';
         }
       }, minimumCheckingTimeMs);
@@ -30,6 +36,7 @@ app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'Sto
 
   postLogin.checkLogin();
 
+  // Display "Taking too long?" with button to continue anyway
   $timeout(function () {
     postLogin.timeout = true;
   }, maximumCheckingTimeMs);
@@ -56,6 +63,11 @@ app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'Sto
 
   // Continue from valid status to either privacy policy or home
   postLogin.goHome = function () {
+
+    // Cancel request if still in progress
+    if (timeoutPromise.promise) {
+      timeoutPromise.resolve();
+    }
 
     // Go home if privacy policy has been set
     if (postLogin.user.privacyPolicy) {
