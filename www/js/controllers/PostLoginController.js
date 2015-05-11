@@ -39,20 +39,16 @@ app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'Sto
 
     // Accept privacy policy
     if (accepted) {
-      DataService.setProperty(userCredentials, 'privacyPolicy', 'accepted')
-      .then(function () {
-        $state.go('home');
-      });
+      DataService.setProperty(userCredentials, 'privacyPolicy', 'accepted');
+      $state.go('home');
 
     // Deny privacy policy
     } else {
       PopupService.showPopup('confirmOptOut')
       .then(function (result) {
         if (result) {
-          DataService.setProperty(userCredentials, 'privacyPolicy', 'denied')
-          .then(function () {
-            $state.go('home');
-          });
+          DataService.setProperty(userCredentials, 'privacyPolicy', 'denied');
+          $state.go('home');
         }
       });
     }
