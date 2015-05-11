@@ -1,8 +1,8 @@
 app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'StorageService', 'PopupService', function ($timeout, $state, DataService, StorageService, PopupService) {
 
   var postLogin = this,
-    minimumCheckingTimeMs = 1000,
-    maximumCheckingTimeMs = 5000;
+    minimumCheckingTimeMs = 250,
+    maximumCheckingTimeMs = 2000;
   postLogin.status = 'checking';
   postLogin.user = {};
   postLogin.timeout = false;
