@@ -40,5 +40,26 @@
         Continue →
       </button>
     </div>
+    <div ng-show="postLogin.status == 'privacy-policy'"
+      class="login-privacy-policy">
+      <h2>Privacy Policy</h2>
+      <p class="privacy-policy-text">
+        Your password and student ID number are never stored
+        anywhere except on your device.
+        <br><br>
+        By default, any data you access in this app is stored in a secure
+        database to provide you with a better user experience.
+        <br><br>
+        Tap "Continue storing data" to agree to this privacy policy.
+      </p>
+      <button ng-click="postLogin.optOut()"
+        class="button button-opt-out">
+        Opt Out
+      </button>
+      <button ng-click="postLogin.go('home')"
+        class="button button-continue">
+        Continue storing data →
+      </button>
+    </div>
   </ion-content>
 </ion-view>

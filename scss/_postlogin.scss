@@ -4,7 +4,7 @@
   .button {
     width: 75vw;
     margin-top: 2.5vh;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
   }
   .status-icon {
     @extend .horizontal-center;
@@ -41,6 +41,31 @@
     background-color: color(dark-yellow);
     .button {
       color: color(dark-yellow);
+    }
+  }
+  &.privacy-policy {
+    .privacy-policy-text {
+      padding: 5vh;
+      font-size: 3vh;
+      line-height: 3.75vh;
+      color: color(white);
+      text-align: justify;
+      .privacy-policy-emphasis {
+        color: color(dark-yellow);
+      }
+    }
+    .button {
+      color: color(white);
+      font-size: 3.5vh;
+    }
+    .button-opt-out {
+      width: 75vw;
+      background-color: color(muted-gray);
+      border-color: color(muted-gray);
+    }
+    .button-continue {
+      background-color: color(dark-green);
+      border-color: color(dark-green);
     }
   }
 }
