@@ -3,26 +3,26 @@ app.controller('PostLoginController', ['$timeout', '$state', 'DataService', 'Sto
   var postLogin = this,
     minimumCheckingTimeMs = 1000,
     maximumCheckingTimeMs = 5000;
-  postLogin.status = "checking";
+  postLogin.status = 'checking';
   postLogin.user = {};
   postLogin.timeout = false;
   userCredentials = StorageService.retrieveCredentials();
 
-  /* Check if user credentials are valid */
+  // Check if user credentials are valid
   postLogin.checkLogin = function () {
 
-    DataService.get("checklogin", userCredentials).
+    DataService.get('checklogin', userCredentials).
     success(function (response) {
       $timeout(function () {
-        postLogin.status = "valid";
+        postLogin.status = 'valid';
       }, minimumCheckingTimeMs);
     }).
     error(function (response, status) {
       $timeout(function () {
         if (status == 401) {
-          postLogin.status = "invalid";
+          postLogin.status = 'invalid';
         } else {
-          postLogin.status = "unknown";
+          postLogin.status = 'unknown';
         }
       }, minimumCheckingTimeMs);
     });
