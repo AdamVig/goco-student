@@ -12,6 +12,7 @@ constant('Modules', [
     color: 'blue',
     fontSize: '',
     prefix: '',
+    suffix: '',
     selected: true
   },
   {
@@ -21,6 +22,7 @@ constant('Modules', [
     color: 'orange',
     fontSize: '',
     prefix: '$',
+    suffix: '',
     selected: true
   },
   {
@@ -30,6 +32,7 @@ constant('Modules', [
     color: 'purple',
     fontSize: '',
     prefix: '$',
+    suffix: '',
     selected: false
   },
   {
@@ -39,6 +42,7 @@ constant('Modules', [
     color: 'mint-green',
     fontSize: '',
     prefix: '',
+    suffix: '',
     selected: false
   },
   {
@@ -48,6 +52,7 @@ constant('Modules', [
     color: 'light-red',
     fontSize: 'data-small',
     prefix: '',
+    suffix: '',
     selected: false
   },
   {
@@ -57,6 +62,7 @@ constant('Modules', [
     color: 'light-teal',
     fontSize: '',
     prefix: '',
+    suffix: '℉',
     selected: false
   }
 ]);

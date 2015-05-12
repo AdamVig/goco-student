@@ -7,6 +7,7 @@ app.directive('infoModule', function () {
       iconClass: '=',
       colorClass: '=',
       infoPrefix: '=',
+      infoSuffix: '=',
       fontSize: '=',
       loadCallback: '&'
     },
@@ -17,6 +18,7 @@ app.directive('infoModule', function () {
       var module = this;
       module.dataType = $scope.infoType;
       module.prefix = $scope.infoPrefix;
+      module.suffix = $scope.infoSuffix;
       module.label = $scope.infoLabel;
       module.fullClass = $scope.colorClass;
       module.iconClass = $scope.iconClass;
