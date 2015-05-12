@@ -49,5 +49,14 @@ constant('Modules', [
     fontSize: 'data-small',
     prefix: '',
     selected: false
+  },
+  {
+    name: 'temperature',
+    label: 'Temperature',
+    icon: 'thermometer-icon',
+    color: 'light-teal',
+    fontSize: '',
+    prefix: '',
+    selected: false
   }
 ]);
