@@ -1,7 +1,7 @@
 <ion-view class="gordon-blue-background" view-title="Home" cache-view="false">
   <app-header></app-header>
   <ion-content class="home-content center text-center has-header"
-    ng-class="{'has-footer': home.hasBanner}"
+    ng-class="{'has-footer': home.hasBanner, 'scroll-enabled': home.scrollEnabled}"
     scroll="false">
     <info-module
       ng-repeat="module in selectedModules"

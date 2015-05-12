@@ -2,6 +2,15 @@
   &.center {
     display: block;
   }
+  .scroll {
+    height: 100%;
+  }
+  &.scroll-enabled {
+    &.scroll-content {
+      overflow-y: auto;
+      margin-bottom: -9px;
+    }
+  }
   .module-content {
     width: 100%;
   }

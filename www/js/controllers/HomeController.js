@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
 
   var home = this,
       lastAppInfoRefresh = new Date(0); // Some day in 1970
@@ -30,6 +30,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     home.chapelCredits = {};
     home.userCredentials = StorageService.retrieveCredentials();
     home.hasBanner = false;
+    home.scrollEnabled = false;
 
     // Module settings
     $scope.modules = StorageService.retrieveModules();
@@ -66,6 +67,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
   // Update selected modules
   $scope.updateModules = function () {
     $scope.selectedModules = ModuleService.getSelectedModules($scope.modules);
+    home.scrollEnabled = $scope.selectedModules.length > 5;
     home.moduleClass = ModuleService.makeModuleClass($scope.selectedModules.length);
     StorageService.storeModules($scope.modules);
   };

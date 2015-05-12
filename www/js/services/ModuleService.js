@@ -17,7 +17,8 @@ app.service('ModuleService', ['Modules', function (Modules) {
    * @return {String}           Class for modules determining their size
    */
   this.makeModuleClass = function (numModules) {
-    if (numModules > 4) return "list-item";
+    if (numModules > 5) return "list-item";
+    else if (numModules == 5) return "one-fifth";
     else if (numModules == 4) return "one-fourth";
     else if (numModules == 3) return "one-third";
     else if (numModules == 2) return "one-half";
