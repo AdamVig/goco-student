@@ -37,7 +37,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
 
     if (home.userCredentials) {
 
-      var storedAppVersion = StorageService.retrieveAppVersion();
+      var storedAppVersion = StorageService.get('version');
       if (storedAppVersion != AppVersion || !$scope.modules) {
         $scope.modules = Modules;
         $scope.modal.showModal('configuration');
