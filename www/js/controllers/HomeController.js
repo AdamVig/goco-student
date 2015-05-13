@@ -32,55 +32,52 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     home.hasBanner = false;
     home.scrollEnabled = false;
 
-    // Module settings
+    // Retrieved stored modules or null if no stored modules
     $scope.modules = StorageService.retrieveModules();
 
-    // Go to login page if no user credentials found
-    if (!home.userCredentials) {
-      $state.go('login');
-
-    // Otherwise get stored modules or create new defaults
-    } else {
+    if (home.userCredentials) {
 
       var storedAppVersion = StorageService.retrieveAppVersion();
-
-      if (!$scope.modules) {
+      if (storedAppVersion != AppVersion || !$scope.modules) {
         $scope.modules = Modules;
         $scope.modal.showModal('configuration');
-        $scope.popup.showPopup('configuration');
-      } else if (storedAppVersion != AppVersion) {
-        $scope.modules = Modules;
-        $scope.modal.showModal('configuration');
-      } else {
-        StorageService.storeModules($scope.modules);
+        if (!$scope.modules) $scope.popup.showPopup('configuration');
       }
       $scope.updateModules();
+
+    } else {
+      $state.go('login');
     }
   };
 
   // Reset scope variables and log user out
   $scope.logout = function () {
     home.resetScope();
-    LogoutService.logout();
+    PopoverService.hidePopover('menu');
+    StorageService.eraseCredentials();
+    $state.go('login');
   };
 
   // Update selected modules
   $scope.updateModules = function () {
     $scope.selectedModules = ModuleService.getSelectedModules($scope.modules);
-    home.scrollEnabled = $scope.selectedModules.length > 5;
     home.moduleClass = ModuleService.makeModuleClass($scope.selectedModules.length);
+    home.scrollEnabled = $scope.selectedModules.length > 5;
     StorageService.storeModules($scope.modules);
   };
 
-  // Reorder module in modules array
+  // Handle reordering of modules in configuration modal
   $scope.reorderModule = function(item, fromIndex, toIndex) {
     $scope.modules.splice(fromIndex, 1);
     $scope.modules.splice(toIndex, 0, item);
     $scope.updateModules();
   };
 
+  // Initialize popover and popup services
   $scope.popover = PopoverService.createPopovers($scope);
   $scope.popup = PopupService;
+
+  // Wait for modals to be created before initializing controller
   ModalService.createModals($scope).then(function (modalService) {
     $scope.modal = modalService;
     home.refreshAppInfo();
