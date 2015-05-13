@@ -77,15 +77,4 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
       return "Something went wrong. Try again later!";
     }
   };
-
-  /**
-   * Remove CouchDB properties from doc object
-   * @param {object} doc Contains _id, _rev, and other properties
-   * @return {object}    Contains properties
-   */
-  function removeCouchProperties(doc) {
-    delete doc._id;
-    delete doc._rev;
-    return doc;
-  }
 }]);
