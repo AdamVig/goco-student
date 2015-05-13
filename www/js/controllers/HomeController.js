@@ -1,22 +1,22 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
 
-  var home = this,
-      lastAppInfoRefresh = new Date(0); // Some day in 1970
+  var home = this;
+  StorageService.store('lastAppInfoRefresh', new Date(0));
 
   // Refresh app info including banner
   home.refreshAppInfo = function () {
-    var now = Date.now();
-    var timeDiff = now - lastAppInfoRefresh;
+    var request = DataService.refreshAppInfo();
 
-    // Refresh if it has been more than five seconds since last refresh
-    if (timeDiff > AppInfoRefreshTime) {
-      DataService.get('AppInfo').then(function (response) {
+    // If request is a promise
+    if (request !== false) {
+      request.then(function (appInfo) {
+        home.appInfo = appInfo;
 
-        $scope.banner = response.data.banner;
-        if ($scope.banner.title) home.hasBanner = true;
-
-        home.appInfo = response.data;
-        lastAppInfoRefresh = now;
+        // Set banner if it exists
+        if (home.appInfo.banner.title){
+          home.hasBanner = true;
+          $scope.banner = home.appInfo.banner;
+        }
       });
     }
   };
