@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'StorageService', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, StorageService) {
+app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'StorageService', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, StorageService, AppInfoRefreshTime) {
 
   /**
    * Get data for user from server
@@ -75,6 +75,25 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     } else {
       console.error("Error getting data. Status:", status, "Response:", data);
       return "Something went wrong. Try again later!";
+    }
+  };
+
+  /**
+   * Refresh app info if time since last refresh exceeds threshold
+   */
+  this.refreshAppInfo = function () {
+    var now = new Date(),
+      lastAppInfoRefresh = StorageService.retrieveDate('lastAppInfoRefresh'),
+      timeDiff = now - lastAppInfoRefresh;
+
+    // Refresh if timeDiff exceeds threshold
+    if (timeDiff > AppInfoRefreshTime) {
+      return this.get('AppInfo').then(function (response) {
+        StorageService.store('lastAppInfoRefresh', now);
+        return response.data;
+      });
+    } else {
+      return false;
     }
   };
 }]);
