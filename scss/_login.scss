@@ -35,14 +35,19 @@
       text-align: left;
       font-weight: 500;
       color: red;
-      &.ng-hide {
-        visibility: hidden;
-        display: block !important;
-      }
     }
     .login-button {
       @extend .horizontal-center;
       width: 75%;
+      .loading-indicator {
+        @extend .center;
+      }
+    }
+  }
+  &.status-invalid {
+    .invalid-text {
+      font-weight: 800;
+      color: color(dark-yellow);
     }
   }
 }
