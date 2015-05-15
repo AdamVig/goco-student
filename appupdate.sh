@@ -5,7 +5,9 @@ set -e
 
 # App Defaults
 APKNAME="GoCoStudent"
-APKBUILDPATH="platforms/android/ant-build/MainActivity-release-unsigned.apk"
+APKBUILDPATH="platforms/android/build/outputs/apk/"
+APKBUILDNAMEARM="android-armv7-release-unsigned.apk"
+APKBUILDNAMEx86="android-x86-release-unsigned.apk"
 KEYSTOREPATH="gocostudent.keystore"
 KEYSTOREALIAS="gocostudent"
 
@@ -76,18 +78,17 @@ if [ $yn == "y" ]; then
   # NOTE: Can't redirect to /dev/null due to password input
   jarsigner -sigalg SHA1withRSA -digestalg SHA1 \
     -tsa http://timestamp.digicert.com \
-    -keystore "$KEYSTOREPATH" "$APKBUILDPATH" "$KEYSTOREALIAS"
+    -keystore "$KEYSTOREPATH" "$APKBUILDPATH$APKBUILDNAMEARM" "$KEYSTOREALIAS"
+
+  jarsigner -sigalg SHA1withRSA -digestalg SHA1 \
+    -tsa http://timestamp.digicert.com \
+    -keystore "$KEYSTOREPATH" "$APKBUILDPATH$APKBUILDNAMEx86" "$KEYSTOREALIAS"
 
   # Remove existing APK and zipalign new APK in its place
   cecho blue "Zipaligning and renaming APK."
 
-  # Temporarily disable error checking
-  set +e
-  rm "$APKNAME.apk.bak" 2> /dev/null
-  mv "$APKNAME.apk" "$APKNAME.apk.bak" 2> /dev/null
-  set -e
-
-  zipalign -v 4 "$APKBUILDPATH" "$APKNAME.apk" 1> /dev/null
+  zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEARM" "${APKNAME}_armv7.apk" 1> /dev/null
+  zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEx86" "${APKNAME}_x86.apk" 1> /dev/null
 
   cecho yellow  "Done. Android app is ready for distribution."
 fi
