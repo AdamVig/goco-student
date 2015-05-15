@@ -20,4 +20,13 @@ filter('camelCaseToDashSeparated', function () {
         return i === 0 ? v : "-" + v;
     }).toLowerCase();
   };
+}).
+filter('username', function () {
+  return function (username) {
+    // Remove email domain if entered
+    if (username.indexOf('@') > -1) {
+      username = username.split('@')[0];
+    }
+    return username.toLowerCase();
+  };
 });
