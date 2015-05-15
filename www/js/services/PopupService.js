@@ -21,8 +21,7 @@ app.service('PopupService', ['$ionicPopup', function ($ionicPopup) {
       confirmOptOut: {
         type: 'confirm',
         title: 'Are you sure you want to opt out?',
-        subTitle: 'No personal data will be stored in the database.',
-        cancelText: 'Never mind',
+        cancelText: 'No',
         cancelType: 'button-positive',
         okText: 'Yes',
         okType: 'button-stable'
