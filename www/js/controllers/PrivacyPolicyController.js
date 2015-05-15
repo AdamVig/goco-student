@@ -1,13 +1,13 @@
-app.controller('PostLoginController', ['$timeout', '$state', '$q', 'DataService', 'StorageService', 'PopupService', function ($timeout, $state, $q, DataService, StorageService, PopupService) {
+app.controller('PrivacyPolicyController', ['$state', 'DataService', 'StorageService', 'PopupService', function ($state, DataService, StorageService, PopupService) {
 
-  var postLogin = this;
-  postLogin.status = 'checking';
-  postLogin.user = {};
-  postLogin.timeout = false;
+  var privacyPolicy = this;
+  privacyPolicy.status = 'checking';
+  privacyPolicy.user = {};
+  privacyPolicy.timeout = false;
   userCredentials = StorageService.retrieveCredentials();
 
   // Continue from privacy policy to home
-  postLogin.goFromPrivacyPolicy = function (accepted) {
+  privacyPolicy.go = function (accepted) {
 
     // Accept privacy policy
     if (accepted) {
