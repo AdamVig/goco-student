@@ -35,10 +35,10 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
       templateUrl: 'html/login.html',
       controller: 'LoginController as login'
     })
-    .state('postLogin', {
-      url: '/postlogin',
-      templateUrl: 'html/postlogin.html',
-      controller: 'PostLoginController as postLogin'
+    .state('privacyPolicy', {
+      url: '/privacypolicy',
+      templateUrl: 'html/privacypolicy.html',
+      controller: 'PrivacyPolicyController as privacyPolicy'
     })
     .state('home', {
       url: '/',
