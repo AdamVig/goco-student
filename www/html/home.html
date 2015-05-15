@@ -2,7 +2,8 @@
   <app-header></app-header>
   <ion-content class="home-content center text-center has-header"
     ng-class="{'has-footer': home.hasBanner, 'scroll-enabled': home.scrollEnabled}"
-    scroll="false">
+    scroll="true"
+    overflow-scroll="true">
     <info-module
       ng-repeat="module in selectedModules"
       info-type="module.name"

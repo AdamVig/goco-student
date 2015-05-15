@@ -3,6 +3,11 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
   var home = this;
   StorageService.store('lastAppInfoRefresh', new Date(0));
 
+  // Disable scroll dynamically
+  document.addEventListener("dragstart", function( event ) {
+    $ionicScrollDelegate.freezeAllScrolls(!home.scrollEnabled);
+  }, false);
+
   // Refresh app info including banner
   home.refreshAppInfo = function () {
     var request = DataService.refreshAppInfo();

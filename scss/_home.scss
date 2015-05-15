@@ -5,11 +5,8 @@
   .scroll {
     height: 100%;
   }
-  &.scroll-enabled {
-    &.scroll-content {
-      overflow-y: auto;
-      margin-bottom: -9px;
-    }
+  .scroll-content {
+    margin-bottom: -9px;
   }
   .module-content {
     width: 100%;
