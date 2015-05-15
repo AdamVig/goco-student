@@ -12,7 +12,11 @@
   font-weight: 700;
   src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
 }
-body {
+body,
+input,
+button,
+select,
+textarea {
   font-family: 'Open Sans';
 }
 .bar.bar-header {
@@ -102,5 +106,5 @@ a:visited {
 @import "home";
 @import "infomodule";
 @import "login";
-@import "postlogin";
+@import "privacypolicy";
 @import "utility";
