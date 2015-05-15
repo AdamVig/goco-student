@@ -26,5 +26,6 @@
 .horizontal-center {
   position: relative;
   left: 50%;
-  transform: translateX(-50%) !important;
+  -webkit-transform: translateX(-50%) !important;
+          transform: translateX(-50%) !important;
 }
