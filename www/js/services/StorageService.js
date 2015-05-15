@@ -34,7 +34,7 @@ app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($windo
    * @param {object} userCredentials Contains username and password
    */
   this.storeCredentials = function (userCredentials) {
-    this.store('username', userCredentials.username.toLowerCase());
+    this.store('username', userCredentials.username);
     this.store('password', $window.btoa(userCredentials.password));
   };
 
