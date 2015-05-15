@@ -39,7 +39,7 @@ app.directive('infoModule', function () {
           DataService.get(module.dataType, module.userCredentials).
           success(function(response) {
 
-            module.data = response.data;
+            module.data = response.data.toString();
 
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
