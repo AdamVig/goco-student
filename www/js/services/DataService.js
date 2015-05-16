@@ -52,33 +52,6 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
   };
 
   /**
-   * Handle $http error
-   * @param {object} data        Contains payload from $http response
-   * @param {number} status      HTTP status from $http response
-   * @param {string} description Either "chapel credit" or "meal points"
-   */
-  this.handleError = function (data, status, description) {
-
-    // Track exception with analytics
-    if ($window.analytics) {
-      $window.analytics.trackException(status + ": " + description, true);
-    }
-
-    // Return error message
-    if (status == 401) {
-      return "Bad login. Log out and try again.";
-    } else if (status === 0) {
-      console.error(module.label, "error, got response", response);
-      return "Oops! Error. Tap to try again.";
-    } else if (status == "timeout") {
-      return "Request took too long. Tap to try again.";
-    } else {
-      console.error("Error getting data. Status:", status, "Response:", data);
-      return "Something went wrong. Try again later!";
-    }
-  };
-
-  /**
    * Refresh app info if time since last refresh exceeds threshold
    */
   this.refreshAppInfo = function () {

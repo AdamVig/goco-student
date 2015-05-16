@@ -4,6 +4,10 @@ constant('RequestTimeout', {
   'default': 25000
 }).
 constant('AppInfoRefreshTime', 300000).
+constant('ErrorMessages', {
+  'timeout': 'Request took too long. Tap to try again.',
+  'unknown': 'Something went wrong. Try again later!'
+}).
 constant('Modules', [
   {
     name: 'chapelCredits',

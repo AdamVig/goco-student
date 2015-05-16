@@ -39,6 +39,7 @@ app.directive('infoModule', function () {
           DataService.get(module.dataType, module.userCredentials).
           success(function(response) {
 
+            // Make sure data displays even if value is falsy
             module.data = response.data.toString();
 
             // Get "out of" amount if provided
@@ -47,10 +48,14 @@ app.directive('infoModule', function () {
           error(function(response, status) {
 
             var respTime = new Date().getTime() - startTime;
-            if (respTime >= RequestTimeout.default){
-              module.errorMessage = DataService.handleError(response, "timeout", module.label);
+
+            // Make error message
+            if (response.data) {
+              module.errorMessage = response.data;
+            } else if (respTime >= RequestTimeout.default){
+              module.errorMessage = ErrorMessages.timeout;
             } else {
-              module.errorMessage = DataService.handleError(response, status, module.label);
+              module.errorMessage = ErrorMessages.unknown;
             }
           }).
           finally(function() {
