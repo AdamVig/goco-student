@@ -4,11 +4,18 @@
   }
   .item p.item-title,
   .item-reorder .button.icon {
-    color: $text-color;
+    color: color(white);
   }
   .item p.item-title {
     padding-left: 55px;
     font-size: 5vw;
+    line-height: $configuration-item-height;
+  }
+  @media (min-width: $modal-inset-mode-break-point) {
+    .item p.item-title {
+      font-size: 3vw;
+      line-height: $configuration-item-height-big;
+    }
   }
   .item-checkbox {
     padding-left: 10px;
@@ -25,7 +32,7 @@
     }
     &.ion-checkmark:before,
     &.ion-close:before {
-      color: $text-color;
+      color: color(white);
       font-size: 30px;
       position: absolute;
       left: 0;
@@ -47,7 +54,9 @@
   }
 }
 .platform-ios.platform-cordova:not(.fullscreen) {
-  .configuration-modal {
-    top: $ios-statusbar-height;
+  @media (max-width: $modal-inset-mode-break-point) {
+    .configuration-modal {
+      top: $ios-statusbar-height;
+    }
   }
 }

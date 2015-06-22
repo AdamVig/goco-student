@@ -5,7 +5,10 @@ app.directive('infoModule', function () {
       infoType: '=',
       infoLabel: '=',
       iconClass: '=',
+      colorClass: '=',
       infoPrefix: '=',
+      infoSuffix: '=',
+      fontSize: '=',
       loadCallback: '&'
     },
     templateUrl: 'html/directives/_infomodule.html',
@@ -15,14 +18,15 @@ app.directive('infoModule', function () {
       var module = this;
       module.dataType = $scope.infoType;
       module.prefix = $scope.infoPrefix;
+      module.suffix = $scope.infoSuffix;
       module.label = $scope.infoLabel;
-      module.className = $filter('camelCaseToDashSeparated')(module.dataType);
+      module.fullClass = $scope.colorClass;
       module.iconClass = $scope.iconClass;
       module.userCredentials = StorageService.retrieveCredentials();
 
-      module.load = function () {
+      if ($scope.fontSize) module.fullClass += ' ' + $scope.fontSize;
 
-        $scope.loadCallback();
+      module.load = function () {
 
         // Do not try to get data if already loading
         if (!module.loading) {
@@ -35,13 +39,8 @@ app.directive('infoModule', function () {
           DataService.get(module.dataType, module.userCredentials).
           success(function(response) {
 
-            module.data = response.data;
-
-            // Round mealpoints
-            if (module.dataType == 'mealPoints' ||
-                module.dataType == 'mealPointsPerDay') {
-              module.data = Math.round(module.data);
-            }
+            // Make sure data displays even if value is falsy
+            module.data = response.data.toString();
 
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
@@ -49,14 +48,19 @@ app.directive('infoModule', function () {
           error(function(response, status) {
 
             var respTime = new Date().getTime() - startTime;
-            if (respTime >= RequestTimeout.default){
-              module.errorMessage = DataService.handleError(response, "timeout", module.label);
+
+            // Make error message
+            if (response.data) {
+              module.errorMessage = response.data;
+            } else if (respTime >= RequestTimeout.default){
+              module.errorMessage = ErrorMessages.timeout;
             } else {
-              module.errorMessage = DataService.handleError(response, status, module.label);
+              module.errorMessage = ErrorMessages.unknown;
             }
           }).
           finally(function() {
             module.loading = false;
+            $scope.loadCallback();
           });
         }
       };

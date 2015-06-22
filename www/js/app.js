@@ -1,31 +1,29 @@
 var app = angular.module('gocostudent', ['ionic', 'ngMessages']);
 
-app.run(['$ionicPlatform', function($ionicPlatform) {
+app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatform, StorageService, AppVersion) {
   $ionicPlatform.ready(function() {
+
+    var storedAppVersion = StorageService.get('version'),
+        analyticsID;
+
+    // Reset stored data and force user to re-login if app is updated
+    if (storedAppVersion != AppVersion) {
+      StorageService.eraseCredentials();
+      StorageService.delete('modules');
+    }
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
 
-    var admobPublisherId, analyticsId;
-
     if (ionic.Platform.isIOS()) {
-      admobPublisherId = "ca-app-pub-9660792847854450/5221580058";
       analyticsId = "UA-60428326-3";
     } else {
-      admobPublisherId = "ca-app-pub-9660792847854450/1366364053";
       analyticsId = "UA-60428326-2";
     }
 
     if (window.analytics) {
-      window.analytics.startTrackerWithId(analyticsId);
-    }
-
-    if (window.admob) {
-      admob.createBannerView({
-        isTesting: false,
-        publisherId: admobPublisherId
-      });
+      window.analytics.startTrackerWithId(analyticsID);
     }
   });
 }]).
@@ -36,6 +34,11 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
       url: '/login',
       templateUrl: 'html/login.html',
       controller: 'LoginController as login'
+    })
+    .state('privacyPolicy', {
+      url: '/privacypolicy',
+      templateUrl: 'html/privacypolicy.html',
+      controller: 'PrivacyPolicyController as privacyPolicy'
     })
     .state('home', {
       url: '/',

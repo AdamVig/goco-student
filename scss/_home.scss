@@ -2,6 +2,12 @@
   &.center {
     display: block;
   }
+  .scroll {
+    height: 100%;
+  }
+  .scroll-content {
+    margin-bottom: -9px;
+  }
   .module-content {
     width: 100%;
   }

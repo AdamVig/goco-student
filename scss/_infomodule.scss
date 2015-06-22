@@ -12,18 +12,6 @@ info-module {
     &.button-full {
       margin-top: 0;
     }
-    &.chapel-credits {
-      background-color: $gordon-blue;
-    }
-    &.meal-points {
-      background-color: $meal-points-orange;
-    }
-    &.meal-points-per-day {
-      background-color: $meal-points-per-day;
-    }
-    &.days-left-in-semester {
-      background-color: $days-left-in-semester;
-    }
   }
   .icon {
     height: 30vh;
@@ -32,7 +20,7 @@ info-module {
     background-size: contain;
     background-position: center;
     &:before {
-      color: $text-color;
+      color: color(white);
     }
     &.chapel-icon {
       background-image: url('../img/chapel.svg');
@@ -46,6 +34,12 @@ info-module {
     &.calendar-icon {
       background-image: url('../img/calendar.svg');
     }
+    &.person-icon {
+      background-image: url('../img/person.svg');
+    }
+    &.thermometer-icon {
+      background-image: url('../img/thermometer.svg');
+    }
   }
   .column {
     float: left;
@@ -57,16 +51,22 @@ info-module {
   .info-number {
     font-size: 20vh;
   }
+  .data-small .info-number {
+    font-size: 10vh;
+  }
   .info-label {
     margin-top: 15px;
   }
   &.one-half {
     height: 50%;
     .icon {
-      height: 25vh;
+      height: 20vh;
     }
     .info-number {
       font-size: 15vh;
+    }
+    .data-small .info-number {
+      font-size: 11vh;
     }
   }
   &.one-third {
@@ -76,10 +76,13 @@ info-module {
       height: 14vh;
     }
     .info-label {
-      font-size: 4.75vh;
+      font-size: 4.5vh;
     }
     .info-number {
       font-size: 10vh;
+    }
+    .data-small .info-number {
+      font-size: 9vh;
     }
     .info-error-message {
       font-size: 5.5vh;
@@ -91,13 +94,29 @@ info-module {
       height: 13vh;
     }
   }
-  &.list-item {
+  &.one-fifth {
     height: 20%;
     .icon {
       height: 11vh;
     }
   }
   &.one-fourth,
+  &.one-fifth {
+    .info-error-message {
+      font-size: 4.5vh;
+    }
+  }
+  &.list-item {
+    height: 17.5%;
+    .icon {
+      height: 10vh;
+    }
+    .info-error-message {
+      font-size: 3.75vh;
+    }
+  }
+  &.one-fourth,
+  &.one-fifth,
   &.list-item {
     .module-content {
       @extend .center;
@@ -112,12 +131,13 @@ info-module {
       margin-top: 10px;
       font-size: 6vh;
     }
+    .data-small .info-number {
+      font-size: 5.5vh;
+      line-height: 6.5vh;
+    }
     .info-label {
       margin: 0;
       font-size: 4vh;
-    }
-    .info-error-message {
-      font-size: 4.5vh;
     }
   }
 }

@@ -1,5 +1,6 @@
 <ion-view class="gordon-blue-background" view-title="Login">
-  <ion-content class="login-content center">
+  <ion-content class="login-content center"
+    ng-class="login.status">
     <div class="login-top-half">
       <img class="gordon-chapel"
         src="img/logo.svg">
@@ -10,7 +11,13 @@
       novalidate
       ng-submit="login.loginUser()">
       <p class="login-info text-left">
-        Enter your credentials for Go Gordon.
+        <span ng-show="!login.status">
+          Enter your credentials for Go Gordon.
+        </span>
+        <span class="invalid-text"
+          ng-show="login.status == 'status-invalid'">
+          Oops, wrong username or password!
+        </span>
       </p>
       <div class="list">
         <label class="item item-input"
@@ -22,7 +29,7 @@
             name="username"
             ng-minlength="3"
             ng-pattern="/(\w+)(\.)(\w+)/"
-            ng-model-options="{ updateOn: 'default blur', debounce: {'default': 500, 'blur': 0} }"
+            ng-model-options="{ updateOn: 'blur'}"
             ng-model="login.userCredentials.username">
         </label>
         <ng-messages class="login-errors"
@@ -46,7 +53,11 @@
       <button type="submit"
         class="login-button button button-light"
         ng-disabled="loginForm.$invalid">
-        All done!
+        <span ng-show="!login.status">All done!</span>
+        <ion-spinner class="loading-indicator"
+          icon="lines"
+          ng-show="login.status == 'status-loading'"></ion-spinner>
+        <span ng-show="login.status == 'status-invalid'">Try again</span>
       </button>
     </form>
   </ion-content>

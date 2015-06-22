@@ -1,13 +1,29 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'LogoutService', 'StorageService', 'ApiUrl', function ($rootScope, $scope, $state, $window, $filter, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, LogoutService, StorageService, ApiUrl) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
+  StorageService.store('lastAppInfoRefresh', new Date(0));
 
-  // Refresh banner message
-  home.refreshBanner = function () {
-    DataService.get('AppInfo').then(function (response) {
-      $scope.banner = response.data.banner;
-      home.appInfo = response.data;
-    });
+  // Disable scroll dynamically
+  document.addEventListener("dragstart", function( event ) {
+    $ionicScrollDelegate.freezeAllScrolls(!home.scrollEnabled);
+  }, false);
+
+  // Refresh app info including banner
+  home.refreshAppInfo = function () {
+    var request = DataService.refreshAppInfo();
+
+    // If request is a promise
+    if (request !== false) {
+      request.then(function (appInfo) {
+        home.appInfo = appInfo;
+
+        // Set banner if it exists
+        if (home.appInfo.banner.title){
+          home.hasBanner = true;
+          $scope.banner = home.appInfo.banner;
+        }
+      });
+    }
   };
 
   // Instantiate/reset scope variables
@@ -18,57 +34,58 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     home.mealPoints = null;
     home.chapelCredits = {};
     home.userCredentials = StorageService.retrieveCredentials();
+    home.hasBanner = false;
+    home.scrollEnabled = false;
 
-    // Module settings
+    // Retrieved stored modules or null if no stored modules
     $scope.modules = StorageService.retrieveModules();
 
-    // Go to login page if no user credentials found
-    if (!home.userCredentials) {
-      $state.go('login');
+    if (home.userCredentials) {
 
-    // Otherwise get stored modules or create new defaults
-    } else {
-
-      // No stored modules: set to default and show configuration
-      if (!$scope.modules) {
+      var storedAppVersion = StorageService.get('version');
+      if (storedAppVersion != AppVersion || !$scope.modules) {
         $scope.modules = Modules;
         $scope.modal.showModal('configuration');
-        $scope.popup.showPopup('configuration');
-
-      // Stored modules: reconcile with default modules and store again
-      } else {
-        $scope.modules = ModuleService.updateDefaultModules($scope.modules);
-        StorageService.storeModules($scope.modules);
+        if (!$scope.modules) $scope.popup.showPopup('configuration');
       }
       $scope.updateModules();
+
+    } else {
+      $state.go('login');
     }
   };
 
   // Reset scope variables and log user out
   $scope.logout = function () {
     home.resetScope();
-    LogoutService.logout();
+    PopoverService.hidePopover('menu');
+    StorageService.eraseCredentials();
+    $state.go('login');
   };
 
   // Update selected modules
   $scope.updateModules = function () {
     $scope.selectedModules = ModuleService.getSelectedModules($scope.modules);
     home.moduleClass = ModuleService.makeModuleClass($scope.selectedModules.length);
+    home.scrollEnabled = $scope.selectedModules.length > 5;
     StorageService.storeModules($scope.modules);
   };
 
-  // Reorder module in modules array
+  // Handle reordering of modules in configuration modal
   $scope.reorderModule = function(item, fromIndex, toIndex) {
     $scope.modules.splice(fromIndex, 1);
     $scope.modules.splice(toIndex, 0, item);
     $scope.updateModules();
   };
 
+  // Initialize popover and popup services
   $scope.popover = PopoverService.createPopovers($scope);
   $scope.popup = PopupService;
+
+  // Wait for modals to be created before initializing controller
   ModalService.createModals($scope).then(function (modalService) {
     $scope.modal = modalService;
-    home.refreshBanner();
+    home.refreshAppInfo();
     home.resetScope();
   });
 }]);

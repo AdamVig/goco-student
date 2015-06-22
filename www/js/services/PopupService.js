@@ -10,17 +10,28 @@ app.service('PopupService', ['$ionicPopup', function ($ionicPopup) {
 
     var popupConfig = {
       configuration: {
+        type: 'alert',
         title: 'Configuration',
         templateUrl: 'html/_configurationpopup.html',
         buttons: [{
           text: "I'm ready",
           type: 'button-animated'
         }]
+      },
+      confirmOptOut: {
+        type: 'confirm',
+        title: 'Are you sure you want to opt out?',
+        cancelText: 'No',
+        cancelType: 'button-positive',
+        okText: 'Yes',
+        okType: 'button-stable'
       }
     };
 
-    if (popupConfig[popupName]) {
-      $ionicPopup.alert(popupConfig[popupName]);
+    var selectedPopup = popupConfig[popupName];
+
+    if (selectedPopup) {
+      return $ionicPopup[selectedPopup.type](popupConfig[popupName]);
     }
   };
 }]);

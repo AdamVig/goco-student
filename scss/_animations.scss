@@ -36,4 +36,14 @@
       @extend .zoomIn;
     }
   }
+  // Login checking timeout button slide in up on timeout
+  .login-check-timeout {
+    &.ng-hide-remove {
+      @extend .animated;
+      -webkit-animation-name: fadeIn, addTopMargin;
+              animation-name: fadeIn, addTopMargin;
+      -webkit-animation-delay: 0s, 0s;
+              animation-delay: 0s, 0s;
+    }
+  }
 }

@@ -1,22 +1,10 @@
-$gordon-blue: #014983;
-$meal-points-orange: #F2A42C;
-$meal-points-per-day: #9650BF;
-$days-left-in-semester: #58F5A7;
-$text-color: #fff;
-$muted-gray: #838C8D;
+@import "variables";
+@import "functions";
 
-// Global color classes
-.chapel-credits {
-  background-color: $gordon-blue;
-}
-.meal-points {
-  background-color: $meal-points-orange;
-}
-.meal-points-per-day {
-  background-color: $meal-points-per-day;
-}
-.days-left-in-semester {
-  background-color: $days-left-in-semester;
+@each $color, $hex in $colors {
+  .#{"" + $color} {
+    background-color: $hex !important;
+  }
 }
 
 @font-face {
@@ -24,23 +12,27 @@ $muted-gray: #838C8D;
   font-weight: 700;
   src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
 }
-body {
+body,
+input,
+button,
+select,
+textarea {
   font-family: 'Open Sans';
 }
 .bar.bar-header {
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   h1.title {
-    color: $gordon-blue;
+    color: color(blue);
     font-family: 'Open Sans', sans-serif;
   }
   .button-icon {
-    color: $gordon-blue;
+    color: color(blue);
   }
 }
 // Override default background color
 .view.gordon-blue-background,
 .pane.gordon-blue-background {
-  background-color: $gordon-blue;
+  background-color: color(blue);
 }
 // Override default font sizes
 .scroll-content {
@@ -51,7 +43,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    color: $text-color;
+    color: color(white);
   }
   .text-container {
     margin-left: 1em;
@@ -73,12 +65,15 @@ body {
   }
 }
 .button-animated {
-  color: $text-color;
+  color: color(white);
 }
 .banner-content {
   padding: 15px;
   font-size: 1.2rem;
   line-height: 1.5rem;
+}
+app-banner > ion-footer-bar.bar {
+  z-index: 11;
 }
 // Override bar-header height change in iOS modal
 .platform-ios.platform-cordova:not(.fullscreen) {
@@ -100,14 +95,16 @@ body {
 a,
 a:visited {
   font-family: 'Open Sans';
-  color: $gordon-blue;
+  color: color(blue);
   text-decoration: none;
 }
 
 @import "keyframes";
 @import "animations";
+
 @import "configuration";
 @import "home";
 @import "infomodule";
 @import "login";
+@import "privacypolicy";
 @import "utility";

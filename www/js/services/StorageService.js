@@ -1,19 +1,41 @@
-app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
+app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($window, $sce, AppVersion) {
 
   // String to prefix all keys in localStorage with
   var storagePrefix = "GoCoStudent.";
+
+  /**
+   * Store data in localStorage
+   * @param  {String} key   Key to store
+   * @param  {any}    value Value to store
+   */
+  this.store = function (key, value) {
+    $window.localStorage[storagePrefix + key] = value;
+  };
+
+  /**
+   * Get data from localStorage
+   * @param  {String} key Key to get
+   * @return {String}     Retrieved data or null if data is not in localStorage
+   */
+  this.get = function (key) {
+    return $window.localStorage[storagePrefix + key] || null;
+  };
+
+  /**
+   * Delete data from localStorage
+   * @param  {String} key Key to delete
+   */
+  this.delete = function (key) {
+    delete $window.localStorage[storagePrefix + key];
+  };
 
   /**
    * Store user credentials in localStorage
    * @param {object} userCredentials Contains username and password
    */
   this.storeCredentials = function (userCredentials) {
-    $window.localStorage[storagePrefix + 'username'] = userCredentials.username.toLowerCase();
-    $window.localStorage[storagePrefix + 'password'] = $window.btoa(userCredentials.password);
-
-    // Remove legacy credentials
-    delete $window.localStorage['Gordon.Username'];
-    delete $window.localStorage['Gordon.Password'];
+    this.store('username', userCredentials.username);
+    this.store('password', $window.btoa(userCredentials.password));
   };
 
   /**
@@ -21,11 +43,14 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    * @return {object}       Contains username and password
    */
   this.retrieveCredentials = function () {
-    if ($window.localStorage[storagePrefix + 'username'] &&
-        $window.localStorage[storagePrefix + 'password']) {
+
+    var username = this.get('username'),
+        password = this.get('password');
+
+    if (username && password) {
       return {
-        "username": $window.localStorage[storagePrefix + 'username'],
-        "password": $window.localStorage[storagePrefix + 'password']
+        "username": username,
+        "password": password
       };
     } else {
       return false;
@@ -36,31 +61,39 @@ app.service('StorageService', ['$window', '$sce', function ($window, $sce) {
    * Erase user credentials from localStorage
    */
   this.eraseCredentials = function () {
-    delete $window.localStorage[storagePrefix + 'username'];
-    delete $window.localStorage[storagePrefix + 'password'];
+    this.delete('username');
+    this.delete('password');
   };
 
   /**
-   * Store selected modules in localStorage
+   * Store user-selected modules in localStorage
    * @param {array} allModules List of module objects, each contains name
    */
   this.storeModules = function (allModules) {
-    var keyName = storagePrefix + 'modules';
-    $window.localStorage[keyName] = angular.toJson(allModules);
+    this.store('version', AppVersion);
+    this.store('modules', angular.toJson(allModules));
   };
 
   /**
-   * Retrieve selected modules from localStorage
-   * @return {array}    List of all modules marked as selected or not
+   * Retrieve modules from localStorage
+   * @return {array}    List of modules
    */
   this.retrieveModules = function () {
 
-    // Get list of module names from localStorage
-    var keyName = storagePrefix + 'modules';
+    var modules = this.get('modules');
 
-    if ($window.localStorage[keyName])
-      return JSON.parse($window.localStorage[keyName]);
+    if (modules)
+      return JSON.parse(modules);
     else
       return null;
+  };
+
+  /**
+   * Retrieve date from localStorage
+   * @param {String} key Key of stored date
+   * @return {Date}      Retrieved Date
+   */
+  this.retrieveDate = function (key) {
+    return Date.parse(this.get(key));
   };
 }]);
