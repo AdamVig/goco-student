@@ -23,5 +23,15 @@
     "org.apache.cordova.inappbrowser",
     "com.admob.google",
     "https://github.com/danwilson/google-analytics-plugin.git"
+  ],
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "locator": "wp8"
+    },
+    {
+      "platform": "android",
+      "locator": "windows"
+    }
   ]
 }
