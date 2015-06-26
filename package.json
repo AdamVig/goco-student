@@ -22,27 +22,14 @@
   },
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
-<<<<<<< HEAD
-    "com.admob.google",
-    "https://github.com/danwilson/google-analytics-plugin.git"
-  ],
-  "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "locator": "wp8"
-    },
-    {
-      "platform": "android",
-      "locator": "windows"
-    }
-=======
     "https://github.com/danwilson/google-analytics-plugin.git",
     "./engine/cordova-crosswalk-engine-c0.7.1",
     "org.apache.cordova.splashscreen",
     "https://github.com/apache/cordova-plugin-whitelist.git"
   ],
   "cordovaPlatforms": [
-    "ios"
->>>>>>> d79c43868e1572a4cd1a167b5b13662fe1791a02
+    "android",
+    "ios",
+    "wp8"
   ]
 }
