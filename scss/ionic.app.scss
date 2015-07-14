@@ -28,5 +28,5 @@ $modal-inset-mode-left: 10%;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
-@import "www/lib/ionic/scss/ionic";
+@import "../www/lib/ionic/scss/ionic";
 @import "app.scss";
