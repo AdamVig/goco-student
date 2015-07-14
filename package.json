@@ -1,6 +1,6 @@
 {
   "name": "goco-student",
-  "version": "2.2",
+  "version": "2.11.3",
   "description": "GoCo Student: An Ionic project",
   "dependencies": {
     "bufferstreams": "0.0.2",
@@ -28,7 +28,10 @@
     "https://github.com/apache/cordova-plugin-whitelist.git"
   ],
   "cordovaPlatforms": [
-    "android",
+    {
+      "platform": "android",
+      "locator": "wp8"
+    },
     "ios",
     "wp8"
   ]
