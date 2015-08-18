@@ -1,7 +1,7 @@
 app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'StorageService', 'DataService', function ($state, $q, $timeout, $filter, StorageService, DataService) {
 
   var login = this,
-      loginCheckTimeout = 7500,
+      loginCheckTimeout = 16000,
       timeoutPromise = null;
   login.user = null;
   login.status = false;
