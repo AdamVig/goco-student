@@ -1,6 +1,7 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', '$timeout', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, $timeout, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
+  $scope.moduleControl = [];
   StorageService.store('lastAppInfoRefresh', new Date(0));
 
   // Disable scroll dynamically
@@ -49,6 +50,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
         if (!$scope.modules) $scope.popup.showPopup('configuration');
       }
       $scope.updateModules();
+      home.loadModuleData();
 
     } else {
       $state.go('login');
@@ -69,6 +71,15 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     home.moduleClass = ModuleService.makeModuleClass($scope.selectedModules.length);
     home.scrollEnabled = $scope.selectedModules.length > 5;
     StorageService.storeModules($scope.modules);
+  };
+
+  // Load data in all modules at once
+  home.loadModuleData = function () {
+    $timeout(function () {
+      for (var i = 0; i < $scope.moduleControl.length; i++) {
+        $scope.moduleControl[i]();
+      }
+    }, 500);
   };
 
   // Handle reordering of modules in configuration modal

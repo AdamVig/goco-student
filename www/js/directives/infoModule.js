@@ -2,6 +2,7 @@ app.directive('infoModule', function () {
   return {
     restrict: 'E',
     scope: {
+      moduleControl: '=',
       infoType: '=',
       infoLabel: '=',
       iconClass: '=',
@@ -64,6 +65,7 @@ app.directive('infoModule', function () {
           });
         }
       };
+      $scope.moduleControl.push(module.load);
     }]
   };
 });
