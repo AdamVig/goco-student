@@ -17,9 +17,16 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
     StorageService.storeCredentials(login.userCredentials);
 
     // Create user in database
-    DataService.get('createuser', StorageService.retrieveCredentials());
 
-    checkLogin();
+    checkLogin().then(function (response) {
+      login.user = response.data.data;
+
+      if (seenPrivacyPolicy(login.user)) {
+        $state.go('home');
+      } else {
+        $state.go('privacyPolicy');
+      }
+    });
   };
 
   // Check if user login is valid or not
@@ -32,13 +39,8 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
       loginCheckTimeout).
     success(function (response) {
       login.status = false;
-      login.user = response.data;
-      
-      if (seenPrivacyPolicy(login.user)) {
-        $state.go('home');
-      } else {
-        $state.go('privacyPolicy');
-      }
+
+      return DataService.get('createuser', StorageService.retrieveCredentials());
 
     }).
     error(function (response, status) {
