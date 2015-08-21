@@ -40,8 +40,13 @@ app.directive('infoModule', function () {
           DataService.get(module.dataType, module.userCredentials).
           success(function(response) {
 
-            // Make sure data displays even if value is falsy
-            module.data = response.data.toString();
+            try {
+              // Make sure data displays even if value is falsy
+              module.data = response.data.toString();
+            } catch (e) {
+              throw new Error("No data received from info module request.");
+            }
+
 
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
