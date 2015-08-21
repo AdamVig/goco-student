@@ -50,7 +50,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
         if (!$scope.modules) $scope.popup.showPopup('configuration');
       }
       $scope.updateModules();
-      home.loadModuleData();
+      home.loadAllModules();
 
     } else {
       $state.go('login');
@@ -74,12 +74,20 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
   };
 
   // Load data in all modules at once
-  home.loadModuleData = function () {
-    $timeout(function () {
-      for (var i = 0; i < $scope.moduleControl.length; i++) {
-        $scope.moduleControl[i]();
-      }
-    }, 500);
+  home.loadAllModules = function () {
+    var delayModuleLoad = 750;
+    var i = 0;
+
+    // Load all modules with set delay time in between
+    (function loadModule () {
+      $timeout(function () {
+        if (i < $scope.moduleControl.length) {
+          $scope.moduleControl[i]();
+          i++;
+          loadModule();
+        }
+      }, delayModuleLoad);
+    })();
   };
 
   // Handle reordering of modules in configuration modal
