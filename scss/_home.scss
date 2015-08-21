@@ -11,4 +11,11 @@
   .module-content {
     width: 100%;
   }
+  // Make emoji the same size as surrounding text
+  img.emoji {
+    height: 1em;
+    width: 1em;
+    margin: 0 .05em 0 .1em;
+    vertical-align: -0.1em;
+  }
 }

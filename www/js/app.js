@@ -1,4 +1,4 @@
-var app = angular.module('gocostudent', ['ionic', 'ngMessages']);
+var app = angular.module('gocostudent', ['ionic', 'ngMessages', 'sc.twemoji']);
 
 app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatform, StorageService, AppVersion) {
   $ionicPlatform.ready(function() {
@@ -28,7 +28,7 @@ app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatfo
   });
 }]).
 
-config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+config(['$stateProvider', '$urlRouterProvider', 'twemojiProvider', function($stateProvider, $urlRouterProvider, twemojiProvider) {
   $stateProvider
     .state('login', {
       url: '/login',
@@ -45,6 +45,12 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
       templateUrl: 'html/home.html',
       controller: 'HomeController as home'
     });
+
+  twemojiProvider.setOptions({
+    base: '/lib/twemoji/',
+    ext: '.svg',
+    size: 'svg'
+  });
 
   $urlRouterProvider.otherwise('/');
 }]);

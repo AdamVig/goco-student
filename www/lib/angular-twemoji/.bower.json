@@ -1,0 +1,23 @@
+{
+  "name": "angular-twemoji",
+  "version": "0.0.8",
+  "main": "dist/angular-twemoji.min.js",
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "latest",
+    "angular-mocks": "latest",
+    "jquery": "latest",
+    "twemoji": "~1.1.0"
+  },
+  "homepage": "https://github.com/scheffield/angular-twemoji",
+  "_release": "0.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.8",
+    "commit": "ee912ca976542e855982fae61c5b3704a21c0f31"
+  },
+  "_source": "git://github.com/scheffield/angular-twemoji.git",
+  "_target": "~0.0.8",
+  "_originalSource": "angular-twemoji",
+  "_direct": true
+}

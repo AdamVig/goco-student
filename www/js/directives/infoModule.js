@@ -14,7 +14,7 @@ app.directive('infoModule', function () {
     },
     templateUrl: 'html/directives/_infomodule.html',
     controllerAs: 'module',
-    controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout, ErrorMessages) {
+    controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
       var module = this;
       module.dataType = $scope.infoType;
@@ -52,7 +52,7 @@ app.directive('infoModule', function () {
 
             // Make error message
             if (response) {
-              module.errorMessage = response;
+              module.errorMessage = twemoji(response);
             } else if (respTime >= RequestTimeout.default){
               module.errorMessage = ErrorMessages.timeout;
             } else {

@@ -18,7 +18,6 @@
     </div>
   </div>
   <h2 class="info-error-message"
-    ng-show="module.errorMessage  && !module.loading">
-    {{module.errorMessage}}
-  </h2>
+    ng-show="module.errorMessage  && !module.loading"
+    ng-bind-html="module.errorMessage"></h2>
 </button>
