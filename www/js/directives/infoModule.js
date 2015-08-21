@@ -37,7 +37,7 @@ app.directive('infoModule', function () {
           var startTime = new Date().getTime();
 
           // Get data from server
-          DataService.get(module.dataType, module.userCredentials).
+          DataService.post(module.dataType, module.userCredentials).
           success(function(response) {
 
             try {

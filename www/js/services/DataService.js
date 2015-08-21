@@ -1,7 +1,7 @@
 app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'StorageService', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, StorageService, AppInfoRefreshTime) {
 
   /**
-   * Get data for user from server
+   * Retrieve data for user from server using a GET request
    * @param  {String}   dataType        Type of data to get, ex: 'chapelCredits'
    * @param  {object}   userCredentials Contains username and password
    * @param  {number}   timeout         Custom timeout in milliseconds
@@ -26,6 +26,33 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     };
 
     return $http.get(url, config);
+  };
+
+  /**
+   * Retrieve data for user from server using a POST request
+   * @param  {String}   dataType        Type of data to get, ex: 'chapelCredits'
+   * @param  {object}   userCredentials Contains username and password
+   * @param  {number}   timeout         Custom timeout in milliseconds
+   * @param  {function} timeout         Custom timeout function
+   * @return {promise}                  Fulfilled by response from server
+   */
+  this.post = function (dataType, userCredentials, timeout) {
+
+    var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+
+    // Prepare timeout $q instance
+    if (timeout) {
+      if (timeout.promise) {
+        timeout = timeout.promise;
+      }
+    }
+
+    // Request configuration
+    var config = {
+      timeout: timeout || RequestTimeout.default
+    };
+
+    return $http.post(url, JSON.stringify(userCredentials), config);
   };
 
   /**
