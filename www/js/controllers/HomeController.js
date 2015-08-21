@@ -75,7 +75,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
 
   // Load data in all modules at once
   home.loadAllModules = function () {
-    var delayModuleLoad = 750;
+    var delayModuleLoad = 500;
     var i = 0;
 
     // Load all modules with set delay time in between
