@@ -1,4 +1,5 @@
-info-module {
+info-module,
+interaction-module {
   height: 100%;
   width: 100%;
   display: block;
@@ -22,17 +23,17 @@ info-module {
     &:before {
       color: color(white);
     }
-    &.chapel-icon {
-      background-image: url('../img/chapel.svg');
-    }
-    &.meal-points-icon {
-      background-image: url('../img/silverware.svg');
-    }
     &.calculator-icon {
       background-image: url('../img/calculator.svg');
     }
     &.calendar-icon {
       background-image: url('../img/calendar.svg');
+    }
+    &.chapel-icon {
+      background-image: url('../img/chapel.svg');
+    }
+    &.meal-points-icon {
+      background-image: url('../img/silverware.svg');
     }
     &.person-icon {
       background-image: url('../img/person.svg');
