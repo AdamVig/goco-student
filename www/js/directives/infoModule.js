@@ -3,12 +3,12 @@ app.directive('infoModule', function () {
     restrict: 'E',
     scope: {
       moduleControl: '=',
-      infoType: '=',
-      infoLabel: '=',
+      type: '=',
+      label: '=',
       iconClass: '=',
       colorClass: '=',
-      infoPrefix: '=',
-      infoSuffix: '=',
+      prefix: '=',
+      suffix: '=',
       fontSize: '=',
       loadCallback: '&'
     },
@@ -17,10 +17,10 @@ app.directive('infoModule', function () {
     controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
       var module = this;
-      module.dataType = $scope.infoType;
-      module.prefix = $scope.infoPrefix;
-      module.suffix = $scope.infoSuffix;
-      module.label = $scope.infoLabel;
+      module.dataType = $scope.type;
+      module.prefix = $scope.prefix;
+      module.suffix = $scope.suffix;
+      module.label = $scope.label;
       module.fullClass = $scope.colorClass;
       module.iconClass = $scope.iconClass;
       module.userCredentials = StorageService.retrieveCredentials();
