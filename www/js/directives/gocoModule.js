@@ -3,10 +3,10 @@ app.directive('gocoModule', function () {
     restrict: 'E',
     scope: {
       moduleType: '=',
-      dataType: '=',
+      endpoint: '=',
       label: '=',
       icon: '=',
-      class: '=',
+      moduleClass: '=',
       prefix: '=',
       suffix: '=',
       moduleControl: '=',
@@ -14,16 +14,16 @@ app.directive('gocoModule', function () {
     },
     templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
-    controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
+    controller: ['$scope', '$filter', '$state', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, $state, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
       var module = this;
       module.userCredentials = StorageService.retrieveCredentials();
 
       module.moduleType = $scope.moduleType;
-      module.dataType = $scope.dataType;
+      module.endpoint = $scope.endpoint;
       module.label = $scope.label;
       module.icon = $scope.icon;
-      module.class = $scope.class;
+      module.moduleClass = $scope.moduleClass;
       module.prefix = $scope.prefix;
       module.suffix = $scope.suffix;
       module.moduleControl = $scope.moduleControl;
@@ -46,7 +46,7 @@ app.directive('gocoModule', function () {
           var startTime = new Date().getTime();
 
           // Get data from server
-          DataService.post(module.dataType, module.userCredentials).
+          DataService.post(module.endpoint, module.userCredentials).
           success(function(response) {
 
             try {

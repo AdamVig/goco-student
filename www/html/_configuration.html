@@ -12,7 +12,7 @@
     <ion-list show-reorder="showReorder">
       <ion-item class="item-checkbox"
         ng-repeat="module in modules"
-        ng-class="{'{{module.color}}': true, 'item-placeholder': !module.selected}">
+        ng-class="{'{{module.moduleClass}}': true, 'item-placeholder': !module.selected}">
         <label class="ion-checkmark goco-checkbox"
           ng-class="{'ion-checkmark': module.selected, 'ion-close': !module.selected, 'disabled': (selectedModules.length == 1) && (module.selected)}"
           ng-hide="showReorder">
