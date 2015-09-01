@@ -40,6 +40,11 @@ config(['$stateProvider', '$urlRouterProvider', 'twemojiProvider', function($sta
       templateUrl: 'html/privacypolicy.html',
       controller: 'PrivacyPolicyController as privacyPolicy'
     })
+    .state('moduleView', {
+      url: '/moduleview/:endpoint',
+      templateUrl: 'html/moduleview.html',
+      controller: 'ModuleViewController as moduleView'
+    })
     .state('home', {
       url: '/',
       templateUrl: 'html/home.html',

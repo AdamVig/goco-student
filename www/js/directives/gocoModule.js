@@ -20,7 +20,7 @@ app.directive('gocoModule', function () {
       module.userCredentials = StorageService.retrieveCredentials();
 
       module.moduleType = $scope.moduleType;
-      module.endpoint = $scope.endpoint;
+      module.endpoint = $scope.endpoint.toLowerCase();
       module.label = $scope.label;
       module.icon = $scope.icon;
       module.moduleClass = $scope.moduleClass;
@@ -79,10 +79,18 @@ app.directive('gocoModule', function () {
           });
         }
       };
-      $scope.moduleControl.push(module.load);
+
       if (module.moduleType == 'info') {
         $scope.moduleControl.push(module.load);
       }
+
+      module.goToView = function () {
+
+        $state.go('moduleView', {'endpoint': module.endpoint});
+
+        $scope.loadCallback();
+      };
+
     }]
   };
 });
