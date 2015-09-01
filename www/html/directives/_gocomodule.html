@@ -1,6 +1,6 @@
 <button class="button button-full activated"
-  ng-class="module.class"
-  ng-click="module.load()">
+  ng-class="module.moduleClass"
+  ng-click="module.delegateAction()">
   <div class="module-content"
     ng-hide="module.errorMessage">
     <div class="module-left column">
@@ -13,8 +13,11 @@
       </h1>
     </div>
     <div class="module-right column">
-      <h2 class="info-label"
-        ng-bind="module.label"></h2>
+      <h2 class="info-label">
+        {{module.label}}
+        <span ng-if="module.moduleType == 'interaction'"
+        class="interaction-arrow ion-chevron-right"></span>
+      </h2>
     </div>
   </div>
   <h2 class="info-error-message"

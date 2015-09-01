@@ -1,4 +1,4 @@
-app.directive('infoModule', function () {
+app.directive('gocoModule', function () {
   return {
     restrict: 'E',
     scope: {
@@ -12,10 +12,7 @@ app.directive('infoModule', function () {
       moduleControl: '=',
       loadCallback: '&'
     },
-    templateUrl: function (elem, attr) {
-      var type = attr.moduleType.toLowerCase();
-      return 'html/directives/_' + type + 'module.html';
-    },
+    templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
     controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
@@ -30,6 +27,14 @@ app.directive('infoModule', function () {
       module.prefix = $scope.prefix;
       module.suffix = $scope.suffix;
       module.moduleControl = $scope.moduleControl;
+
+      module.delegateAction = function () {
+        if (module.moduleType == 'info') {
+          module.load();
+        } else {
+          module.goToView();
+        }
+      };
 
       module.load = function () {
 
@@ -75,6 +80,9 @@ app.directive('infoModule', function () {
         }
       };
       $scope.moduleControl.push(module.load);
+      if (module.moduleType == 'info') {
+        $scope.moduleControl.push(module.load);
+      }
     }]
   };
 });
