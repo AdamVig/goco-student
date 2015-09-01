@@ -1,10 +1,10 @@
 <button class="button button-full activated"
-  ng-class="module.fullClass"
+  ng-class="module.class"
   ng-click="module.load()">
   <div class="module-content"
     ng-hide="module.errorMessage">
     <div class="module-left column">
-      <div class="{{module.iconClass}} icon"
+      <div class="{{module.icon}} icon"
         ng-class="{loading: module.loading}"
         ng-hide="module.loading === false"></div>
       <h1 class="info-number"

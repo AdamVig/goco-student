@@ -4,18 +4,17 @@
     ng-class="{'has-footer': home.hasBanner, 'scroll-enabled': home.scrollEnabled}"
     scroll="true"
     overflow-scroll="true">
-    <info-module
+    <goco-module ng-class="home.moduleClass"
       ng-repeat="module in selectedModules"
-      module-control="moduleControl"
-      type="module.name"
+      module-type="module.moduleType"
+      data-type="module.dataType"
       label="module.label"
-      icon-class="module.icon"
-      color-class="module.color"
-      font-size="module.fontSize"
+      icon="module.icon"
+      class="module.color"
       prefix="module.prefix"
       suffix="module.suffix"
       load-callback="home.refreshAppInfo()"
-      ng-class="home.moduleClass"></info-module>
+      module-control="moduleControl"></goco-module>
   </ion-content>
   <app-banner></app-banner>
 </ion-view>

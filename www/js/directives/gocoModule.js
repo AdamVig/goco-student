@@ -2,30 +2,34 @@ app.directive('infoModule', function () {
   return {
     restrict: 'E',
     scope: {
-      moduleControl: '=',
-      type: '=',
+      moduleType: '=',
+      dataType: '=',
       label: '=',
-      iconClass: '=',
-      colorClass: '=',
+      icon: '=',
+      class: '=',
       prefix: '=',
       suffix: '=',
-      fontSize: '=',
+      moduleControl: '=',
       loadCallback: '&'
     },
-    templateUrl: 'html/directives/_infomodule.html',
+    templateUrl: function (elem, attr) {
+      var type = attr.moduleType.toLowerCase();
+      return 'html/directives/_' + type + 'module.html';
+    },
     controllerAs: 'module',
     controller: ['$scope', '$filter', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
       var module = this;
-      module.dataType = $scope.type;
-      module.prefix = $scope.prefix;
-      module.suffix = $scope.suffix;
-      module.label = $scope.label;
-      module.fullClass = $scope.colorClass;
-      module.iconClass = $scope.iconClass;
       module.userCredentials = StorageService.retrieveCredentials();
 
-      if ($scope.fontSize) module.fullClass += ' ' + $scope.fontSize;
+      module.moduleType = $scope.moduleType;
+      module.dataType = $scope.dataType;
+      module.label = $scope.label;
+      module.icon = $scope.icon;
+      module.class = $scope.class;
+      module.prefix = $scope.prefix;
+      module.suffix = $scope.suffix;
+      module.moduleControl = $scope.moduleControl;
 
       module.load = function () {
 
