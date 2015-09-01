@@ -22,6 +22,9 @@ goco-module {
     &:before {
       color: color(white);
     }
+    &.bible-icon {
+      background-image: url('../img/bible.svg');
+    }
     &.calculator-icon {
       background-image: url('../img/calculator.svg');
     }
