@@ -1,7 +1,11 @@
 <ion-view class="gordon-blue-background" view-title="Module View">
   <app-header></app-header>
   <ion-content class="module-view-content" scroll="true" overflow-scroll="true">
-    <ng-include src="moduleView.templateURL"></ng-include>
+    <h3 class="error text-center vertical-center"
+      ng-bind="moduleView.errorMessage"
+      ng-if="moduleView.errorMessage"></h3>
+    <ng-include ng-if="!moduleView.errorMessage"
+      src="moduleView.templateURL"></ng-include>
   </ion-content>
   <app-banner></app-banner>
 </ion-view>

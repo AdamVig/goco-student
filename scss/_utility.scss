@@ -29,3 +29,9 @@
   -webkit-transform: translateX(-50%) !important;
           transform: translateX(-50%) !important;
 }
+.vertical-center {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%) !important;
+          transform: translateY(-50%) !important;
+}
