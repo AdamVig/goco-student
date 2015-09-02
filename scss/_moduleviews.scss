@@ -1,0 +1,29 @@
+.module-view-content {
+  .chapel-events {
+    .event-title {
+      font-size: 1.3em;
+    }
+    .event-date {
+      color: color(muted-gray);
+      font-size: 0.9em;
+    }
+    // Create palindroming pattern of 75 total color steps
+    @for $num from 0 through 15 {
+      .event-color-#{$num} {
+        background-color: lighten(color(light-aquamarine), $num + 15)
+      }
+      .event-color-#{abs($num - 30)} {
+        background-color: lighten(color(light-aquamarine), $num + 15)
+      }
+      .event-color-#{$num + 30} {
+        background-color: lighten(color(light-aquamarine), $num + 15)
+      }
+      .event-color-#{abs($num - 60)} {
+        background-color: lighten(color(light-aquamarine), $num + 15)
+      }
+      .event-color-#{$num + 60} {
+        background-color: lighten(color(light-aquamarine), $num + 15)
+      }
+    }
+  }
+}
