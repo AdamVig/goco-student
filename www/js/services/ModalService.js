@@ -11,7 +11,7 @@ app.service('ModalService', ['$ionicModal', '$q', function ($ionicModal, $q) {
    */
   this.createModals = function ($scope) {
 
-    var modals = ['banner', 'configuration'],
+    var modals = ['banner'],
         modalObjects = [];
 
     // Create modals

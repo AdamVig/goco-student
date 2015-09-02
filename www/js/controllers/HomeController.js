@@ -57,14 +57,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     }
   };
 
-  // Reset scope variables and log user out
-  $scope.logout = function () {
-    home.resetScope();
-    PopoverService.hidePopover('menu');
-    StorageService.eraseCredentials();
-    $state.go('login');
-  };
-
   // Update selected modules
   $scope.updateModules = function () {
     $scope.selectedModules = ModuleService.getSelectedModules($scope.modules);
@@ -97,8 +89,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     $scope.updateModules();
   };
 
-  // Initialize popover and popup services
-  $scope.popover = PopoverService.createPopovers($scope);
   $scope.popup = PopupService;
 
   // Wait for modals to be created before initializing controller

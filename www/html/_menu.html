@@ -1,6 +1,6 @@
 <ion-popover-view>
   <ion-content>
-    <ion-list ng-click="popover.hidePopover('menu')">
+    <ion-list ng-click="hideMenu()">
       <ion-item>
         Yell at me <a href="" onclick="window.open('https://twitter.com/MeetAdamJohn', '_system', 'location=yes'); return false;">@MeetAdamJohn</a>
       </ion-item>
@@ -8,7 +8,7 @@
         Stalk me at <a href="" onclick="window.open('http://www.adamvig.com/', '_system', 'location=yes'); return false;">AdamVig.com</a>
       </ion-item>
       <ion-item class="positive"
-        ng-click="modal.toggleModal('configuration')">
+        ng-click="showConfigurationModal()">
         Options
       </ion-item>
       <ion-item class="assertive"
