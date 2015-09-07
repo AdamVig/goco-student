@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', '$timeout', 'Modules', 'DataService', 'ModalService', 'ModuleService', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, $timeout, Modules, DataService, ModalService, ModuleService, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', '$timeout', 'Modules', 'DataService', 'ModalService', 'ModuleFactory', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, $timeout, Modules, DataService, ModalService, ModuleFactory, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
   $scope.moduleControl = [];
@@ -59,10 +59,9 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
 
   // Update selected modules
   $scope.updateModules = function () {
-    $scope.selectedModules = ModuleService.getSelectedModules($scope.modules);
-    home.moduleClass = ModuleService.makeModuleClass($scope.selectedModules.length);
-    home.scrollEnabled = $scope.selectedModules.length > 5;
-    StorageService.storeModules($scope.modules);
+    $scope.selectedModules = ModuleFactory.getSelectedModules();
+    home.moduleClass = ModuleFactory.getModuleClass();
+    home.scrollEnabled = ModuleFactory.isScrollEnabled();
   };
 
   // Load data in all modules at once
@@ -82,13 +81,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     })();
   };
 
-  // Handle reordering of modules in configuration modal
-  $scope.reorderModule = function(item, fromIndex, toIndex) {
-    $scope.modules.splice(fromIndex, 1);
-    $scope.modules.splice(toIndex, 0, item);
-    $scope.updateModules();
-  };
-
+  $scope.reorderModule = ModuleFactory.reorderModules();
   $scope.popup = PopupService;
 
   // Wait for modals to be created before initializing controller
