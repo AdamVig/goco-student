@@ -10,6 +10,12 @@
   @extend .moduleColorCycle;
 }
 
+.login-loader {
+  @extend .animated;
+  @extend .infinite;
+  @extend .spin;
+}
+
 // Only on grade a and grade b devices
 .grade-a,
 .grade-b {
