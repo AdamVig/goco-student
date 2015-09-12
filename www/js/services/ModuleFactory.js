@@ -18,13 +18,10 @@ app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', functio
     _allModules = Modules;
   }
 
+  _selectedModules = _getSelected(_allModules);
+
   // Store modules
   StorageService.storeModules(_allModules);
-
-  // Get selected modules from list of all modules
-  _selectedModules = _allModules.filter(function (module) {
-    return module.selected === true;
-  });
 
   // Decide class for modules based on how many are selected
   _numModules = _selectedModules.length;
@@ -38,6 +35,17 @@ app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', functio
   // Decide if scroll is enabled
   if (_numModules > 5) _isScrollEnabled = true;
   else _isScrollEnabled = false;
+
+  /**
+   * Get selected modules from list of modules
+   * @param  {array} modules Contains modules
+   * @return {array}         Contains modules with 'selected': true
+   */
+  function _getSelected(modules) {
+    return modules.filter(function (module) {
+        return module.selected === true;
+      });
+  }
 
   /**
    * Get all modules
