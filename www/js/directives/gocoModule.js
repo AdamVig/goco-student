@@ -20,13 +20,15 @@ app.directive('gocoModule', function () {
       module.userCredentials = StorageService.retrieveCredentials();
 
       module.moduleType = $scope.moduleType;
-      module.endpoint = $scope.endpoint.toLowerCase();
+      module.endpoint = $scope.endpoint;
       module.label = $scope.label;
       module.icon = $scope.icon;
       module.moduleClass = $scope.moduleClass;
       module.prefix = $scope.prefix;
       module.suffix = $scope.suffix;
       module.moduleControl = $scope.moduleControl;
+
+      if (module.endpoint) module.endpoint = module.endpoint.toLowerCase();
 
       module.delegateAction = function () {
         if (module.moduleType == 'info') {
