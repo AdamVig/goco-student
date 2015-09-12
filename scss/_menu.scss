@@ -1,0 +1,13 @@
+/* Allow ion-popover used for app menu to automatically change height. */
+
+ion-popover-view {
+  height: auto !important;
+}
+
+ion-popover-view ion-content {
+  position: relative !important;
+}
+
+.platform-android ion-popover-view {
+  margin-top: 10px !important;
+}
