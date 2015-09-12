@@ -6,7 +6,7 @@ app.directive('appHeader', function () {
       'allowConfiguration': '='
     },
     templateUrl: 'html/directives/_appheader.html',
-    controller: ['$state', '$scope', '$ionicHistory', '$ionicPopover', '$ionicModal', 'StorageService', function ($state, $scope, $ionicHistory, $ionicPopover, $ionicModal, StorageService) {
+    controller: ['$state', '$scope', '$ionicPopover', '$ionicModal', 'StorageService', 'ModuleFactory', function ($state, $scope, $ionicPopover, $ionicModal, StorageService, ModuleFactory) {
 
       $ionicPopover.fromTemplateUrl('html/_menu.html', {
         scope: $scope,
@@ -27,7 +27,7 @@ app.directive('appHeader', function () {
       };
 
       $scope.goHome = function () {
-        $ionicHistory.goBack();
+        $state.go('home');
       };
 
       $scope.showMenu = function ($event) {
