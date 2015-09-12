@@ -2,7 +2,8 @@ app.directive('appHeader', function () {
   return {
     restrict: 'E',
     scope: {
-      'backButton': '='
+      'backButton': '=',
+      'allowConfiguration': '='
     },
     templateUrl: 'html/directives/_appheader.html',
     controller: ['$state', '$scope', '$ionicHistory', '$ionicPopover', '$ionicModal', 'StorageService', function ($state, $scope, $ionicHistory, $ionicPopover, $ionicModal, StorageService) {
