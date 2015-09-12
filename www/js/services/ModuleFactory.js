@@ -40,17 +40,6 @@ app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', functio
   else _isScrollEnabled = false;
 
   /**
-   * Reorder modules
-   * @param  {module} item      Module to move
-   * @param  {number} fromIndex Index to move from
-   * @param  {number} toIndex   Index to move to
-   */
-  moduleFactory.reorderModules = function (item, fromIndex, toIndex) {
-    _selectedModules.splice(fromIndex, 1);
-    _selectedModules.splice(toIndex, 0, item);
-  };
-
-  /**
    * Get all modules
    * @return {array} List of module objects
    */

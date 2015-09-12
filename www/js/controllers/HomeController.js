@@ -61,7 +61,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
     })();
   };
 
-  $scope.reorderModule = ModuleFactory.reorderModules();
   $scope.popup = PopupService;
 
   // Wait for modals to be created before initializing controller
