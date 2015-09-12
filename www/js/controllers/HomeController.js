@@ -29,32 +29,12 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '
 
   // Instantiate/reset scope variables
   home.resetScope = function () {
-
-    home.loading = {};
-    home.errorMessage = {};
-    home.mealPoints = null;
-    home.chapelCredits = {};
-    home.userCredentials = StorageService.retrieveCredentials();
+    if (!StorageService.retrieveCredentials()) $state.go('login');
     home.hasBanner = false;
     home.scrollEnabled = false;
 
-    // Retrieved stored modules or null if no stored modules
-    $scope.modules = StorageService.retrieveModules();
-
-    if (home.userCredentials) {
-
-      var storedAppVersion = StorageService.get('version');
-      if (storedAppVersion != AppVersion || !$scope.modules) {
-        $scope.modules = Modules;
-        $scope.modal.showModal('configuration');
-        if (!$scope.modules) $scope.popup.showPopup('configuration');
-      }
-      $scope.updateModules();
-      home.loadAllModules();
-
-    } else {
-      $state.go('login');
-    }
+    $scope.updateModules();
+    home.loadAllModules();
   };
 
   // Update selected modules
