@@ -1,9 +1,10 @@
-app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', function (Modules, AppVersion, StorageService) {
+app.factory('ModuleFactory', ['$rootScope', 'Modules', 'AppVersion', 'StorageService', function ($rootScope, Modules, AppVersion, StorageService) {
 
   var moduleFactory = {};
 
   var _allModules = [];
   var _storedModules = StorageService.retrieveModules();
+  var _defaultModules = Modules;
   var _storedAppVersion = StorageService.get('version');
   var _currentAppVersion = AppVersion;
   var _selectedModules = [];
@@ -11,30 +12,30 @@ app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', functio
   var _moduleClass = '';
   var _isScrollEnabled = false;
 
-  // Get all modules either from storage or from constant
-  if (_storedAppVersion == _currentAppVersion && _storedModules) {
-    _allModules = _storedModules;
-  } else {
-    _allModules = Modules;
-  }
-
+  _allModules = _getAllModules(
+    _storedAppVersion, _currentAppVersion, _storedModules, _defaultModules);
   _selectedModules = _getSelected(_allModules);
-
-  // Store modules
-  StorageService.storeModules(_allModules);
-
-  // Decide class for modules based on how many are selected
   _numModules = _selectedModules.length;
-  if (_numModules > 5) _moduleClass = 'list-item';
-  else if (_numModules == 5) _moduleClass = 'one-fifth';
-  else if (_numModules == 4) _moduleClass = 'one-fourth';
-  else if (_numModules == 3) _moduleClass = 'one-third';
-  else if (_numModules == 2) _moduleClass = 'one-half';
-  else _moduleClass = '';
+  _moduleClass = _getModuleClass(_numModules);
+  _isScrollEnabled = _getScrollEnabled(_numModules);
 
-  // Decide if scroll is enabled
-  if (_numModules > 5) _isScrollEnabled = true;
-  else _isScrollEnabled = false;
+  /**
+   * Get all modules from either storage or constant
+   * @param  {string} storedAppVersion  Stored version of app
+   * @param  {string} currentAppVersion Current version of app
+   * @param  {array}  storedModules     User's list of modules from storage
+   * @param  {array}  defaultModules    Default list of modules from constant
+   * @return {array}                    List of either stored or default modules
+   */
+  function _getAllModules(storedAppVersion, currentAppVersion,
+    storedModules, defaultModules) {
+    if (storedAppVersion == currentAppVersion && storedModules) {
+      return storedModules;
+    } else {
+      StorageService.storeModules(defaultModules);
+      return defaultModules;
+    }
+  }
 
   /**
    * Get selected modules from list of modules
@@ -46,6 +47,45 @@ app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', functio
         return module.selected === true;
       });
   }
+
+  /**
+   * Get class to use for modules
+   * @param  {number} _numModules Number of modules
+   * @return {string}             Class to use for modules
+   */
+  function _getModuleClass(_numModules) {
+    if (_numModules > 5) return 'list-item';
+    else if (_numModules == 5) return 'one-fifth';
+    else if (_numModules == 4) return 'one-fourth';
+    else if (_numModules == 3) return 'one-third';
+    else if (_numModules == 2) return 'one-half';
+    else return '';
+  }
+
+  /**
+   * Get whether scroll is enabled or not
+   * @param  {number} _numModules Number of modules
+   * @return {boolean}            Whether or not scroll is enabled
+   */
+  function _getScrollEnabled(_numModules) {
+    if (_numModules > 5) return true;
+    else return false;
+  }
+
+  /**
+   * Update list of selected modules from list of all modules
+   */
+  moduleFactory.updateModules = function (modules) {
+    _allModules = modules;
+    _selectedModules = _getSelected(_allModules);
+
+    _numModules = _selectedModules.length;
+    _moduleClass = _getModuleClass(_numModules);
+    _isScrollEnabled = _getScrollEnabled(_numModules);
+
+    StorageService.storeModules(_allModules);
+    $rootScope.$broadcast('modules:updated', _selectedModules);
+  };
 
   /**
    * Get all modules
@@ -75,7 +115,7 @@ app.factory('ModuleFactory', ['Modules', 'AppVersion', 'StorageService', functio
    * Return whether scroll is enabled or not
    * @return {Boolean} Whether scroll is enabled or not
    */
-  moduleFactory.isScrollEnabled = function () {
+  moduleFactory.getScrollEnabled = function () {
     return _isScrollEnabled;
   };
 

@@ -28,15 +28,15 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
     home.hasBanner = false;
     home.scrollEnabled = false;
 
-    $scope.updateModules();
+    home.updateModules();
     home.loadAllModules();
   };
 
   // Update selected modules
-  $scope.updateModules = function () {
+  home.updateModules = function () {
     $scope.selectedModules = ModuleFactory.getSelectedModules();
     home.moduleClass = ModuleFactory.getModuleClass();
-    home.scrollEnabled = ModuleFactory.isScrollEnabled();
+    home.scrollEnabled = ModuleFactory.getScrollEnabled();
   };
 
   // Load data in all modules at once
@@ -55,6 +55,8 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
       }, delayModuleLoad);
     })();
   };
+
+  $scope.$on('modules:updated', home.updateModules);
 
   $scope.popup = PopupService;
 

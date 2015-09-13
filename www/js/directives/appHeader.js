@@ -8,6 +8,13 @@ app.directive('appHeader', function () {
     templateUrl: 'html/directives/_appheader.html',
     controller: ['$state', '$scope', '$ionicPopover', '$ionicModal', 'StorageService', 'ModuleFactory', function ($state, $scope, $ionicPopover, $ionicModal, StorageService, ModuleFactory) {
 
+      $scope.modules = ModuleFactory.getAllModules();
+      $scope.selectedModules = ModuleFactory.getSelectedModules();
+
+      $scope.updateModules = function () {
+        $scope.selectedModules = ModuleFactory.updateModules($scope.modules);
+      };
+
       $ionicPopover.fromTemplateUrl('html/_menu.html', {
         scope: $scope,
       }).then(function(popover) {
