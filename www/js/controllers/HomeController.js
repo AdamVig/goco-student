@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService', 'ModalService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($scope, $state, $timeout, DataService, ModalService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
   $scope.moduleControl = [];
@@ -20,16 +20,6 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
         }
       });
     }
-  };
-
-  // Instantiate/reset scope variables
-  home.resetScope = function () {
-    if (!StorageService.retrieveCredentials()) $state.go('login');
-    home.hasBanner = false;
-    home.scrollEnabled = false;
-
-    home.updateModules();
-    home.loadAllModules();
   };
 
   // Update selected modules
@@ -56,14 +46,24 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
     })();
   };
 
+  // Instantiate/reset scope variables
+  home.resetScope = function () {
+    home.hasBanner = false;
+
+    home.updateModules();
+    home.loadAllModules();
+  };
+
   $scope.$on('modules:updated', home.updateModules);
 
   $scope.popup = PopupService;
 
-  // Wait for modals to be created before initializing controller
-  ModalService.createModals($scope).then(function (modalService) {
-    $scope.modal = modalService;
-    home.refreshAppInfo();
+  home.refreshAppInfo();
+
+  // Reset scope if user is logged in
+  if (StorageService.retrieveCredentials()) {
     home.resetScope();
-  });
+  } else {
+    $state.go('login');
+  }
 }]);
