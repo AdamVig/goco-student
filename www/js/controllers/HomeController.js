@@ -3,25 +3,6 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
   var home = this;
   home.hasBanner = false;
   $scope.moduleControl = [];
-  StorageService.store('lastAppInfoRefresh', new Date(0));
-
-  // Refresh app info including banner
-  home.refreshAppInfo = function () {
-    var request = DataService.refreshAppInfo();
-
-    // If request is a promise
-    if (request !== false) {
-      request.then(function (appInfo) {
-        home.appInfo = appInfo;
-
-        // Set banner if it exists
-        if (home.appInfo.banner.title){
-          home.hasBanner = true;
-          $scope.banner = home.appInfo.banner;
-        }
-      });
-    }
-  };
 
   // Update selected modules
   home.updateModules = function () {
@@ -36,7 +17,7 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
     var i = 0;
 
     // Load all modules with set delay time in between
-    (function loadModule () {
+    (function loadModule() {
       $timeout(function () {
         if (i < $scope.moduleControl.length) {
           $scope.moduleControl[i]();
@@ -48,10 +29,15 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
   };
 
   $scope.$on('modules:updated', home.updateModules);
+  $scope.$watch('banner', function () {
+    if ($scope.banner) {
+      home.hasBanner = true;
+    }
+  });
+
 
   $scope.popup = PopupService;
 
-  home.refreshAppInfo();
   // Reset scope if user is logged in
   if (StorageService.retrieveCredentials()) {
     home.updateModules();
