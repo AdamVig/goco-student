@@ -9,8 +9,7 @@ app.directive('gocoModule', function () {
       moduleClass: '=',
       prefix: '=',
       suffix: '=',
-      moduleControl: '=',
-      loadCallback: '&'
+      moduleControl: '='
     },
     templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
@@ -87,10 +86,7 @@ app.directive('gocoModule', function () {
       }
 
       module.goToView = function () {
-
         $state.go('moduleView', {'endpoint': module.endpoint});
-
-        $scope.loadCallback();
       };
 
     }]
