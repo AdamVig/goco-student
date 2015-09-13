@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$window', '$filter', '$ionicScrollDelegate', '$timeout', 'Modules', 'DataService', 'ModalService', 'ModuleFactory', 'PopoverService', 'PopupService', 'StorageService', 'ApiUrl', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $window, $filter, $ionicScrollDelegate, $timeout, Modules, DataService, ModalService, ModuleFactory, PopoverService, PopupService, StorageService, ApiUrl, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService', 'ModalService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($scope, $state, $timeout, DataService, ModalService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
   $scope.moduleControl = [];
