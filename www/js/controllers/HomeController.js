@@ -1,6 +1,7 @@
 app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
+  home.hasBanner = false;
   $scope.moduleControl = [];
   StorageService.store('lastAppInfoRefresh', new Date(0));
 
@@ -46,23 +47,15 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
     })();
   };
 
-  // Instantiate/reset scope variables
-  home.resetScope = function () {
-    home.hasBanner = false;
-
-    home.updateModules();
-    home.loadAllModules();
-  };
-
   $scope.$on('modules:updated', home.updateModules);
 
   $scope.popup = PopupService;
 
   home.refreshAppInfo();
-
   // Reset scope if user is logged in
   if (StorageService.retrieveCredentials()) {
-    home.resetScope();
+    home.updateModules();
+    home.loadAllModules();
   } else {
     $state.go('login');
   }
