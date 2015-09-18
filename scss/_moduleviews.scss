@@ -2,9 +2,11 @@
   .chapel-events {
     .event-title {
       font-size: 1.1em;
+      white-space: normal;
     }
     .event-date {
       color: color(muted-gray);
+      padding-top: 0.25em;
       font-size: 0.9em;
     }
     // Create palindroming pattern of 75 total color steps

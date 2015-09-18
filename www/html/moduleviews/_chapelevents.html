@@ -1,7 +1,7 @@
 <ion-list class="chapel-events">
   <ion-item ng-class="'event-color-' + $index"
-    ng-repeat="(date, title) in moduleView.data">
-    <div class="event-title">{{title}}</div>
-    <div class="event-date">{{date}}</div>
+    ng-repeat="event in moduleView.data">
+    <div class="event-title">{{event.title}}</div>
+    <div class="event-date">{{event.relative}} &middot; {{event.datetime}}</div>
   </ion-item>
 </ion-list>
