@@ -12,19 +12,19 @@
     // Create palindroming pattern of 75 total color steps
     @for $num from 0 through 15 {
       .event-color-#{$num} {
-        background-color: lighten(color(light-aquamarine), $num + 15)
+        background-color: lighten(color(light-aquamarine), $num + 30)
       }
       .event-color-#{abs($num - 30)} {
-        background-color: lighten(color(light-aquamarine), $num + 15)
+        background-color: lighten(color(light-aquamarine), $num + 30)
       }
       .event-color-#{$num + 30} {
-        background-color: lighten(color(light-aquamarine), $num + 15)
+        background-color: lighten(color(light-aquamarine), $num + 30)
       }
       .event-color-#{abs($num - 60)} {
-        background-color: lighten(color(light-aquamarine), $num + 15)
+        background-color: lighten(color(light-aquamarine), $num + 30)
       }
       .event-color-#{$num + 60} {
-        background-color: lighten(color(light-aquamarine), $num + 15)
+        background-color: lighten(color(light-aquamarine), $num + 30)
       }
     }
   }
