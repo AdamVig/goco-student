@@ -32,7 +32,7 @@
       "platform": "android",
       "locator": "wp8"
     },
-    "ios",
-    "wp8"
+    "wp8",
+    "ios"
   ]
 }
