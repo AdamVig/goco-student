@@ -25,7 +25,8 @@
     "https://github.com/danwilson/google-analytics-plugin.git",
     "./engine/cordova-crosswalk-engine-c0.7.1",
     "org.apache.cordova.splashscreen",
-    "https://github.com/apache/cordova-plugin-whitelist.git"
+    "https://github.com/apache/cordova-plugin-whitelist.git",
+    "cordova-plugin-google-analytics"
   ],
   "cordovaPlatforms": [
     {
