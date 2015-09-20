@@ -5,8 +5,8 @@ constant('RequestTimeout', {
 }).
 constant('AppInfoRefreshTime', 300000).
 constant('ErrorMessages', {
-  'timeout': 'Request took too long. Tap to try again.',
-  'unknown': 'Something went wrong. Try again later!'
+  'timeout': 'Took too long. Try again!',
+  'unknown': 'Something went wrong. Try again!'
 }).
 constant('Modules', [
   {
