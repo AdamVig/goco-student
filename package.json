@@ -26,13 +26,15 @@
     "./engine/cordova-crosswalk-engine-c0.7.1",
     "org.apache.cordova.splashscreen",
     "https://github.com/apache/cordova-plugin-whitelist.git",
-    "cordova-plugin-google-analytics"
+    "cordova-plugin-google-analytics",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    },
+    "com.ionic.keyboard",
+    "cordova-plugin-crosswalk-webview"
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "locator": "wp8"
-    },
     "wp8",
     "ios"
   ]
