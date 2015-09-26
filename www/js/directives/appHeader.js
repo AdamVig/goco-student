@@ -6,7 +6,7 @@ app.directive('appHeader', function () {
       'allowConfiguration': '='
     },
     templateUrl: 'html/directives/_appheader.html',
-    controller: ['$state', '$scope', '$ionicPopover', '$ionicModal', 'StorageService', 'ModuleFactory', function ($state, $scope, $ionicPopover, $ionicModal, StorageService, ModuleFactory) {
+    controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'StorageService', 'PopupService', 'ModuleFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, StorageService, PopupService, ModuleFactory) {
 
       $scope.modules = ModuleFactory.getAllModules();
       $scope.selectedModules = ModuleFactory.getSelectedModules();
@@ -55,6 +55,13 @@ app.directive('appHeader', function () {
       $scope.hideConfigurationModal = function ($event) {
         $scope.configurationModal.hide($event);
       };
+
+      function showFirstTimeConfig() {
+        $scope.showConfigurationModal();
+        PopupService.showPopup('configuration');
+      }
+
+      $rootScope.$on('modules:default', showFirstTimeConfig);
     }]
   };
 });

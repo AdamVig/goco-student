@@ -1,4 +1,4 @@
-app.factory('ModuleFactory', ['$rootScope', 'Modules', 'AppVersion', 'StorageService', function ($rootScope, Modules, AppVersion, StorageService) {
+app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion', 'StorageService', function ($rootScope, $timeout, Modules, AppVersion, StorageService) {
 
   var moduleFactory = {};
 
@@ -33,6 +33,12 @@ app.factory('ModuleFactory', ['$rootScope', 'Modules', 'AppVersion', 'StorageSer
       return storedModules;
     } else {
       StorageService.storeModules(defaultModules);
+
+      // Wait for directive controller to initialize then broadcast message
+      $timeout(function () {
+        $rootScope.$broadcast('modules:default');
+      });
+
       return defaultModules;
     }
   }
