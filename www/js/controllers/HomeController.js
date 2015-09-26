@@ -6,7 +6,7 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
 
   // Update selected modules
   home.updateModules = function () {
-    $scope.selectedModules = ModuleFactory.getSelectedModules();
+    home.selectedModules = ModuleFactory.getSelectedModules();
     home.moduleClass = ModuleFactory.getModuleClass();
     home.scrollEnabled = ModuleFactory.getScrollEnabled();
   };
