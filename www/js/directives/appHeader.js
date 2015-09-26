@@ -21,9 +21,10 @@ app.directive('appHeader', function () {
         $scope.menu = popover;
       });
 
-      $ionicModal.fromTemplateUrl('html/_configuration.html', {
-        scope: $scope
-      }).then(function (modal) {
+      var configPromise = $ionicModal.fromTemplateUrl(
+        'html/_configuration.html',
+        {scope: $scope})
+      .then(function (modal) {
         $scope.configurationModal = modal;
       });
 
@@ -46,7 +47,9 @@ app.directive('appHeader', function () {
       };
 
       $scope.showConfigurationModal = function ($event) {
-        $scope.configurationModal.show($event);
+        configPromise.then(function () {
+          $scope.configurationModal.show($event);
+        });
       };
 
       $scope.hideConfigurationModal = function ($event) {
