@@ -54,8 +54,9 @@
         class="login-button button button-light"
         ng-disabled="loginForm.$invalid">
         <span ng-show="!login.status">All done!</span>
-        <div class="ion-load-c login-loader"
-          ng-if="login.status == 'status-loading'"></div>
+        <div ng-show="login.status == 'status-loading'">
+          <span class="ion-load-c login-loader"></span>
+        </div>
         <span ng-show="login.status == 'status-invalid'">Try again</span>
       </button>
     </form>
