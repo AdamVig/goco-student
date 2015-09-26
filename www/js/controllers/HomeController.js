@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
 
   var home = this;
   home.hasBanner = false;
@@ -29,6 +29,15 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
   };
 
   $scope.$on('modules:updated', home.updateModules);
+
+  // Update modules on login
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    if (fromState.name == 'login') {
+      home.updateModules();
+      home.loadAllModules();
+    }
+  });
+
   $scope.$watch('banner', function () {
     if ($scope.banner) {
       home.hasBanner = true;
