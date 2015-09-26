@@ -20,7 +20,7 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
       login.user = response.data.data;
 
       if (login.user.hasOwnProperty('privacyPolicy')) {
-        $state.go('home', {}, {reload: true});
+        $state.go('home');
       } else {
         $state.go('privacyPolicy');
       }
