@@ -1,8 +1,8 @@
 app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'StorageService', 'DataService', function ($state, $q, $timeout, $filter, StorageService, DataService) {
 
-  var login = this,
-      loginCheckTimeout = 16000,
-      timeoutPromise = null;
+  var login = this;
+  var loginCheckTimeout = 16000;
+  var timeoutPromise = null;
   login.user = null;
   login.status = false;
   login.userCredentials = {
@@ -16,13 +16,11 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
     login.userCredentials.username = $filter('username')(login.userCredentials.username);
     StorageService.storeCredentials(login.userCredentials);
 
-    // Create user in database
-
     checkLogin().then(function (response) {
       login.user = response.data.data;
 
-      if (seenPrivacyPolicy(login.user)) {
-        $state.go('home');
+      if (login.user.hasOwnProperty('privacyPolicy')) {
+        $state.go('home', {}, {reload: true});
       } else {
         $state.go('privacyPolicy');
       }
@@ -41,7 +39,6 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
       login.status = false;
 
       return DataService.get('createuser', StorageService.retrieveCredentials());
-
     }).
     error(function (response, status) {
       if (status == 401) {
@@ -51,10 +48,5 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
         $state.go('home');
       }
     });
-  }
-
-  // Check whether user has seen privacy policy
-  function seenPrivacyPolicy(user) {
-    return user.hasOwnProperty('privacyPolicy');
   }
 }]);

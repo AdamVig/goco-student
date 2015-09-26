@@ -35,7 +35,6 @@ app.controller('HomeController', ['$scope', '$state', '$timeout', 'DataService',
     }
   });
 
-
   $scope.popup = PopupService;
 
   // Reset scope if user is logged in
