@@ -57,7 +57,6 @@ app.directive('gocoModule', function () {
               throw new Error("No data received from info module request.");
             }
 
-
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
           }).
