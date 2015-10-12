@@ -57,8 +57,11 @@ app.directive('appHeader', function () {
       };
 
       function showFirstTimeConfig() {
-        $scope.showConfigurationModal();
-        PopupService.showPopup('configuration');
+        // Only show configuration if at home state
+        if ($state.current.name == 'home') {
+          $scope.showConfigurationModal();
+          PopupService.showPopup('configuration');
+        }
       }
 
       $rootScope.$on('modules:default', showFirstTimeConfig);
