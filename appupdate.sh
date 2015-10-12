@@ -50,7 +50,7 @@ if [ $yn == "y" ]; then
 
     # Bring iOS simulator window to front
     osascript \
-      -e 'tell application "iOS Simulator"' \
+      -e 'tell application "Simulator"' \
       -e 'activate' \
       -e 'end tell'
 
@@ -59,7 +59,7 @@ if [ $yn == "y" ]; then
 
     # Temporarily disable error checking and kill iOS Simulator
     set +e
-    killall "iOS Simulator" 2> /dev/null
+    killall "Simulator" 2> /dev/null
     set -e
   done
 fi
