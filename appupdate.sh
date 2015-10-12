@@ -6,6 +6,7 @@ set -e
 # App Defaults
 APKNAME="GoCoStudent"
 APKBUILDPATH="platforms/android/build/outputs/apk/"
+APKOUTPUT="platforms/android/"
 APKBUILDNAMEARM="android-armv7-release-unsigned.apk"
 APKBUILDNAMEx86="android-x86-release-unsigned.apk"
 KEYSTOREPATH="gocostudent.keystore"
@@ -89,8 +90,8 @@ if [ $yn == "y" ]; then
 
   rm "${APKNAME}_armv7.apk" "${APKNAME}_x86.apk"
 
-  zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEARM" "${APKNAME}_armv7.apk" 1> /dev/null
-  zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEx86" "${APKNAME}_x86.apk" 1> /dev/null
+  zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEARM" "$APKOUTPUT${APKNAME}_armv7.apk" 1> /dev/null
+  zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEx86" "$APKOUTPUT${APKNAME}_x86.apk" 1> /dev/null
 
   cecho yellow  "Done. Android app is ready for distribution."
 fi
