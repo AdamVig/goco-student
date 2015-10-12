@@ -13,9 +13,11 @@ app.directive('gocoModule', function () {
     },
     templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
-    controller: ['$scope', '$filter', '$state', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, $state, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
+    controller: ['$scope', '$filter', '$state', '$timeout', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, $state, $timeout, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
       var module = this;
+      var animationTime = 1500;
+      module.loading = null;
       module.userCredentials = StorageService.retrieveCredentials();
 
       module.moduleType = $scope.moduleType;
@@ -40,9 +42,10 @@ app.directive('gocoModule', function () {
       module.load = function () {
 
         // Do not try to get data if already loading
-        if (!module.loading) {
+        if (!module.loading && !module.animating) {
 
           module.loading = true;
+          module.animating = false;
           module.errorMessage = null;
           var startTime = new Date().getTime();
 
@@ -75,6 +78,13 @@ app.directive('gocoModule', function () {
           }).
           finally(function() {
             module.loading = false;
+            module.animating = true;
+
+            // Wait for animation to finish
+            $timeout(function () {
+              module.animating = false;
+            }, animationTime);
+
             $scope.loadCallback();
           });
         }

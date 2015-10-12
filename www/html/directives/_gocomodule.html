@@ -4,13 +4,19 @@
   <div class="module-content"
     ng-hide="module.errorMessage">
     <div class="module-left column">
-      <div class="{{module.icon}} icon"
-        ng-class="{loading: module.loading}"
-        ng-hide="module.loading === false"></div>
-      <h1 class="info-number"
-        ng-hide="!module.data || module.loading">
-        {{module.prefix}}{{module.data}}{{module.suffix}}
-      </h1>
+      <!-- Show icon when loading and before first interaction -->
+      <div class="module-icon-container"
+        ng-show="(module.loading === true || module.loading == null)">
+        <div class="{{module.icon}} icon"
+          ng-class="{loading: module.loading}"></div>
+      </div>
+      <!-- Hide info number when loading and before first interaction -->
+      <div class="module-info-container"
+        ng-hide="(module.loading === true || module.loading == null)">
+        <h1 class="info-number">
+          {{module.prefix}}{{module.data}}{{module.suffix}}
+        </h1>
+      </div>
     </div>
     <div class="module-right column">
       <h2 class="info-label">
@@ -21,6 +27,6 @@
     </div>
   </div>
   <h2 class="info-error-message"
-    ng-show="module.errorMessage  && !module.loading"
+    ng-show="module.errorMessage && !module.loading"
     ng-bind-html="module.errorMessage"></h2>
 </button>

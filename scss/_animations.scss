@@ -35,9 +35,11 @@
 
 // Only on grade a devices
 .grade-a {
-  // Chapel credit and meal points zoom in on load
-  .info-number {
-    &.ng-hide-remove {
+  // Module info number zoom in on load
+  .module-info-container.ng-hide-remove {
+    -webkit-transition: 1000ms;
+            transition: 1000ms;
+    .info-number {
       @extend .animated;
       @extend .zoomIn;
     }
