@@ -31,8 +31,8 @@ app.directive('appBanner', function () {
         // If request is made, handle the response
         if (request !== false) {
           request.then(function (appInfo) {
-            if (appInfo.testbanner.title) {
-              $scope.banner = appInfo.testbanner;
+            if (appInfo.banner.title) {
+              $scope.banner = appInfo.banner;
               hasBanner = true;
             }
           });
