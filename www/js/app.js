@@ -3,21 +3,8 @@ var app = angular.module('gocostudent', ['ionic', 'ngMessages', 'sc.twemoji', 'n
 app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatform, StorageService, AppVersion) {
   $ionicPlatform.ready(function() {
 
-    var storedAppVersion = StorageService.get('version');
-    var analyticsID;
-
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-
-    if (ionic.Platform.isIOS()) {
-      analyticsId = "UA-60428326-3";
-    } else {
-      analyticsId = "UA-60428326-2";
-    }
-
-    if (window.analytics) {
-      window.analytics.startTrackerWithId(analyticsID);
     }
   });
 }]).
