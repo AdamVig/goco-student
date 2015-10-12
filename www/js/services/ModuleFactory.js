@@ -76,7 +76,7 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion',
    * Update list of selected modules from list of all modules
    */
   moduleFactory.updateModules = function (modules) {
-    _allModules = modules;
+    _allModules = modules || _getAllModules();
     _selectedModules = _getSelected(_allModules);
 
     _numModules = _selectedModules.length;
