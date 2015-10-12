@@ -12,8 +12,7 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion',
   var _moduleClass = '';
   var _isScrollEnabled = false;
 
-  _allModules = _getAllModules(
-    _storedAppVersion, _currentAppVersion, _storedModules, _defaultModules);
+  _allModules = _getAllModules();
   _selectedModules = _getSelected(_allModules);
   _numModules = _selectedModules.length;
   _moduleClass = _getModuleClass(_numModules);
@@ -21,25 +20,20 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion',
 
   /**
    * Get all modules from either storage or constant
-   * @param  {string} storedAppVersion  Stored version of app
-   * @param  {string} currentAppVersion Current version of app
-   * @param  {array}  storedModules     User's list of modules from storage
-   * @param  {array}  defaultModules    Default list of modules from constant
    * @return {array}                    List of either stored or default modules
    */
-  function _getAllModules(storedAppVersion, currentAppVersion,
-    storedModules, defaultModules) {
-    if (storedAppVersion == currentAppVersion && storedModules) {
-      return storedModules;
+  function _getAllModules() {
+    if (_storedAppVersion == _currentAppVersion && _storedModules) {
+      return _storedModules;
     } else {
-      StorageService.storeModules(defaultModules);
+      StorageService.storeModules(_defaultModules);
 
       // Wait for directive controller to initialize then broadcast message
       $timeout(function () {
         $rootScope.$broadcast('modules:default');
       });
 
-      return defaultModules;
+      return _defaultModules;
     }
   }
 
