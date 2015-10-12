@@ -87,6 +87,8 @@ if [ $yn == "y" ]; then
   # Remove existing APK and zipalign new APK in its place
   cecho blue "Zipaligning and renaming APK."
 
+  rm "${APKNAME}_armv7.apk" "${APKNAME}_x86.apk"
+
   zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEARM" "${APKNAME}_armv7.apk" 1> /dev/null
   zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEx86" "${APKNAME}_x86.apk" 1> /dev/null
 
