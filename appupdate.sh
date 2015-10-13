@@ -69,7 +69,6 @@ fi
 read -p "Package Android app for distribution? (y/n) " yn
 if [ $yn == "y" ]; then
 
-  # Build app for Android
   cecho blue "Building app for Android."
 
   # Create Gradle properties if does not exist
@@ -80,12 +79,12 @@ if [ $yn == "y" ]; then
     echo "$GRADLEPROPERTIESCONTENTS" > "$GRADLEPROPERTIESPATH"
   fi
 
+  # Build APKs, suppress stdout
   cordova build --release android 1> /dev/null && wait
 
-  # Sign APK
   cecho blue "Signing APK."
 
-  # NOTE: Can't redirect to /dev/null due to password input
+  # NOTE: Can't redirect output to /dev/null due to password input
   jarsigner -sigalg SHA1withRSA -digestalg SHA1 \
     -tsa http://timestamp.digicert.com \
     -keystore "$KEYSTOREPATH" "$APKBUILDPATH$APKBUILDNAMEARM" "$KEYSTOREALIAS"
@@ -94,11 +93,12 @@ if [ $yn == "y" ]; then
     -tsa http://timestamp.digicert.com \
     -keystore "$KEYSTOREPATH" "$APKBUILDPATH$APKBUILDNAMEx86" "$KEYSTOREALIAS"
 
-  # Remove existing APK and zipalign new APK in its place
   cecho blue "Zipaligning and renaming APK."
 
+  # Remove APKs from previous build if they exist
   rm -f "$APKOUTPUT${APKNAME}_armv7.apk" "$APKOUTPUT${APKNAME}_x86.apk"
 
+  # Zipalign both APKs, rename, and move to APK output directory
   zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEARM" "$APKOUTPUT${APKNAME}_armv7.apk" 1> /dev/null
   zipalign -v 4 "$APKBUILDPATH$APKBUILDNAMEx86" "$APKOUTPUT${APKNAME}_x86.apk" 1> /dev/null
 
