@@ -71,6 +71,15 @@ if [ $yn == "y" ]; then
 
   # Build app for Android
   cecho blue "Building app for Android."
+
+  # Create Gradle properties if does not exist
+  # This file forces creation of two separate APKs
+  GRADLEPROPERTIESPATH="platforms/android/gradle.properties"
+  GRADLEPROPERTIESCONTENTS="cdvBuildMultipleApks=true"
+  if [ ! -f "$GRADLEPROPERTIESPATH" ]; then
+    echo "$GRADLEPROPERTIESCONTENTS" > "$GRADLEPROPERTIESPATH"
+  fi
+
   cordova build --release android 1> /dev/null && wait
 
   # Sign APK
