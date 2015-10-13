@@ -36,6 +36,7 @@
   ],
   "cordovaPlatforms": [
     "wp8",
-    "ios"
+    "ios",
+    "android"
   ]
 }
