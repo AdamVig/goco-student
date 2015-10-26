@@ -1,7 +1,11 @@
 <ion-header-bar class="bar-light" align-title="center">
-  <div class="buttons" ng-show="backButton">
+  <div class="buttons">
     <button class="button button-icon ion-arrow-left-c"
       ng-click="goHome()">
+      ng-show="backButton"
+    <button class="button button-icon ion-navicon"
+      ng-click="showConfigurationModal()"
+      ng-show="!backButton">
     </button>
   </div>
   <h1 class="title">GOCO STUDENT</h1>
