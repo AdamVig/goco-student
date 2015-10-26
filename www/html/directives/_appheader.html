@@ -1,8 +1,9 @@
 <ion-header-bar class="bar-light" align-title="center">
   <div class="buttons">
     <button class="button button-icon ion-arrow-left-c"
-      ng-click="goHome()">
       ng-show="backButton"
+      ng-click="go('home')">
+    </button>
     <button class="button button-icon ion-navicon"
       ng-click="showConfigurationModal()"
       ng-show="!backButton">

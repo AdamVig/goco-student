@@ -34,8 +34,8 @@ app.directive('appHeader', function () {
         $state.go('login');
       };
 
-      $scope.goHome = function () {
-        $state.go('home');
+      $scope.go = function (destination) {
+        $state.go(destination);
       };
 
       $scope.showMenu = function ($event) {
