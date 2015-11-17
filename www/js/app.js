@@ -26,6 +26,11 @@ config(['$stateProvider', '$urlRouterProvider', 'twemojiProvider', function($sta
       templateUrl: 'html/moduleview.html',
       controller: 'ModuleViewController as moduleView'
     })
+    .state('options', {
+      url: '/options',
+      templateUrl: 'html/options.html',
+      controller: 'OptionsController as options'
+    })
     .state('home', {
       url: '/',
       templateUrl: 'html/home.html',
