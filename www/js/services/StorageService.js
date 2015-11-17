@@ -75,7 +75,7 @@ app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($windo
   };
 
   /**
-   * Retrieve modules from localStorage
+   * Retrieve modules from localStorage or null if not stored
    * @return {array}    List of modules
    */
   this.retrieveModules = function () {
@@ -95,5 +95,26 @@ app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($windo
    */
   this.retrieveDate = function (key) {
     return Date.parse(this.get(key));
+  };
+
+  /**
+   * Store app settings in localStorage
+   * @param  {object} settings App settings
+   */
+  this.storeSettings = function (settings) {
+    this.store('settings', settings);
+  };
+
+  /**
+   * Retrieve settings from localStorage or null if not stored
+   * @return {object} App settings
+   */
+  this.retrieveSettings = function() {
+    var settings = this.get('settings');
+
+    if (settings)
+      return JSON.parse(settings);
+    else
+      return null;
   };
 }]);
