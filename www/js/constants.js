@@ -8,6 +8,9 @@ constant('ErrorMessages', {
   'timeout': 'Took too long. Try again!',
   'unknown': 'Something went wrong. Try again!'
 }).
+constant('DefaultSettings', {
+  "loadOnLaunch": true
+}).
 constant('Modules', [
   {
     "moduleType": 'info',
