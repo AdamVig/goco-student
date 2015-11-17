@@ -1,4 +1,4 @@
-app.controller('ModuleViewController', ['$stateParams', '$ionicLoading', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', function ($stateParams, $ionicLoading, twemoji, ErrorMessages, DataService, StorageService) {
+app.controller('ModuleViewController', ['$stateParams', '$ionicLoading', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($stateParams, $ionicLoading, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
   var moduleView = this;
   moduleView.data = {};
 
