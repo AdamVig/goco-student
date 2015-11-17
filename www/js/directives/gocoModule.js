@@ -13,7 +13,7 @@ app.directive('gocoModule', function () {
     },
     templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
-    controller: ['$scope', '$filter', '$state', '$timeout', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($scope, $filter, $state, $timeout, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
+    controller: ['$rootScope', '$scope', '$filter', '$state', '$timeout', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($rootScope, $scope, $filter, $state, $timeout, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
 
       var module = this;
       var animationTime = 1500;
@@ -97,6 +97,10 @@ app.directive('gocoModule', function () {
       module.goToView = function () {
         $state.go('moduleView', {'endpoint': module.endpoint});
       };
+
+      $rootScope.$on('modules:reset', function () {
+        module.data = null;
+      });
 
     }]
   };

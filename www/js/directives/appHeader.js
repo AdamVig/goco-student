@@ -32,6 +32,7 @@ app.directive('appHeader', function () {
         $scope.hideMenu();
         StorageService.eraseCredentials();
         $state.go('login');
+        $rootScope.$broadcast('modules:reset');
       };
 
       $scope.go = function (destination) {
