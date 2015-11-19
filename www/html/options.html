@@ -1,8 +1,16 @@
 <ion-view class="gordon-blue-background" view-title="Options">
   <app-header back-button="true"
     allow-configuration="false"></app-header>
-  <ion-content class="options-content center text-center has-header">
-    
+  <ion-content class="options-content text-center has-header">
+    <ion-list>
+      <ion-item>
+        <ion-toggle ng-model="options.loadOnLaunch"
+          ng-change="options.settings.toggle('loadOnLaunch')"
+          toggle-class="toggle-balanced">
+          Load all data on launch
+        </ion-toggle>
+      </ion-item>
+    </ion-list>
     <ng-include src="'html/_about.html'">
   </ion-content>
 </ion-view>

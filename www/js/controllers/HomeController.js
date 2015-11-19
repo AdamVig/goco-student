@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', function ($rootScope, $scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', 'SettingsFactory', function ($rootScope, $scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion, SettingsFactory) {
 
   var home = this;
   home.hasBanner = false;
@@ -16,16 +16,18 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     var delayModuleLoad = 500;
     var i = 0;
 
-    // Load all modules with set delay time in between
-    (function loadModule() {
-      $timeout(function () {
-        if (i < $scope.moduleControl.length) {
-          $scope.moduleControl[i]();
-          i++;
-          loadModule();
-        }
-      }, delayModuleLoad);
-    })();
+    if (SettingsFactory.get('loadOnLaunch') === true) {
+      // Load all modules with set delay time in between
+      (function loadModule() {
+        $timeout(function () {
+          if (i < $scope.moduleControl.length) {
+            $scope.moduleControl[i]();
+            i++;
+            loadModule();
+          }
+        }, delayModuleLoad);
+      })();
+    }
   };
 
   $scope.$on('modules:updated', home.updateModules);
