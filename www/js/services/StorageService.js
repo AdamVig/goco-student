@@ -102,7 +102,7 @@ app.service('StorageService', ['$window', '$sce', 'AppVersion', function ($windo
    * @param  {object} settings App settings
    */
   this.storeSettings = function (settings) {
-    this.store('settings', settings);
+    this.store('settings', angular.toJson(settings));
   };
 
   /**
