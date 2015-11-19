@@ -36,6 +36,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (D
    */
   settingsFactory.set = function (name, value) {
     _settings[name] = value;
+    StorageService.storeSettings(_settings);
   };
 
   /**
@@ -47,6 +48,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (D
 
     if (typeof(_settings[name]) === 'boolean') {
       _settings[name] = !_settings[name];
+      StorageService.storeSettings(_settings);
     }
 
     return _settings[name];
