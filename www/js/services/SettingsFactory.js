@@ -45,8 +45,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (D
    */
   settingsFactory.toggle = function (name) {
 
-    // TODO: replace with cleaner "typeof" check
-    if (_settings[name] === true || _settings[name] === false) {
+    if (typeof(_settings[name]) === 'boolean') {
       _settings[name] = !_settings[name];
     }
 
