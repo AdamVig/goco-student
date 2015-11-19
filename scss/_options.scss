@@ -1,0 +1,23 @@
+.options-content {
+  .scroll {
+    height: 100%;
+  }
+  .item {
+    text-align: left;
+    border-width: 0;
+  }
+  .about {
+    padding-left: 25px;
+    padding-right: 25px;
+    position: fixed;
+    bottom: 25px;
+    p {
+      text-align: left;
+      color: color(white);
+    }
+
+    a {
+      color: color(mint-green);
+    }
+  }
+}
