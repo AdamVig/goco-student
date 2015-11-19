@@ -9,6 +9,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     home.selectedModules = ModuleFactory.getSelectedModules();
     home.moduleClass = ModuleFactory.getModuleClass();
     home.scrollEnabled = ModuleFactory.getScrollEnabled();
+    home.loadAllModules();
   };
 
   // Load data in all modules at once
