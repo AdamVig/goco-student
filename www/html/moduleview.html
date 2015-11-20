@@ -7,7 +7,11 @@
     <h3 class="error text-center vertical-center"
       ng-bind="moduleView.errorMessage"
       ng-if="moduleView.errorMessage"></h3>
-    <ng-include ng-if="!moduleView.errorMessage"
+    <goco-loader
+      class="center"
+      ng-show="moduleView.loading"
+      icon="moduleView.icon"></goco-loader>
+    <ng-include ng-if="!moduleView.errorMessage && !moduleView.loading"
       src="moduleView.templateURL"></ng-include>
   </ion-content>
   <app-banner></app-banner>

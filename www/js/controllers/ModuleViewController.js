@@ -1,14 +1,13 @@
-app.controller('ModuleViewController', ['$stateParams', '$ionicLoading', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($stateParams, $ionicLoading, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
+app.controller('ModuleViewController', ['$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($stateParams, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
   var moduleView = this;
   moduleView.data = {};
 
   moduleView.endpoint = $stateParams.endpoint;
+  moduleView.icon = $stateParams.icon;
   moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
   moduleView.userCredentials = StorageService.retrieveCredentials();
 
-  $ionicLoading.show({
-    template: 'Loading...'
-  });
+  moduleView.loading = true;
   var startTime = new Date().getTime();
 
   DataService.post(moduleView.endpoint, moduleView.userCredentials)
@@ -30,7 +29,7 @@ app.controller('ModuleViewController', ['$stateParams', '$ionicLoading', 'twemoj
     }
   })
   .finally(function () {
-    $ionicLoading.hide();
+    moduleView.loading = false;
   });
 
 
