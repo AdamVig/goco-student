@@ -17,37 +17,6 @@ goco-module {
     height: 100%;
     width: 100%;
   }
-  .icon {
-    height: 30vh;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    &:before {
-      color: color(white);
-    }
-    &.bible-icon {
-      background-image: url('../img/bible.svg');
-    }
-    &.calculator-icon {
-      background-image: url('../img/calculator.svg');
-    }
-    &.calendar-icon {
-      background-image: url('../img/calendar.svg');
-    }
-    &.chapel-icon {
-      background-image: url('../img/chapel.svg');
-    }
-    &.meal-points-icon {
-      background-image: url('../img/silverware.svg');
-    }
-    &.person-icon {
-      background-image: url('../img/person.svg');
-    }
-    &.thermometer-icon {
-      background-image: url('../img/thermometer.svg');
-    }
-  }
   .column {
     float: left;
     width: 100%;
