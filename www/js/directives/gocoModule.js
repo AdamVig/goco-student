@@ -95,7 +95,11 @@ app.directive('gocoModule', function () {
       }
 
       module.goToView = function () {
-        $state.go('moduleView', {'endpoint': module.endpoint});
+        var params = {
+          'endpoint': module.endpoint,
+          'icon': module.icon
+        };
+        $state.go('moduleView', params);
       };
 
       $rootScope.$on('modules:reset', function () {

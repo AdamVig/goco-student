@@ -22,7 +22,7 @@ config(['$stateProvider', '$urlRouterProvider', 'twemojiProvider', function($sta
       controller: 'PrivacyPolicyController as privacyPolicy'
     })
     .state('moduleView', {
-      url: '/moduleview/:endpoint',
+      url: '/moduleview/:endpoint?icon',
       templateUrl: 'html/moduleview.html',
       controller: 'ModuleViewController as moduleView'
     })

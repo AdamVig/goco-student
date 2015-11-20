@@ -99,6 +99,14 @@ a:visited {
   text-decoration: none;
 }
 
+goco-loader {
+  height: 100%;
+  .goco-loader-icon {
+    width: 50%;
+  }
+}
+
+
 @import "keyframes";
 @import "animations";
 
