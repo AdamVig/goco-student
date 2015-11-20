@@ -4,6 +4,7 @@ app.controller('ModuleViewController', ['$stateParams', 'twemoji', 'ErrorMessage
 
   moduleView.endpoint = $stateParams.endpoint;
   moduleView.icon = $stateParams.icon;
+  moduleView.color = $stateParams.color;
   moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
   moduleView.userCredentials = StorageService.retrieveCredentials();
 
