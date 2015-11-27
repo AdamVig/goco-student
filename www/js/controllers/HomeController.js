@@ -53,7 +53,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
   // Reset scope if user is logged in
   if (StorageService.retrieveCredentials()) {
     home.updateModules();
-    home.loadAllModules();
   } else {
     $state.go('login');
   }
