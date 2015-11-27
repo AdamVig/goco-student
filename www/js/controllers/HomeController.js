@@ -9,7 +9,9 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     home.selectedModules = ModuleFactory.getSelectedModules();
     home.moduleClass = ModuleFactory.getModuleClass();
     home.scrollEnabled = ModuleFactory.getScrollEnabled();
-    home.loadAllModules();
+    if (SettingsFactory.get('loadOnLaunch') === true) {
+      home.loadAllModules();
+    }
   };
 
   // Load data in all modules at once
@@ -17,18 +19,16 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     var delayModuleLoad = 500;
     var i = 0;
 
-    if (SettingsFactory.get('loadOnLaunch') === true) {
-      // Load all modules with set delay time in between
-      (function loadModule() {
-        $timeout(function () {
-          if (i < $scope.moduleControl.length) {
-            $scope.moduleControl[i]();
-            i++;
-            loadModule();
-          }
-        }, delayModuleLoad);
-      })();
-    }
+    // Load all modules with set delay time in between
+    (function loadModule() {
+      $timeout(function () {
+        if (i < $scope.moduleControl.length) {
+          $scope.moduleControl[i]();
+          i++;
+          loadModule();
+        }
+      }, delayModuleLoad);
+    })();
   };
 
   $scope.$on('modules:updated', home.updateModules);
