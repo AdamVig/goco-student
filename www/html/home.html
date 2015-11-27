@@ -5,6 +5,10 @@
     ng-class="{'has-footer': home.hasBanner, 'scroll-enabled': home.scrollEnabled}"
     scroll="true"
     overflow-scroll="true">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="home.refresh()">
+    </ion-refresher>
     <goco-module ng-class="home.moduleClass"
       ng-repeat="module in home.selectedModules"
       module-type="module.moduleType"

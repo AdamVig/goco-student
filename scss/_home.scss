@@ -11,6 +11,12 @@
   .module-content {
     width: 100%;
   }
+  .scroll-refresher .ionic-refresher-content {
+    color: color(white);
+  }
+  .spinner {
+    stroke: color(white);
+  }
   // Make emoji the same size as surrounding text
   img.emoji {
     height: 1em;

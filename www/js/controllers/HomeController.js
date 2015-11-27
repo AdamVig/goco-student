@@ -31,6 +31,12 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     })();
   };
 
+  // Start refresh of all data then hide pull to refresh
+  home.refresh = function () {
+    home.loadAllModules();
+    $scope.$broadcast('scroll.refreshComplete');
+  };
+
   $scope.$on('modules:updated', home.updateModules);
 
   // Update modules on login
