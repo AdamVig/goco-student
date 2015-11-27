@@ -31,6 +31,15 @@
   .login-bottom-half {
     @extend .slideInUp;
   }
+  // Module info number fade in on load
+  .module-info-container.ng-hide-remove {
+    -webkit-transition: 1000ms;
+            transition: 1000ms;
+    .info-number {
+      @extend .animated;
+      @extend .fadeIn;
+    }
+  }
 }
 
 // Only on grade a devices
