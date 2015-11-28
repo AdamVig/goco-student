@@ -34,8 +34,11 @@ textarea {
 .pane.gordon-blue-background {
   background-color: color(blue);
 }
-// Override default font sizes
 .scroll-content {
+  .scroll {
+    height: 100%; // Allow for absolute centering
+  }
+  // Override default font sizes
   h1 { font-size: 20vw; line-height: 1; }
   h2 { font-size: 10vw; }
   h3 { font-size: 6vw; }
