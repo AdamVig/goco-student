@@ -1,5 +1,6 @@
-app.controller('ModuleViewController', ['$scope', '$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($scope, $stateParams, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
+app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($scope, $timeout, $stateParams, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
   var moduleView = this;
+  moduleView.minLoadingTimeMs = 500;
   moduleView.data = {};
 
   moduleView.endpoint = $stateParams.endpoint;
@@ -31,7 +32,9 @@ app.controller('ModuleViewController', ['$scope', '$stateParams', 'twemoji', 'Er
     }
   })
   .finally(function () {
-    moduleView.loading = false;
+    $timeout(function () {
+      moduleView.loading = false;
+    }, moduleView.minLoadingTimeMs);
   });
 
 
