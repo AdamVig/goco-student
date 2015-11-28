@@ -81,5 +81,15 @@ constant('Modules', [
     "prefix": '',
     "suffix": '',
     "selected": true
+  },
+  {
+    "moduleType": 'interaction',
+    "endpoint": 'highlandExpress',
+    "label": 'Highland Express',
+    "icon": 'highland-express-icon',
+    "moduleClass": 'dark-green',
+    "prefix": '',
+    "suffix": '',
+    "selected": true
   }
 ]);
