@@ -1,30 +1,29 @@
 .module-view-content {
   .chapel-events {
-    .event-title {
-      font-size: 1.1em;
-      white-space: normal;
+    .chapel-events-header {
+      .chapel-events-title {
+        margin: 15px;
+        text-align: left;
+        vertical-align: middle;
+        .bible-icon {
+          display: inline-block;
+          width: 35px;
+          height: 35px;
+          margin-right: 5px;
+          vertical-align: middle;
+        }
+      }
     }
-    .event-date {
-      color: color(muted-gray);
-      padding-top: 0.25em;
-      font-size: 0.9em;
-    }
-    // Create palindroming pattern of 75 total color steps
-    @for $num from 0 through 15 {
-      .event-color-#{$num} {
-        background-color: lighten(color(light-aquamarine), $num + 30)
+    .chapel-events-list {
+      background-color: color(light-gray);
+      .event-title {
+        font-size: 1.1em;
+        white-space: normal;
       }
-      .event-color-#{abs($num - 30)} {
-        background-color: lighten(color(light-aquamarine), $num + 30)
-      }
-      .event-color-#{$num + 30} {
-        background-color: lighten(color(light-aquamarine), $num + 30)
-      }
-      .event-color-#{abs($num - 60)} {
-        background-color: lighten(color(light-aquamarine), $num + 30)
-      }
-      .event-color-#{$num + 60} {
-        background-color: lighten(color(light-aquamarine), $num + 30)
+      .event-date {
+        color: color(muted-gray);
+        padding-top: 0.25em;
+        font-size: 0.9em;
       }
     }
   }
