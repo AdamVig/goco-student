@@ -50,6 +50,15 @@ textarea {
     margin-right: 1em;
   }
 }
+// Reduce header font sizes on tablets and horizontal phones
+@media (min-width: 600px) {
+  .scroll-content {
+    h1 { font-size: 15vw; }
+    h2 { font-size: 5vw; }
+    h3 { font-size: 3vw; }
+  }
+}
+
 // Override Android popover styles to make 'logout' red
 .platform-android .popover .item.assertive {
   color: $assertive;
