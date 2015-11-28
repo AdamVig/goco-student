@@ -1,19 +1,5 @@
 .module-view-content {
   .chapel-events {
-    .chapel-events-header {
-      .chapel-events-title {
-        margin: 15px;
-        text-align: left;
-        vertical-align: middle;
-        .bible-icon {
-          display: inline-block;
-          width: 35px;
-          height: 35px;
-          margin-right: 5px;
-          vertical-align: middle;
-        }
-      }
-    }
     .chapel-events-list {
       background-color: color(light-gray);
       .event-title {
@@ -28,35 +14,21 @@
     }
   }
   .highland-express {
-    .highland-header {
-      height: 80px;
-      .highland-title {
-        margin: 10px;
-        text-align: center;
-        vertical-align: middle;
-        .highland-express-icon {
-          display: inline-block;
-          width: 35px;
-          height: 35px;
-          margin-right: 5px;
-          vertical-align: middle;
-        }
+    .highland-controls {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      color: color(white);
+      text-align: center;
+      .highland-schedule-day {
+        display: inline-block;
+        margin: 0;
+        text-transform: capitalize;
       }
-      .highland-controls {
-        margin-bottom: 5px;
-        color: color(white);
-        text-align: center;
-        .highland-schedule-day {
-          display: inline-block;
-          margin: 0;
-          text-transform: capitalize;
-        }
-        .icon {
-          margin-left: 15px;
-          margin-right: 15px;
-          &:before {
-            font-size: 20px;
-          }
+      .icon {
+        margin-left: 25px;
+        margin-right: 25px;
+        &:before {
+          font-size: 20px;
         }
       }
     }

@@ -1,23 +1,18 @@
 <div class="highland-express" ng-controller="HighlandExpressController as highland">
-  <div class="highland-header">
-    <h3 class="highland-title">
-      <div class="highland-express-icon icon-inline icon"></div>
-      The Highland Express
-    </h3>
-    <div class="highland-controls">
-      <span class="ion-arrow-left-a icon"
-        ng-click="highland.previousSchedule()"></span>
-      <h4 class="highland-schedule-day">
-        {{highland.day}} Schedule
-      </h4>
-      <span class="ion-arrow-right-a icon"
-        ng-click="highland.nextSchedule()"></span>
-    </div>
-  </div>
+  <module-view-header icon="moduleView.icon" label="moduleView.label"></module-view-header>
   <div class="highland-banner"
     ng-show="moduleView.data.banner.active">
     <h3>{{moduleView.data.banner.title}}</h3>
     <p>{{moduleView.data.banner.body}}</p>
+  </div>
+  <div class="highland-controls">
+    <span class="ion-arrow-left-a icon"
+      ng-click="highland.previousSchedule()"></span>
+    <h4 class="highland-schedule-day">
+      {{highland.day}} Schedule
+    </h4>
+    <span class="ion-arrow-right-a icon"
+      ng-click="highland.nextSchedule()"></span>
   </div>
   <div class="highland-schedule">
     <div class="highland-destinations row">

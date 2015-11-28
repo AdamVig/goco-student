@@ -98,7 +98,8 @@ app.directive('gocoModule', function () {
         var params = {
           'endpoint': module.endpoint,
           'icon': module.icon,
-          'color': module.moduleClass
+          'color': module.moduleClass,
+          'label': module.label
         };
         $state.go('moduleView', params);
       };

@@ -4,6 +4,7 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
   moduleView.data = {};
 
   moduleView.endpoint = $stateParams.endpoint;
+  moduleView.label = $stateParams.label;
   moduleView.icon = $stateParams.icon;
   moduleView.color = $stateParams.color;
   moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
