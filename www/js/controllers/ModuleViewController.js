@@ -1,4 +1,4 @@
-app.controller('ModuleViewController', ['$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($stateParams, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
+app.controller('ModuleViewController', ['$scope', '$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($scope, $stateParams, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
   var moduleView = this;
   moduleView.data = {};
 
@@ -14,6 +14,7 @@ app.controller('ModuleViewController', ['$stateParams', 'twemoji', 'ErrorMessage
   DataService.post(moduleView.endpoint, moduleView.userCredentials)
   .success(function (response) {
     moduleView.data = response.data;
+    $scope.moduleViewData = response.data;
     if (response.data.expiration) {
       delete response.data.expiration;
     }
