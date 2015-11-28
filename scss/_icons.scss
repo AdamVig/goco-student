@@ -4,6 +4,16 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  &.icon-small {
+    height: 6vh;
+  }
+  &.icon-inline {
+    height: auto;
+    width: auto;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+  }
   &:before {
     color: color(white);
   }
