@@ -38,7 +38,7 @@ config(['$stateProvider', '$urlRouterProvider', 'twemojiProvider', function($sta
     });
 
   twemojiProvider.setOptions({
-    base: '/lib/twemoji/',
+    base: 'lib/twemoji/',
     ext: '.svg',
     size: 'svg'
   });
