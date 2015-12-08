@@ -1,7 +1,7 @@
 <div class="highland-express" ng-controller="HighlandExpressController as highland">
   <module-view-header icon="moduleView.icon" label="moduleView.label"></module-view-header>
   <div class="highland-announcement"
-    ng-show="moduleView.data.announcement.active">
+    ng-show="moduleView.data.announcement.enabled">
     <h3>{{moduleView.data.announcement.title}}</h3>
     <p>{{moduleView.data.announcement.body}}</p>
   </div>
