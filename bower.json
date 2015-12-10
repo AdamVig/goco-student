@@ -2,7 +2,7 @@
   "name": "GoCo Student",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.0"
+    "ionic": "driftyco/ionic-bower#1.1.1"
   },
   "dependencies": {
     "twemoji": "~1.4.1",
