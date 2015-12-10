@@ -1,4 +1,4 @@
-app.constant('AppVersion', '2.3').
+app.constant('AppVersion', '2.4').
 constant('ApiUrl', 'https://api.adamvig.com/gocostudent/').
 constant('RequestTimeout', {
   'default': 25000
