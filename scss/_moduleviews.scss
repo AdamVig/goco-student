@@ -21,14 +21,25 @@
       text-align: center;
       .highland-schedule-day {
         display: inline-block;
-        margin: 0;
+        margin: 0 20px;
         text-transform: capitalize;
       }
-      .icon {
-        margin-left: 25px;
-        margin-right: 25px;
-        &:before {
-          font-size: 20px;
+      .schedule-button {
+        background-color: transparent;
+        border-radius: 4px;
+        text-align: center;
+        border: 1px solid color(mid-gray);
+        padding: 0 10px;
+        white-space: nowrap;
+        box-sizing: border-box;
+        &.icon-small:before {
+          color: color(white);
+        }
+        .schedule-button:active {
+          border-color: color(muted-gray);
+          &.icon-small:before {
+            color: color(muted-gray);
+          }
         }
       }
     }

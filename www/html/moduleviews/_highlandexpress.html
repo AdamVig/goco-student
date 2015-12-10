@@ -6,13 +6,13 @@
     <p>{{moduleView.data.announcement.body}}</p>
   </div>
   <div class="highland-controls">
-    <span class="ion-arrow-left-a icon"
-      ng-click="highland.previousSchedule()"></span>
+    <button type="button" class="schedule-button ion-arrow-left-a icon-small"
+      ng-click="highland.previousSchedule()"></button>
     <h4 class="highland-schedule-day">
       {{highland.day}} Schedule
     </h4>
-    <span class="ion-arrow-right-a icon"
-      ng-click="highland.nextSchedule()"></span>
+    <button type="button" class="schedule-button ion-arrow-right-a icon-small"
+      ng-click="highland.nextSchedule()"></button>
   </div>
   <div class="highland-schedule">
     <div class="highland-destinations row">
