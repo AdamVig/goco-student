@@ -2,6 +2,9 @@
   <module-view-header icon="moduleView.icon" label="moduleView.label"></module-view-header>
   <ion-list class="athletics-schedule-list">
     <ion-item ng-repeat="event in moduleView.data track by $index"
+      class="item-avatar">
+      <img class="event-image" alt=""
+        ng-src="{{event.opponentLogoURL || 'img/fightingscotsavatar.svg'}}">
       <div class="event-title">{{event.title}}</div>
     </ion-item>
   </ion-list>
