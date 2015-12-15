@@ -80,4 +80,18 @@
       }
     }
   }
+  .athletics-schedule {
+    .athletics-schedule-list {
+      background-color: color(light-gray);
+      .event-title {
+        font-size: 1.1em;
+        white-space: normal;
+      }
+      .event-details {
+        color: color(muted-gray);
+        padding-top: 0.25em;
+        font-size: 0.9em;
+      }
+    }
+  }
 }
