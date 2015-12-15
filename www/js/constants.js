@@ -91,6 +91,15 @@ constant('Modules', [
     "prefix": '',
     "suffix": '',
     "selected": false
+  },
+  {
+    "moduleType": 'interaction',
+    "endpoint": 'athleticsSchedule',
+    "label": 'Athletics Schedule',
+    "icon": 'fighting-scots-icon',
+    "moduleClass": 'light-purple',
+    "prefix": '',
+    "suffix": '',
     "selected": true
   }
 ]);
