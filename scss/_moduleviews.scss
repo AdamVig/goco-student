@@ -1,4 +1,14 @@
 .module-view-content {
+  .error-message {
+    font-size: 4.5vh;
+    .emoji {
+      height: 10vh;
+      display: block;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
   .chapel-events {
     .chapel-events-list {
       background-color: color(light-gray);

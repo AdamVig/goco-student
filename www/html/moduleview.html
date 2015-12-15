@@ -4,8 +4,8 @@
   <ion-content class="module-view-content has-header"
     scroll="true"
     overflow-scroll="false">
-    <h3 class="error text-center vertical-center"
-      ng-bind="moduleView.errorMessage"
+    <h3 class="error-message text-center vertical-center"
+      ng-bind-html="moduleView.errorMessage"
       ng-if="moduleView.errorMessage"></h3>
     <goco-loader
       class="center"
