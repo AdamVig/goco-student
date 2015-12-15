@@ -1,7 +1,7 @@
 <div class="athletics-schedule">
   <module-view-header icon="moduleView.icon" label="moduleView.label"></module-view-header>
   <ion-list class="athletics-schedule-list">
-    <ion-item ng-repeat="event in moduleView.data">
+    <ion-item ng-repeat="event in moduleView.data track by $index"
       <div class="event-title">{{event.title}}</div>
     </ion-item>
   </ion-list>
