@@ -80,7 +80,7 @@ constant('Modules', [
     "moduleClass": 'light-aquamarine',
     "prefix": '',
     "suffix": '',
-    "selected": true
+    "selected": false
   },
   {
     "moduleType": 'interaction',
@@ -90,6 +90,7 @@ constant('Modules', [
     "moduleClass": 'dark-green',
     "prefix": '',
     "suffix": '',
+    "selected": false
     "selected": true
   }
 ]);
