@@ -97,7 +97,7 @@ constant('Modules', [
     "endpoint": 'athleticsSchedule',
     "label": 'Athletics Schedule',
     "icon": 'fighting-scots-icon',
-    "moduleClass": 'light-purple',
+    "moduleClass": 'burgundy',
     "prefix": '',
     "suffix": '',
     "selected": true
