@@ -6,3 +6,17 @@
   @warn "Unknown `#{$key}` in $colors.";
   @return null;
 }
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animationName($str) {
+  -webkit-animation-name: #{$str};
+          animation-name: #{$str};
+}

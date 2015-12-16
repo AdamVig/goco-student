@@ -13,24 +13,18 @@
 }
 
 // Loader animation (fade in and out)
-@-webkit-keyframes fadeCycle {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes fadeCycle {
+@include keyframes(fadeCycle) {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
 
 .fadeCycle {
-  -webkit-animation-name: fadeCycle;
-          animation-name: fadeCycle;
+  @include animationName('fadeCycle');
   -webkit-animation-direction: alternate;
           animation-direction: alternate;
 }
 
-@-webkit-keyframes slideInLeft {
+@include keyframes(slideInLeft) {
   0% {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
@@ -39,31 +33,15 @@
 
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
-@keyframes slideInLeft {
-  0% {
-    -webkit-transform: translateX(-100%);
-        -ms-transform: translateX(-100%);
-            transform: translateX(-100%);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
             transform: translateX(0);
   }
 }
 
 .slideInLeft {
-  -webkit-animation-name: slideInLeft;
-          animation-name: slideInLeft;
+  @include animationName('slideInLeft');
 }
 
-@-webkit-keyframes slideInRight {
+@include keyframes(slideInRight) {
   0% {
     -webkit-transform: translateX(100%);
             transform: translateX(100%);
@@ -72,47 +50,18 @@
 
   100% {
     -webkit-transform: translateX(0);
-            transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  0% {
-    -webkit-transform: translateX(100%);
-        -ms-transform: translateX(100%);
-            transform: translateX(100%);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translateX(0);
-        -ms-transform: translateX(0);
             transform: translateX(0);
   }
 }
 
 .slideInRight {
-  -webkit-animation-name: slideInRight;
-          animation-name: slideInRight;
+  @include animationName('slideInRight');
 }
 
-@-webkit-keyframes zoomIn {
+@include keyframes(zoomIn) {
   0% {
     opacity: 0;
     -webkit-transform: scale3d(.3, .3, .3);
-            transform: scale3d(.3, .3, .3);
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes zoomIn {
-  0% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-        -ms-transform: scale3d(.3, .3, .3);
             transform: scale3d(.3, .3, .3);
   }
 
@@ -122,11 +71,10 @@
 }
 
 .zoomIn {
-  -webkit-animation-name: zoomIn;
-          animation-name: zoomIn;
+  @include animationName('zoomIn');
 }
 
-@-webkit-keyframes zoomOut {
+@include keyframes(zoomOut) {
   0% {
     opacity: 1;
   }
@@ -134,23 +82,6 @@
   50% {
     opacity: 0;
     -webkit-transform: scale3d(.3, .3, .3);
-            transform: scale3d(.3, .3, .3);
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes zoomOut {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-        -ms-transform: scale3d(.3, .3, .3);
             transform: scale3d(.3, .3, .3);
   }
 
@@ -160,21 +91,10 @@
 }
 
 .zoomOut {
-  -webkit-animation-name: zoomOut;
-          animation-name: zoomOut;
+  @include animationName('zoomOut');
 }
 
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
+@include keyframes(fadeIn) {
   0% {
     opacity: 0;
   }
@@ -185,21 +105,10 @@
 }
 
 .fadeIn {
-  -webkit-animation-name: fadeIn;
-          animation-name: fadeIn;
+  @include animationName('fadeIn');
 }
 
-@-webkit-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeOut {
+@include keyframes(fadeOut) {
   0% {
     opacity: 1;
   }
@@ -210,24 +119,10 @@
 }
 
 .fadeOut {
-  -webkit-animation-name: fadeOut;
-          animation-name: fadeOut;
+  @include animationName('fadeOut');
 }
 
-@-webkit-keyframes slideInUp {
-  0% {
-    -webkit-transform: translateY(25%);
-            transform: translateY(25%);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-}
-
-@keyframes slideInUp {
+@include keyframes(slideInUp) {
   0% {
     -webkit-transform: translateY(25%);
         -ms-transform: translateY(25%);
@@ -243,11 +138,10 @@
 }
 
 .slideInUp {
-  -webkit-animation-name: slideInUp;
-          animation-name: slideInUp;
+  @include animationName('slideInUp');
 }
 
-@-webkit-keyframes slideInDown {
+@include keyframes(slideInDown) {
   0% {
     -webkit-transform: translateY(-25%);
             transform: translateY(-25%);
@@ -256,49 +150,15 @@
 
   100% {
     -webkit-transform: translateY(0);
-            transform: translateY(0);
-  }
-}
-
-@keyframes slideInDown {
-  0% {
-    -webkit-transform: translateY(-25%);
-        -ms-transform: translateY(-25%);
-            transform: translateY(-25%);
-    visibility: visible;
-  }
-
-  100% {
-    -webkit-transform: translateY(0);
-        -ms-transform: translateY(0);
             transform: translateY(0);
   }
 }
 
 .slideInDown {
-  -webkit-animation-name: slideInDown;
-          animation-name: slideInDown;
+  @include animationName('slideInDown');
 }
 
-@-webkit-keyframes moduleColorCycle {
-  0%, 100% {
-    background-color: rgba(color(blue), 0.90);
-  }
-  20% {
-    background-color: rgba(color(orange), 0.90);
-  }
-  40% {
-    background-color: rgba(color(purple), 0.90);
-  }
-  60% {
-    background-color: rgba(color(mint-green), 0.90);
-  }
-  80% {
-    background-color: rgba(color(light-red), 0.90);
-  }
-}
-
-@keyframes moduleColorCycle {
+@include keyframes(moduleColorCycle) {
   0%, 100% {
     background-color: rgba(color(blue), 0.90);
   }
@@ -319,34 +179,25 @@
 .moduleColorCycle {
   -webkit-animation-duration: 2.25s;
           animation-duration: 2.25s;
-  -webkit-animation-name: moduleColorCycle;
-          animation-name: moduleColorCycle;
+  @include animationName('moduleColorCycle');
 }
 
 .addTopMargin {
-  -webkit-animation-name: addTopMargin;
-          animation-name: addTopMargin;
+  @include animationName('addTopMargin');
 }
-@-webkit-keyframes addTopMargin {
-  0% { margin-top: 0; }
-  100% { margin-top: 20vh; }
-}
-@keyframes addTopMargin {
+
+@include keyframes(addTopMargin) {
   0% { margin-top: 0; }
   100% { margin-top: 20vh; }
 }
 
-@-webkit-keyframes spin {
+@include keyframes(spin) {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
 }
-@keyframes spin {
-    0% {transform:rotate(0deg);}
-    100% {transform:rotate(360deg);}
-}
+
 .spin {
-  -webkit-animation-name: spin;
-          animation-name: spin;
+  @include animationName('spin');
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
 }
