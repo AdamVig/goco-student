@@ -7,5 +7,10 @@
   "dependencies": {
     "twemoji": "~1.4.1",
     "angular-twemoji": "~0.0.8"
+  },
+  "resolutions": {
+    "angular-sanitize": "1.4.3",
+    "angular": ">= 1.0.8",
+    "angular-animate": "1.4.3"
   }
 }
