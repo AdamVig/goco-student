@@ -8,7 +8,6 @@ app.directive('appHeader', function () {
     templateUrl: 'html/directives/_appheader.html',
     controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'StorageService', 'PopupService', 'ModuleFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, StorageService, PopupService, ModuleFactory) {
 
-      $scope.modules = ModuleFactory.getAllModules();
       $scope.selectedModules = ModuleFactory.getSelectedModules();
 
       $scope.updateModules = function () {
@@ -48,6 +47,10 @@ app.directive('appHeader', function () {
       };
 
       $scope.showConfigurationModal = function ($event) {
+        // Update list of modules
+        $scope.modules = ModuleFactory.getAllShownModules();
+
+        // Show modal
         configPromise.then(function () {
           $scope.configurationModal.show($event);
         });

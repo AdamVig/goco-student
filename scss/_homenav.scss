@@ -1,0 +1,18 @@
+.home-nav {
+  display: flex;
+  background-color: color(light-gray);
+  .home-nav-button {
+    width: 50%;
+    height: 100%;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: color(black);
+    &.selected {
+      color: white;
+      background-color: color(blue);
+    }
+  }
+}
