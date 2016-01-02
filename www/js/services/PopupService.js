@@ -9,15 +9,6 @@ app.service('PopupService', ['$ionicPopup', function ($ionicPopup) {
   this.showPopup = function (popupName, $event) {
 
     var popupConfig = {
-      configuration: {
-        type: 'alert',
-        title: 'Configuration',
-        templateUrl: 'html/_configurationpopup.html',
-        buttons: [{
-          text: "I'm ready",
-          type: 'button-animated'
-        }]
-      },
       confirmOptOut: {
         type: 'confirm',
         title: 'Are you sure you want to opt out?',

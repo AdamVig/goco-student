@@ -34,12 +34,6 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion',
       return _storedModules;
     } else {
       StorageService.storeModules(_defaultModules);
-
-      // Wait for directive controller to initialize then broadcast message
-      $timeout(function () {
-        $rootScope.$broadcast('modules:default');
-      });
-
       return _defaultModules;
     }
   }
