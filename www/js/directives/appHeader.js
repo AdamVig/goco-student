@@ -14,11 +14,20 @@ app.directive('appHeader', function () {
         $scope.selectedModules = ModuleFactory.updateModules($scope.modules);
       };
 
+      // Prepare menu popover
       $ionicPopover.fromTemplateUrl('html/_menu.html', {
         scope: $scope,
       }).then(function(popover) {
         $scope.menu = popover;
       });
+
+      $scope.showMenu = function ($event) {
+        $scope.menu.show($event);
+      };
+
+      $scope.hideMenu = function () {
+        $scope.menu.hide();
+      };
 
       var configPromise = $ionicModal.fromTemplateUrl(
         'html/_configuration.html',
@@ -26,6 +35,18 @@ app.directive('appHeader', function () {
       .then(function (modal) {
         $scope.configurationModal = modal;
       });
+
+      // Update list of modules and show config modal
+      $scope.showConfigurationModal = function ($event) {
+        $scope.modules = ModuleFactory.getAllShownModules();
+        configPromise.then(function () {
+          $scope.configurationModal.show($event);
+        });
+      };
+
+      $scope.hideConfigurationModal = function ($event) {
+        $scope.configurationModal.hide($event);
+      };
 
       $scope.logout = function () {
         $scope.hideMenu();
@@ -36,28 +57,6 @@ app.directive('appHeader', function () {
 
       $scope.go = function (destination) {
         $state.go(destination);
-      };
-
-      $scope.showMenu = function ($event) {
-        $scope.menu.show($event);
-      };
-
-      $scope.hideMenu = function () {
-        $scope.menu.hide();
-      };
-
-      $scope.showConfigurationModal = function ($event) {
-        // Update list of modules
-        $scope.modules = ModuleFactory.getAllShownModules();
-
-        // Show modal
-        configPromise.then(function () {
-          $scope.configurationModal.show($event);
-        });
-      };
-
-      $scope.hideConfigurationModal = function ($event) {
-        $scope.configurationModal.hide($event);
       };
     }]
   };
