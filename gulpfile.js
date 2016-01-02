@@ -3,7 +3,7 @@ var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
 var sass = require('gulp-ruby-sass');
-var minifyCss = require('gulp-minify-css');
+var minifyCss = require('gulp-cssnano');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 
@@ -16,9 +16,7 @@ gulp.task('default', ['sass']);
 gulp.task('sass', function(done) {
   sass('./scss/ionic.app.scss')
     .pipe(gulp.dest('./www/css/'))
-    .pipe(minifyCss({
-      keepSpecialComments: 0
-    }))
+    .pipe(minifyCss())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
