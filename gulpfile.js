@@ -5,16 +5,27 @@ var sass = require('gulp-ruby-sass');
 var minifyCss = require('gulp-cssnano');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var prefix = require('gulp-autoprefixer');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
+
+var supportedBrowsers = [
+  'last 2 Chrome versions',
+  'last 2 Android versions',
+  'last 2 iOS versions',
+  'last 2 ChromeAndroid versions'
+];
 
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
   sass('./scss/ionic.app.scss')
     .pipe(gulp.dest('./www/css/'))
+    .pipe(prefix({
+			browsers: supportedBrowsers
+		}))
     .pipe(minifyCss())
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
