@@ -34,7 +34,8 @@
     "com.ionic.keyboard",
     "cordova-plugin-crosswalk-webview",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen"
+    "cordova-plugin-splashscreen",
+    "https://github.com/litehelpers/Cordova-sqlite-storage.git"
   ],
   "cordovaPlatforms": [
     "wp8",
