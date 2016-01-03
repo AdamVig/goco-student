@@ -6,7 +6,8 @@
   },
   "dependencies": {
     "twemoji": "~1.4.1",
-    "angular-twemoji": "~0.0.8"
+    "angular-twemoji": "~0.0.8",
+    "ngCordova": "~0.1.23-alpha"
   },
   "resolutions": {
     "angular-sanitize": "1.4.3",
