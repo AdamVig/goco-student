@@ -2,6 +2,7 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', function ($ionicPlatform, $q) 
 
   var dbFactory = this;
   var db;
+  var userKey = 'credentials';
 
   // Create database object when device is ready
   $ionicPlatform.ready(function() {
@@ -29,9 +30,9 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', function ($ionicPlatform, $q) 
    * @param  {string} password User password in plaintext
    */
   dbFactory.saveCredentials = function (username, password) {
-    var key = 'credentials'; // Used for storage and retrieval
     var encodedPassword = btoa(password); // Encode in Base64 for obfuscastion
     db.save({key: key, username: username, password: encodedPassword});
+    db.save({key: userKey, username: username, password: password});
   };
 
   /**
@@ -39,8 +40,8 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', function ($ionicPlatform, $q) 
    * @return {promise}     Promise object fulfilled by user credentials
    */
   dbFactory.getCredentials = function () {
-    return getData.then(function (user) {
       user.password = atob(user.password); // Decode from Base64
+    return getData(userKey).then(function (user) {
     });
   };
 
