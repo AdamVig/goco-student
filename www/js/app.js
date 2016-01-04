@@ -1,4 +1,4 @@
-var app = angular.module('gocostudent', ['ionic', 'ngMessages', 'sc.twemoji', 'ngIOS9UIWebViewPatch', 'ngCordova']);
+var app = angular.module('gocostudent', ['ionic', 'ngMessages', 'sc.twemoji', 'ngIOS9UIWebViewPatch']);
 
 app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatform, StorageService, AppVersion) {
   $ionicPlatform.ready(function() {
