@@ -56,10 +56,5 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
 
   $scope.popup = PopupService;
 
-  // Reset scope if user is logged in
-  if (StorageService.retrieveCredentials()) {
-    home.updateModules();
-  } else {
-    $state.go('login');
-  }
+  home.updateModules();
 }]);
