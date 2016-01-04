@@ -29,4 +29,13 @@ filter('username', function () {
     }
     return username.toLowerCase();
   };
+}).
+filter('password', function () {
+  return function (password, direction) {
+    if (direction === 'encode') {
+      return btoa(password);
+    } else if (direction === 'decode') {
+      return atob(password);
+    }
+  };
 });

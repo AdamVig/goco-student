@@ -1,4 +1,4 @@
-app.factory('DbFactory', ['$ionicPlatform', '$q', function ($ionicPlatform, $q) {
+app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPlatform, $q, $filter) {
 
   var dbFactory = this;
   var db;
@@ -27,11 +27,9 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', function ($ionicPlatform, $q) 
   /**
    * Save user credentials to database
    * @param  {string} username Firstname.Lastname
-   * @param  {string} password User password in plaintext
+   * @param  {string} password User password encoded in Base64
    */
   dbFactory.saveCredentials = function (username, password) {
-    var encodedPassword = btoa(password); // Encode in Base64 for obfuscastion
-    db.save({key: key, username: username, password: encodedPassword});
     db.save({key: userKey, username: username, password: password});
   };
 
@@ -40,8 +38,9 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', function ($ionicPlatform, $q) 
    * @return {promise}     Promise object fulfilled by user credentials
    */
   dbFactory.getCredentials = function () {
-      user.password = atob(user.password); // Decode from Base64
     return getData(userKey).then(function (user) {
+      user.password = $filter('password')(user.password, 'decode'); // Decode from Base64
+      return user;
     });
   };
 
