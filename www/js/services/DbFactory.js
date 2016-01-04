@@ -38,10 +38,7 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
    * @return {promise}     Promise object fulfilled by user credentials
    */
   dbFactory.getCredentials = function () {
-    return getData(userKey).then(function (user) {
-      user.password = $filter('password')(user.password, 'decode'); // Decode from Base64
-      return user;
-    });
+    return getData(userKey);
   };
 
   return dbFactory;
