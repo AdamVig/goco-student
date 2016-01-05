@@ -1,4 +1,4 @@
-app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion', 'StorageService', function ($rootScope, $timeout, Modules, AppVersion, StorageService) {
+app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSettings', 'StorageService', function ($rootScope, $timeout, Modules, DefaultSettings, StorageService) {
 
   var moduleFactory = {};
 
@@ -6,7 +6,7 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion',
   var _storedModules = StorageService.retrieveModules();
   var _defaultModules = Modules;
   var _storedAppVersion = StorageService.get('version');
-  var _currentAppVersion = AppVersion;
+  var _currentAppVersion = DefaultSettings.appVersion;
 
   var _modules = {
     'info': {

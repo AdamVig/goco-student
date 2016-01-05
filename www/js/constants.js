@@ -1,5 +1,4 @@
-app.constant('AppVersion', '2.4').
-constant('ApiUrl', 'https://api.adamvig.com/gocostudent/').
+app.constant('ApiUrl', 'https://api.adamvig.com/gocostudent/').
 constant('RequestTimeout', {
   'default': 25000
 }).
@@ -9,7 +8,8 @@ constant('ErrorMessages', {
   'unknown': 'Something went wrong. Try again!'
 }).
 constant('DefaultSettings', {
-  "loadOnLaunch": true
+  "loadOnLaunch": true,
+  "appVersion": '2.4'
 }).
 constant('Modules', [
   {

@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, AppInfoRefreshTime) {
+app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'DefaultSettings', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, DefaultSettings, AppInfoRefreshTime) {
 
   /**
    * Retrieve data for user from server using a GET request
@@ -10,7 +10,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
    */
   this.get = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+    var url = ApiUrl + DefaultSettings.appVersion + '/' + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -38,7 +38,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
    */
   this.post = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+    var url = ApiUrl + DefaultSettings.appVersion + '/' + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -63,7 +63,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
    */
   this.setProperty = function (userCredentials, property, value) {
 
-    var url = ApiUrl + AppVersion + '/' + 'setproperty',
+    var url = ApiUrl + DefaultSettings.appVersion + '/' + 'setproperty',
         params = userCredentials;
 
     params.property = property;
