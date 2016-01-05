@@ -6,7 +6,7 @@ app.directive('appHeader', function () {
       'allowConfiguration': '='
     },
     templateUrl: 'html/directives/_appheader.html',
-    controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'StorageService', 'ModuleFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, StorageService, ModuleFactory) {
+    controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'ModuleFactory', 'DbFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, ModuleFactory, DbFactory) {
 
       $scope.selectedModules = ModuleFactory.getSelectedModules();
 
@@ -50,7 +50,7 @@ app.directive('appHeader', function () {
 
       $scope.logout = function () {
         $scope.hideMenu();
-        StorageService.eraseCredentials();
+        DbFactory.deleteCredentials();
         $state.go('login');
         $rootScope.$broadcast('modules:reset');
       };
