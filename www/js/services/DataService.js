@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'StorageService', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, StorageService, AppInfoRefreshTime) {
+app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, AppInfoRefreshTime) {
 
   /**
    * Retrieve data for user from server using a GET request

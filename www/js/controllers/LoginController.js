@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'StorageService', 'DataService', 'DbFactory', function ($state, $q, $timeout, $filter, StorageService, DataService, DbFactory) {
+app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'DataService', 'DbFactory', function ($state, $q, $timeout, $filter, DataService, DbFactory) {
 
   var login = this;
   var loginCheckTimeout = 16000;

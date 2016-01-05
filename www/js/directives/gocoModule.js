@@ -13,7 +13,7 @@ app.directive('gocoModule', function () {
     },
     templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
-    controller: ['$rootScope', '$scope', '$filter', '$state', '$timeout', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', 'DbFactory', function ($rootScope, $scope, $filter, $state, $timeout, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji, DbFactory) {
+    controller: ['$rootScope', '$scope', '$filter', '$state', '$timeout', 'DataService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', 'DbFactory', function ($rootScope, $scope, $filter, $state, $timeout, DataService, Modules, RequestTimeout, ErrorMessages, twemoji, DbFactory) {
 
       var module = this;
       var animationTime = 1500;

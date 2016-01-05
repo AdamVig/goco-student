@@ -1,8 +1,8 @@
 var app = angular.module('gocostudent', ['ionic', 'ngMessages', 'sc.twemoji', 'ngIOS9UIWebViewPatch']);
 
-app.run(['$ionicPlatform', 'StorageService', 'AppVersion', function($ionicPlatform, StorageService, AppVersion) {
-  $ionicPlatform.ready(function() {
+app.run(['$ionicPlatform', function($ionicPlatform) {
 
+  $ionicPlatform.ready(function() {
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
