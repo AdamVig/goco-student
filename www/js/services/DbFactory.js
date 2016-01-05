@@ -42,5 +42,11 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
     return getData(userKey);
   };
 
+  /**
+   * Delete credentials from database
+   */
+  dbFactory.deleteCredentials = function () {
+    db.remove(userKey);
+  };
   return dbFactory;
 }]);
