@@ -3,6 +3,7 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
   var dbFactory = this;
   var db;
   var userKey = 'credentials';
+  var settingsKey = 'settings';
 
   // Create database object when device is ready
   $ionicPlatform.ready(function() {
@@ -48,5 +49,23 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
   dbFactory.deleteCredentials = function () {
     db.remove(userKey);
   };
+
+  /**
+   * Save settings to database
+   * @param  {object} settings Contains app settings
+   */
+  dbFactory.saveSettings = function (settings) {
+    settings.key = settingsKey;
+    db.save(settings);
+  };
+
+  /**
+   * Get settings from database
+   * @return {promise} Promise object fulfilled by settings
+   */
+  dbFactory.getSettings = function () {
+    return getData(settingsKey);
+  };
+
   return dbFactory;
 }]);
