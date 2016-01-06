@@ -7,7 +7,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'DbFactory', function (Defaul
 
   // Get stored settings from storage
   // If no stored settings, use default settings
-  DbFactory.getSettings().then(function (settings) {
+  var dataPromise = DbFactory.getSettings().then(function (settings) {
     _storedSettings = settings;
 
     if (_storedSettings) {
@@ -24,7 +24,9 @@ app.factory('SettingsFactory', ['DefaultSettings', 'DbFactory', function (Defaul
    * @return {varies}      Value of setting
    */
   settingsFactory.get = function (name) {
-    return _settings[name];
+    return dataPromise.then(function () {
+      return _settings[name];
+    });
   };
 
   /**
