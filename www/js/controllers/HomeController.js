@@ -41,7 +41,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
   // Update modules on login
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     if (fromState.name == 'login') {
-      ModuleFactory.updateModules();
       home.updateModules();
       home.loadAllModules();
     }
