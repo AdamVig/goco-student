@@ -28,9 +28,9 @@ app.directive('appBanner', function () {
 
         if (now - lastRefreshTime > AppInfoRefreshTime) {
           lastRefreshTime = now;
-          DataService.get('AppInfo').then(function (appInfo) {
-            if (appInfo.banner.title) {
-              $scope.banner = appInfo.banner;
+          DataService.get('AppInfo').then(function (response) {
+            if (response.data.banner.title) {
+              $scope.banner = response.data.banner;
             }
           });
         }
