@@ -1,10 +1,7 @@
 <ion-view class="gordon-blue-background" view-title="Home" cache-view="true">
   <app-header back-button="false"
     allow-configuration="true"></app-header>
-  <ion-content class="home-content center text-center has-header"
-    ng-class="{'has-footer': home.hasBanner, 'scroll-enabled': home.scrollEnabled}"
-    scroll="true"
-    overflow-scroll="true">
+  <ion-content class="home-content center text-center has-header">
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="home.refresh()">

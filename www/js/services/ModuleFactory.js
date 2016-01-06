@@ -13,14 +13,12 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
       'selected': [],
       'numSelected': 0,
       'class': '',
-      'scrollEnabled': false,
       'shown': true
     },
     'interaction': {
       'selected': [],
       'numSelected': 0,
       'class': '',
-      'scrollEnabled': false,
       'shown': false
     }
   };
@@ -75,16 +73,6 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
   }
 
   /**
-   * Get whether scroll is enabled or not
-   * @param  {number} _numModules Number of modules
-   * @return {boolean}            Whether or not scroll is enabled
-   */
-  function _getScrollEnabled(_numModules) {
-    if (_numModules > 5) return true;
-    else return false;
-  }
-
-  /**
    * Change which module type is shown
    * @param  {string} moduleType Type of module to show
    */
@@ -136,9 +124,6 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
     _modules.info.class = _getModuleClass(_modules.info.numSelected);
     _modules.interaction.class = _getModuleClass(_modules.interaction.numSelected);
 
-    _modules.info.scrollEnabled = _getScrollEnabled(_modules.info.numSelected);
-    _modules.interaction.scrollEnabled = _getScrollEnabled(_modules.interaction.numSelected);
-
     StorageService.storeModules(_allModules);
     $rootScope.$broadcast('modules:updated', _modules);
   };
@@ -173,14 +158,6 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
    */
   moduleFactory.getModuleClass = function () {
     return _modules[_getModuleTypeShown()].class;
-  };
-
-  /**
-   * Return whether scroll is enabled or not
-   * @return {Boolean} Whether scroll is enabled or not
-   */
-  moduleFactory.getScrollEnabled = function () {
-    return _modules[_getModuleTypeShown()].scrollEnabled;
   };
 
   /**

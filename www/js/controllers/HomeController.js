@@ -8,7 +8,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
   home.updateModules = function () {
     home.selectedModules = ModuleFactory.getSelectedModules();
     home.moduleClass = ModuleFactory.getModuleClass();
-    home.scrollEnabled = ModuleFactory.getScrollEnabled();
     if (SettingsFactory.get('loadOnLaunch') === true) {
       home.loadAllModules();
     }
