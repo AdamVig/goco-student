@@ -19,7 +19,9 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
     var deferred = $q.defer();
 
     db.get(key, function (data) {
-      delete data.key; // Remove database key from object
+      if (data) {
+        delete data.key; // Remove database key from object
+      }
       deferred.resolve(data);
     });
 
