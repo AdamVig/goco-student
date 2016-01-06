@@ -30,6 +30,16 @@ app.factory('SettingsFactory', ['DefaultSettings', 'DbFactory', function (Defaul
   };
 
   /**
+   * Get all settings
+   * @return {promise} Promise fulfilled by settings object
+   */
+  settingsFactory.getAll = function() {
+    return dataPromise.then(function() {
+      return _settings;
+    });
+  };
+
+  /**
    * Set a given setting to a given value
    * @param {string} name Name of setting
    * @param {(varies)} value  Value of setting
