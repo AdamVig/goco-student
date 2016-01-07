@@ -11,6 +11,16 @@ constant('DefaultSettings', {
   "loadOnLaunch": true,
   "appVersion": '2.4'
 }).
+constant('DefaultModuleSettings', {
+  'info': {
+    'selected': ['chapelCredits', 'mealPoints'],
+    'class': 'one-half'
+  },
+  'interaction': {
+    'selected': ['athleticsSchedule'],
+    'class': ''
+  }
+}).
 constant('Modules', [
   {
     "moduleType": 'info',
