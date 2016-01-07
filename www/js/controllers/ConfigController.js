@@ -2,7 +2,6 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
   var config = this;
 
   config.allModules = Modules;
-  config.moduleTypeShown = $rootScope.moduleTypeShown;
 
   config.selectedModuleObjects = [];
   config.selectedModules = [];
@@ -13,10 +12,15 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
         config.selectedModules);
   };
 
-  var dataPromise = ModuleFactory.getSelectedModules().then(function (selectedModules) {
-    config.selectedModules = selectedModules;
-    updateSelectedModuleObjects();
-  });
+  var updateSelectedModules = function () {
+    config.moduleTypeShown = $rootScope.moduleTypeShown;
+    ModuleFactory.getSelectedModules().then(function (selectedModules) {
+      config.selectedModules = selectedModules;
+      updateSelectedModuleObjects();
+    });
+  };
+
+  updateSelectedModules();
 
   config.updateModules = function (endpoint) {
     var endpointIndex = config.selectedModules.indexOf(endpoint);
@@ -36,5 +40,7 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
   config.isOnlyModule = function (module) {
     return config.selectedModules.length == 1 && config.isSelected(module);
   };
+
+  $rootScope.$on('modules:updated', updateSelectedModules);
 
 }]);
