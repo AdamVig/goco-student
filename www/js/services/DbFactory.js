@@ -6,7 +6,7 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
   var settingsKey = 'settings';
 
   // Create database object when device is ready
-  $ionicPlatform.ready(function() {
+  var dataPromise = $ionicPlatform.ready(function() {
     db = Lawnchair({name:'goco', record:'data'});
   });
 
@@ -16,16 +16,18 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
    * @return {promise}     Promise object fulfilled by retrieved data
    */
   var getData = function (key) {
-    var deferred = $q.defer();
+    return dataPromise.then(function () {
+      var deferred = $q.defer();
 
-    db.get(key, function (data) {
-      if (data) {
-        delete data.key; // Remove database key from object
-      }
-      deferred.resolve(data);
+      db.get(key, function (data) {
+        if (data) {
+          delete data.key; // Remove database key from object
+        }
+        deferred.resolve(data);
+      });
+
+      return deferred.promise;
     });
-
-    return deferred.promise;
   };
 
   /**
