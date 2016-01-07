@@ -4,11 +4,13 @@
   </ion-header-bar>
   <ion-content>
     <ion-list>
+      <!-- Note: this is the only way to apply moduleClass as well as a
+          conditionally applied class in the same statement. -->
       <ion-item class="item-checkbox"
         ng-repeat="module in config.allModules"
         ng-if="module.moduleType == config.moduleTypeShown"
         ng-class="{'{{module.moduleClass}}': true, 'item-not-selected': !config.isSelected(module)}">
-        <label class="ion-checkmark goco-checkbox"
+        <label class="goco-checkbox"
           ng-class="{'ion-checkmark': config.isSelected(module), 'ion-close': !config.isSelected(module), 'disabled': config.isOnlyModule(module)}">
           <input type="checkbox"
             ng-model="config.checkboxes[module.endpoint]"

@@ -6,6 +6,11 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
   var currentAppVersion = DefaultSettings.appVersion;
   var moduleSettings;
 
+  /**
+   * Make module class, which is used to apply styles to modules
+   * @param  {number} numModules Number of modules currently selected
+   * @return {string}            CSS class to use for all modules
+   */
   var makeModuleClass = function (numModules) {
     if (numModules > 5) return 'list-item';
     else if (numModules == 5) return 'one-fifth';
@@ -15,6 +20,12 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
     else return '';
   };
 
+  /**
+   * Replace list of selected modules for currently selected
+   * module type with new list
+   * @param  {array} updatedSelectedModules List of endpoint names of selected
+   *                                        modules
+   */
   moduleFactory.updateSelectedModules = function (updatedSelectedModules) {
     moduleSettings[$rootScope.moduleTypeShown].selected = updatedSelectedModules;
     moduleSettings[$rootScope.moduleTypeShown].class = makeModuleClass(
@@ -24,8 +35,9 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
   };
 
   /**
-   * Get selected modules
-   * @return {array}           List of selected modules
+   * Get selected modules from module settings for currently selected module type
+   * @return {promise} Promise fulfilled by list of selected module
+   *                   endpoint names (array of strings)
    */
   moduleFactory.getSelectedModules = function () {
     return dataPromise.then(function () {
@@ -34,8 +46,8 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
   };
 
   /**
-   * Get module class
-   * @return {String}           Class for all modules
+   * Get module class from module settings for currently selected module type
+   * @return {promise} Promise fulfilled by module class (string)
    */
   moduleFactory.getModuleClass = function () {
     return dataPromise.then(function () {
@@ -43,9 +55,10 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
     });
   };
 
-  // Retrieve stored app version and stored module settings
-  // Use current app version and default module settings if not in database
-  // Then update modules
+  /**
+   * 1. Get stored app version and stored module settings
+   * 2. Use current app version and default module settings if not in database
+   */
   dataPromise = SettingsFactory.get('appVersion').then(function (appVersion) {
 
     storedAppVersion = appVersion;
