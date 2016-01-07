@@ -3,7 +3,7 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
 
   config.allModules = Modules;
   config.moduleTypeShown = $rootScope.moduleTypeShown;
-  
+
   config.selectedModuleObjects = [];
   config.selectedModules = [];
   config.checkboxes = {};
@@ -19,10 +19,10 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
   });
 
   config.updateModules = function (endpoint) {
-    if (config.checkboxes[endpoint] === true) {
+    var endpointIndex = config.selectedModules.indexOf(endpoint);
+    if (endpointIndex == -1) {
       config.selectedModules.push(endpoint);
     } else {
-      var endpointIndex = config.selectedModules.indexOf(endpoint);
       config.selectedModules.splice(endpointIndex, 1);
     }
     updateSelectedModuleObjects();
