@@ -38,4 +38,11 @@ filter('password', function () {
       return atob(password);
     }
   };
+}).
+filter('selectedModules', function () {
+  return function (allModules, selectedModulesList) {
+    return allModules.filter(function (module) {
+      return selectedModulesList.indexOf(module.endpoint) != -1;
+    });
+  };
 });
