@@ -5,7 +5,8 @@
   <ion-content class="home-content center text-center has-header">
     <ion-refresher
       pulling-text="Pull to refresh..."
-      on-refresh="home.refresh()">
+      on-refresh="home.refresh()"
+      ng-if="moduleTypeShown == 'info'">
     </ion-refresher>
     <goco-module ng-class="home.moduleClass"
       ng-repeat="module in home.selectedModules"
