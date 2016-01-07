@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'AppInfoRefreshTime', 'SettingsFactory', function ($rootScope, $scope, $state, $timeout, DataService, ModuleFactory, PopupService, AppInfoRefreshTime, SettingsFactory) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'DataService', 'ModuleFactory', 'Modules', 'SettingsFactory', function ($rootScope, $scope, $state, $timeout, $filter, DataService, ModuleFactory, Modules, SettingsFactory) {
 
   var home = this;
   home.hasBanner = false;
@@ -56,8 +56,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
       home.hasBanner = true;
     }
   });
-
-  $scope.popup = PopupService;
 
   home.updateModules();
 }]);
