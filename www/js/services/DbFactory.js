@@ -4,6 +4,7 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
   var db;
   var userKey = 'credentials';
   var settingsKey = 'settings';
+  var modulesKey = 'module_settings';
 
   // Create database object when device is ready
   var dataPromise = $ionicPlatform.ready(function() {
@@ -69,6 +70,15 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
    */
   dbFactory.getSettings = function () {
     return getData(settingsKey);
+  };
+
+  dbFactory.saveModuleSettings = function (modules) {
+    modules.key = modulesKey;
+    db.save(modules);
+  };
+
+  dbFactory.getModuleSettings = function () {
+    return getData(modulesKey);
   };
 
   return dbFactory;
