@@ -13,7 +13,7 @@
           <input type="checkbox"
             ng-model="config.checkboxes[module.endpoint]"
             ng-change="config.updateModules(module.endpoint)"
-            ng-disabled="(selectedModules.length == 1) && (module.selected)">
+            ng-disabled="config.isOnlyModule(module)">
         </label>
         <p class="item-title">{{ module.label }}</p>
       </ion-item>
