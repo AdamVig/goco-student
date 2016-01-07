@@ -6,13 +6,7 @@ app.directive('appHeader', function () {
       'allowConfiguration': '='
     },
     templateUrl: 'html/directives/_appheader.html',
-    controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'ModuleFactory', 'DbFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, ModuleFactory, DbFactory) {
-
-      $scope.selectedModules = ModuleFactory.getSelectedModules();
-
-      $scope.updateModules = function () {
-        $scope.selectedModules = ModuleFactory.updateModules($scope.modules);
-      };
+    controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'DbFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, DbFactory) {
 
       // Prepare menu popover
       $ionicPopover.fromTemplateUrl('html/_menu.html', {
@@ -38,7 +32,6 @@ app.directive('appHeader', function () {
 
       // Update list of modules and show config modal
       $scope.showConfigurationModal = function ($event) {
-        $scope.modules = ModuleFactory.getAllShownModules();
         configPromise.then(function () {
           $scope.configurationModal.show($event);
         });
