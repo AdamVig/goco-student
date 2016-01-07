@@ -6,8 +6,13 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
 
   // Update selected modules
   home.updateModules = function () {
-    home.selectedModules = ModuleFactory.getSelectedModules();
-    home.moduleClass = ModuleFactory.getModuleClass();
+    ModuleFactory.getSelectedModules().then(function (selectedModules) {
+      home.selectedModules = $filter('selectedModules')(Modules, selectedModules);
+      return ModuleFactory.getModuleClass();
+    }).then(function (moduleClass) {
+      home.moduleClass = moduleClass;
+    });
+
     if (SettingsFactory.get('loadOnLaunch') === true) {
       home.loadAllModules();
     }
