@@ -19,8 +19,7 @@ constant('Modules', [
     "icon": 'chapel-icon',
     "moduleClass": 'blue',
     "prefix": '',
-    "suffix": '',
-    "selected": true
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -29,8 +28,7 @@ constant('Modules', [
     "icon": 'meal-points-icon',
     "moduleClass": 'orange',
     "prefix": '$',
-    "suffix": '',
-    "selected": true
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -39,8 +37,7 @@ constant('Modules', [
     "icon": 'calculator-icon',
     "moduleClass": 'purple',
     "prefix": '$',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -49,8 +46,7 @@ constant('Modules', [
     "icon": 'calendar-icon',
     "moduleClass": 'mint-green',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -59,8 +55,7 @@ constant('Modules', [
     "icon": 'person-icon',
     "moduleClass": 'light-red',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -69,8 +64,7 @@ constant('Modules', [
     "icon": 'thermometer-icon',
     "moduleClass": 'light-teal',
     "prefix": '',
-    "suffix": '℉',
-    "selected": false
+    "suffix": '℉'
   } ,
   {
     "moduleType": 'interaction',
@@ -79,8 +73,7 @@ constant('Modules', [
     "icon": 'bible-icon',
     "moduleClass": 'light-aquamarine',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'interaction',
@@ -89,8 +82,7 @@ constant('Modules', [
     "icon": 'highland-express-icon',
     "moduleClass": 'dark-green',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'interaction',
@@ -99,7 +91,6 @@ constant('Modules', [
     "icon": 'fighting-scots-icon',
     "moduleClass": 'burgundy',
     "prefix": '',
-    "suffix": '',
-    "selected": true
+    "suffix": ''
   }
 ]);
