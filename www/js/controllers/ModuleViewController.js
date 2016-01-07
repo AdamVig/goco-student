@@ -1,4 +1,4 @@
-app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'StorageService', 'RequestTimeout', function ($scope, $timeout, $stateParams, twemoji, ErrorMessages, DataService, StorageService, RequestTimeout) {
+app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'RequestTimeout', 'DbFactory', function ($scope, $timeout, $stateParams, twemoji, ErrorMessages, DataService, RequestTimeout, DbFactory) {
   var moduleView = this;
   moduleView.minLoadingTimeMs = 500;
   moduleView.data = {};
@@ -8,7 +8,11 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
   moduleView.icon = $stateParams.icon;
   moduleView.color = $stateParams.color;
   moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
-  moduleView.userCredentials = StorageService.retrieveCredentials();
+  moduleView.userCredentials = {};
+  
+  DbFactory.getCredentials().then(function (credentials) {
+    moduleView.userCredentials = credentials;
+  });
 
   moduleView.loading = true;
   var startTime = new Date().getTime();

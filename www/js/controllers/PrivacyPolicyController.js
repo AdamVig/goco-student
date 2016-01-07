@@ -1,10 +1,14 @@
-app.controller('PrivacyPolicyController', ['$state', 'DataService', 'StorageService', 'PopupService', function ($state, DataService, StorageService, PopupService) {
+app.controller('PrivacyPolicyController', ['$state', 'DataService', 'DbFactory', 'PopupService', function ($state, DataService, DbFactory, PopupService) {
 
   var privacyPolicy = this;
   privacyPolicy.status = 'checking';
   privacyPolicy.user = {};
   privacyPolicy.timeout = false;
-  userCredentials = StorageService.retrieveCredentials();
+  privacyPolicy.userCredentials = {};
+
+  DbFactory.getCredentials().then(function (credentials) {
+    privacyPolicy.userCredentials = credentials;
+  });
 
   // Continue from privacy policy to home
   privacyPolicy.go = function (accepted) {

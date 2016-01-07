@@ -1,206 +1,79 @@
-app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'AppVersion', 'StorageService', function ($rootScope, $timeout, Modules, AppVersion, StorageService) {
+app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSettings', 'DefaultModuleSettings', 'DbFactory', 'SettingsFactory', function ($rootScope, $timeout, Modules, DefaultSettings, DefaultModuleSettings, DbFactory, SettingsFactory) {
 
   var moduleFactory = {};
-
-  var _allModules = [];
-  var _storedModules = StorageService.retrieveModules();
-  var _defaultModules = Modules;
-  var _storedAppVersion = StorageService.get('version');
-  var _currentAppVersion = AppVersion;
-
-  var _modules = {
-    'info': {
-      'selected': [],
-      'numSelected': 0,
-      'class': '',
-      'scrollEnabled': false,
-      'shown': true
-    },
-    'interaction': {
-      'selected': [],
-      'numSelected': 0,
-      'class': '',
-      'scrollEnabled': false,
-      'shown': false
-    }
-  };
+  var dataPromise;
+  var storedAppVersion;
+  var currentAppVersion = DefaultSettings.appVersion;
+  var moduleSettings;
 
   /**
-   * Get all modules from either storage or constant
-   * @return {array}                    List of either stored or default modules
+   * Make module class, which is used to apply styles to modules
+   * @param  {number} numModules Number of modules currently selected
+   * @return {string}            CSS class to use for all modules
    */
-  function _getAllModules() {
-    if (_storedAppVersion == _currentAppVersion && _storedModules) {
-      return _storedModules;
-    } else {
-      StorageService.storeModules(_defaultModules);
-      return _defaultModules;
-    }
-  }
-
-  /**
-   * Get all shown modules
-   * @return {array}                    List of shown modules
-   */
-  function _getAllShownModules() {
-    return _allModules.filter(function (module) {
-      return _isModuleTypeShown(module.moduleType);
-    });
-  }
-
-  /**
-   * Get selected modules from list of modules
-   * @param  {array} modules Contains modules
-   * @param  {string} type   Type of modules to look for
-   * @return {array}         Contains modules with 'selected': true
-   */
-  function _getSelected(modules, type) {
-    return modules.filter(function (module) {
-        return module.selected === true && module.moduleType == type;
-      });
-  }
-
-  /**
-   * Get class to use for modules
-   * @param  {number} _numModules Number of modules
-   * @return {string}             Class to use for modules
-   */
-  function _getModuleClass(_numModules) {
-    if (_numModules > 5) return 'list-item';
-    else if (_numModules == 5) return 'one-fifth';
-    else if (_numModules == 4) return 'one-fourth';
-    else if (_numModules == 3) return 'one-third';
-    else if (_numModules == 2) return 'one-half';
+  var makeModuleClass = function (numModules) {
+    if (numModules > 5) return 'list-item';
+    else if (numModules == 5) return 'one-fifth';
+    else if (numModules == 4) return 'one-fourth';
+    else if (numModules == 3) return 'one-third';
+    else if (numModules == 2) return 'one-half';
     else return '';
-  }
-
-  /**
-   * Get whether scroll is enabled or not
-   * @param  {number} _numModules Number of modules
-   * @return {boolean}            Whether or not scroll is enabled
-   */
-  function _getScrollEnabled(_numModules) {
-    if (_numModules > 5) return true;
-    else return false;
-  }
-
-  /**
-   * Change which module type is shown
-   * @param  {string} moduleType Type of module to show
-   */
-  function _changeModuleTypeShown(moduleType) {
-      _modules[moduleType].shown = true;
-
-      // Identify opposite module type and set 'shown' property to false
-      if (moduleType == 'info') {
-        _modules.interaction.shown = false;
-      } else {
-        _modules.info.shown = false;
-      }
-      moduleFactory.updateModules();
-  }
-
-  /**
-   * Return whether module type is shown or not
-   * @param  {string}  moduleType Type of module
-   * @return {Boolean}            Whether module type is shown or not
-   */
-  function _isModuleTypeShown(moduleType) {
-    return _modules[moduleType].shown;
-  }
-
-  /**
-   * Return shown module type
-   * @return {string}            Type of module that is currently shown
-   */
-  function _getModuleTypeShown() {
-    if (_modules.info.shown) {
-      return 'info';
-    } else {
-      return 'interaction';
-    }
-  }
-
-  /**
-   * Update list of selected modules from list of all modules
-   */
-  moduleFactory.updateModules = function (modules) {
-    _allModules = modules || _getAllModules();
-
-    _modules.info.selected = _getSelected(_allModules, 'info');
-    _modules.interaction.selected = _getSelected(_allModules, 'interaction');
-
-    _modules.info.numSelected = _modules.info.selected.length;
-    _modules.interaction.numSelected = _modules.interaction.selected.length;
-
-    _modules.info.class = _getModuleClass(_modules.info.numSelected);
-    _modules.interaction.class = _getModuleClass(_modules.interaction.numSelected);
-
-    _modules.info.scrollEnabled = _getScrollEnabled(_modules.info.numSelected);
-    _modules.interaction.scrollEnabled = _getScrollEnabled(_modules.interaction.numSelected);
-
-    StorageService.storeModules(_allModules);
-    $rootScope.$broadcast('modules:updated', _modules);
   };
 
   /**
-   * Get all modules
-   * @return {array} List of module objects
+   * Replace list of selected modules for currently selected
+   * module type with new list
+   * @param  {array} updatedSelectedModules List of endpoint names of selected
+   *                                        modules
    */
-  moduleFactory.getAllModules = function () {
-    return _allModules;
+  moduleFactory.updateSelectedModules = function (updatedSelectedModules) {
+    moduleSettings[$rootScope.moduleTypeShown].selected = updatedSelectedModules;
+    moduleSettings[$rootScope.moduleTypeShown].class = makeModuleClass(
+        updatedSelectedModules.length);
+    $rootScope.$broadcast('modules:updated');
+    DbFactory.saveModuleSettings(moduleSettings);
   };
 
   /**
-   * Get all shown modules
-   * @return {array} List of module objects
-   */
-  moduleFactory.getAllShownModules = function () {
-    return _getAllShownModules();
-  };
-
-  /**
-   * Get selected modules
-   * @return {array}           List of selected modules
+   * Get selected modules from module settings for currently selected module type
+   * @return {promise} Promise fulfilled by list of selected module
+   *                   endpoint names (array of strings)
    */
   moduleFactory.getSelectedModules = function () {
-    return _modules[_getModuleTypeShown()].selected;
+    return dataPromise.then(function () {
+      return moduleSettings[$rootScope.moduleTypeShown].selected;
+    });
   };
 
   /**
-   * Get module class
-   * @return {String}           Class for modules determining their size
+   * Get module class from module settings for currently selected module type
+   * @return {promise} Promise fulfilled by module class (string)
    */
   moduleFactory.getModuleClass = function () {
-    return _modules[_getModuleTypeShown()].class;
+    return dataPromise.then(function () {
+      return moduleSettings[$rootScope.moduleTypeShown].class;
+    });
   };
 
   /**
-   * Return whether scroll is enabled or not
-   * @return {Boolean} Whether scroll is enabled or not
+   * 1. Get stored app version and stored module settings
+   * 2. Use current app version and default module settings if not in database
    */
-  moduleFactory.getScrollEnabled = function () {
-    return _modules[_getModuleTypeShown()].scrollEnabled;
-  };
+  dataPromise = SettingsFactory.get('appVersion').then(function (appVersion) {
 
-  /**
-   * Change module type shown
-   * @param  {string} moduleType Type of module
-   */
-  moduleFactory.changeModuleTypeShown = function (moduleType) {
-    _changeModuleTypeShown(moduleType);
-  };
+    storedAppVersion = appVersion;
+    return DbFactory.getModuleSettings();
 
-  /**
-   * Return whether module type is shown or not
-   * @param  {string}  moduleType Type of module
-   * @return {Boolean}            Whether module type is shown or not
-   */
-  moduleFactory.isModuleTypeShown = function (moduleType) {
-    return _isModuleTypeShown(moduleType);
-  };
-
-  moduleFactory.updateModules();
+  }).then(function (storedModuleSettings) {
+    if (storedModuleSettings && storedAppVersion == currentAppVersion) {
+      moduleSettings = storedModuleSettings;
+    } else {
+      moduleSettings = DefaultModuleSettings;
+      DbFactory.saveModuleSettings(moduleSettings);
+      storedAppVersion = currentAppVersion;
+      SettingsFactory.set('appVersion', currentAppVersion);
+    }
+  });
 
   return moduleFactory;
 }]);

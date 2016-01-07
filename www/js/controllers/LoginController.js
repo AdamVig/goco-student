@@ -1,4 +1,4 @@
-app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'StorageService', 'DataService', function ($state, $q, $timeout, $filter, StorageService, DataService) {
+app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'DataService', 'DbFactory', function ($state, $q, $timeout, $filter, DataService, DbFactory) {
 
   var login = this;
   var loginCheckTimeout = 16000;
@@ -14,10 +14,13 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
   login.loginUser = function () {
 
     login.userCredentials.username = $filter('username')(login.userCredentials.username);
-    StorageService.storeCredentials(login.userCredentials);
+    login.userCredentials.password = $filter('password')(login.userCredentials.password, 'encode');
 
     checkLogin().then(function (response) {
       login.user = response.data.data;
+
+      DbFactory.saveCredentials(login.userCredentials.username,
+          login.userCredentials.password);
 
       if (login.user.hasOwnProperty('privacyPolicy')) {
         $state.go('home');
@@ -32,18 +35,19 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'Stora
 
     login.status = 'status-loading';
 
+
     return DataService.get('checklogin',
-      StorageService.retrieveCredentials(),
-      loginCheckTimeout).
+        login.userCredentials,
+        loginCheckTimeout).
     success(function (response) {
       login.status = false;
 
-      return DataService.get('createuser', StorageService.retrieveCredentials());
+      return DataService.get('createuser', login.userCredentials);
     }).
     error(function (response, status) {
       if (status == 401) {
         login.status = 'status-invalid';
-        login.userCredentials.password = '';
+        login.userCredentials.password = ''; // Only reset password
       } else {
         $state.go('home');
       }

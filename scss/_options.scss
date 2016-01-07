@@ -4,7 +4,20 @@
   }
   .item {
     text-align: left;
-    border-width: 0;
+    .item-label {
+      padding-left: 16px;
+    }
+    .item-data {
+      float: right;
+    }
+    .item-toggle {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      border-width: 0;
+    }
+    .toggle {
+      top: 0;
+    }
   }
   .about {
     padding-left: 25px;

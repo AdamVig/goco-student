@@ -1,24 +1,22 @@
-app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (DefaultSettings, StorageService) {
+app.factory('SettingsFactory', ['DefaultSettings', 'DbFactory', function (DefaultSettings, DbFactory) {
 
-  var settingsFactory = {};
+  var settingsFactory = this;
 
   var _settings = {};
-  var _defaultSettings = DefaultSettings;
-  var _storedSettings = StorageService.retrieveSettings();
+  var _storedSettings;
 
-  _settings = _getSettings();
+  // Get stored settings from storage
+  // If no stored settings, use default settings
+  var dataPromise = DbFactory.getSettings().then(function (settings) {
+    _storedSettings = settings;
 
-  /**
-   * Get settings either from storage or defaults
-   * @return {object} Settings object
-   */
-  function _getSettings() {
-    if (_storedSettings !== null) {
-      return _storedSettings;
+    if (_storedSettings) {
+      _settings = _storedSettings;
     } else {
-      return _defaultSettings;
+      _settings = DefaultSettings;
+      DbFactory.saveSettings(_settings);
     }
-  }
+  });
 
   /**
    * Retrieve value of a given setting
@@ -26,7 +24,19 @@ app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (D
    * @return {varies}      Value of setting
    */
   settingsFactory.get = function (name) {
-    return _settings[name];
+    return dataPromise.then(function () {
+      return _settings[name];
+    });
+  };
+
+  /**
+   * Get all settings
+   * @return {promise} Promise fulfilled by settings object
+   */
+  settingsFactory.getAll = function() {
+    return dataPromise.then(function() {
+      return _settings;
+    });
   };
 
   /**
@@ -36,7 +46,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (D
    */
   settingsFactory.set = function (name, value) {
     _settings[name] = value;
-    StorageService.storeSettings(_settings);
+    DbFactory.saveSettings(_settings);
   };
 
   /**
@@ -48,7 +58,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'StorageService', function (D
 
     if (typeof(_settings[name]) === 'boolean') {
       _settings[name] = !_settings[name];
-      StorageService.storeSettings(_settings);
+      DbFactory.saveSettings(_settings);
     }
 
     return _settings[name];

@@ -13,12 +13,16 @@ app.directive('gocoModule', function () {
     },
     templateUrl: 'html/directives/_gocomodule.html',
     controllerAs: 'module',
-    controller: ['$rootScope', '$scope', '$filter', '$state', '$timeout', 'DataService', 'StorageService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', function ($rootScope, $scope, $filter, $state, $timeout, DataService, StorageService, Modules, RequestTimeout, ErrorMessages, twemoji) {
+    controller: ['$rootScope', '$scope', '$filter', '$state', '$timeout', 'DataService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', 'DbFactory', function ($rootScope, $scope, $filter, $state, $timeout, DataService, Modules, RequestTimeout, ErrorMessages, twemoji, DbFactory) {
 
       var module = this;
       var animationTime = 1500;
       module.loading = null;
-      module.userCredentials = StorageService.retrieveCredentials();
+      module.userCredentials = {};
+
+      DbFactory.getCredentials().then(function (credentials) {
+        module.userCredentials = credentials;
+      });
 
       module.moduleType = $scope.moduleType;
       module.endpoint = $scope.endpoint;

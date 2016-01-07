@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'DataService', 'ModuleFactory', 'PopupService', 'StorageService', 'AppInfoRefreshTime', 'AppVersion', 'SettingsFactory', function ($rootScope, $scope, $state, $timeout, DataService, ModuleFactory, PopupService, StorageService, AppInfoRefreshTime, AppVersion, SettingsFactory) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'DataService', 'ModuleFactory', 'Modules', 'SettingsFactory', function ($rootScope, $scope, $state, $timeout, $filter, DataService, ModuleFactory, Modules, SettingsFactory) {
 
   var home = this;
   home.hasBanner = false;
@@ -6,9 +6,13 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
 
   // Update selected modules
   home.updateModules = function () {
-    home.selectedModules = ModuleFactory.getSelectedModules();
-    home.moduleClass = ModuleFactory.getModuleClass();
-    home.scrollEnabled = ModuleFactory.getScrollEnabled();
+    ModuleFactory.getSelectedModules().then(function (selectedModules) {
+      home.selectedModules = $filter('selectedModules')(Modules, selectedModules);
+      return ModuleFactory.getModuleClass();
+    }).then(function (moduleClass) {
+      home.moduleClass = moduleClass;
+    });
+
     if (SettingsFactory.get('loadOnLaunch') === true) {
       home.loadAllModules();
     }
@@ -42,7 +46,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
   // Update modules on login
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
     if (fromState.name == 'login') {
-      ModuleFactory.updateModules();
       home.updateModules();
       home.loadAllModules();
     }
@@ -54,12 +57,5 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     }
   });
 
-  $scope.popup = PopupService;
-
-  // Reset scope if user is logged in
-  if (StorageService.retrieveCredentials()) {
-    home.updateModules();
-  } else {
-    $state.go('login');
-  }
+  home.updateModules();
 }]);

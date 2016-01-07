@@ -1,18 +1,21 @@
-<ion-modal-view class="configuration-modal">
+<ion-modal-view class="configuration-modal" ng-controller="ConfigController as config">
   <ion-header-bar>
     <h1 class="title" ng-click="hideConfigurationModal()">Tap to close</h1>
   </ion-header-bar>
   <ion-content>
     <ion-list>
+      <!-- Note: this is the only way to apply moduleClass as well as a
+          conditionally applied class in the same statement. -->
       <ion-item class="item-checkbox"
-        ng-repeat="module in modules"
-        ng-class="{'{{module.moduleClass}}': true, 'item-placeholder': !module.selected}">
-        <label class="ion-checkmark goco-checkbox"
-          ng-class="{'ion-checkmark': module.selected, 'ion-close': !module.selected, 'disabled': (selectedModules.length == 1) && (module.selected)}">
+        ng-repeat="module in config.allModules"
+        ng-if="module.moduleType == config.moduleTypeShown"
+        ng-class="{'{{module.moduleClass}}': true, 'item-not-selected': !config.isSelected(module)}">
+        <label class="goco-checkbox"
+          ng-class="{'ion-checkmark': config.isSelected(module), 'ion-close': !config.isSelected(module), 'disabled': config.isOnlyModule(module)}">
           <input type="checkbox"
-            ng-model="module.selected"
-            ng-change="updateModules()"
-            ng-disabled="(selectedModules.length == 1) && (module.selected)">
+            ng-model="config.checkboxes[module.endpoint]"
+            ng-change="config.updateModules(module.endpoint)"
+            ng-disabled="config.isOnlyModule(module)">
         </label>
         <p class="item-title">{{ module.label }}</p>
       </ion-item>

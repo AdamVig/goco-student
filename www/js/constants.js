@@ -1,5 +1,4 @@
-app.constant('AppVersion', '2.4').
-constant('ApiUrl', 'https://api.adamvig.com/gocostudent/').
+app.constant('ApiUrl', 'https://api.adamvig.com/gocostudent/').
 constant('RequestTimeout', {
   'default': 25000
 }).
@@ -9,7 +8,18 @@ constant('ErrorMessages', {
   'unknown': 'Something went wrong. Try again!'
 }).
 constant('DefaultSettings', {
-  "loadOnLaunch": true
+  "loadOnLaunch": true,
+  "appVersion": '2.4'
+}).
+constant('DefaultModuleSettings', {
+  'info': {
+    'selected': ['chapelCredits', 'mealPoints'],
+    'class': 'one-half'
+  },
+  'interaction': {
+    'selected': ['athleticsSchedule'],
+    'class': ''
+  }
 }).
 constant('Modules', [
   {
@@ -19,8 +29,7 @@ constant('Modules', [
     "icon": 'chapel-icon',
     "moduleClass": 'blue',
     "prefix": '',
-    "suffix": '',
-    "selected": true
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -29,8 +38,7 @@ constant('Modules', [
     "icon": 'meal-points-icon',
     "moduleClass": 'orange',
     "prefix": '$',
-    "suffix": '',
-    "selected": true
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -39,8 +47,7 @@ constant('Modules', [
     "icon": 'calculator-icon',
     "moduleClass": 'purple',
     "prefix": '$',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -49,8 +56,7 @@ constant('Modules', [
     "icon": 'calendar-icon',
     "moduleClass": 'mint-green',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -59,8 +65,7 @@ constant('Modules', [
     "icon": 'person-icon',
     "moduleClass": 'light-red',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'info',
@@ -69,8 +74,7 @@ constant('Modules', [
     "icon": 'thermometer-icon',
     "moduleClass": 'light-teal',
     "prefix": '',
-    "suffix": '℉',
-    "selected": false
+    "suffix": '℉'
   } ,
   {
     "moduleType": 'interaction',
@@ -79,8 +83,7 @@ constant('Modules', [
     "icon": 'bible-icon',
     "moduleClass": 'light-aquamarine',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'interaction',
@@ -89,8 +92,7 @@ constant('Modules', [
     "icon": 'highland-express-icon',
     "moduleClass": 'dark-green',
     "prefix": '',
-    "suffix": '',
-    "selected": false
+    "suffix": ''
   },
   {
     "moduleType": 'interaction',
@@ -99,7 +101,6 @@ constant('Modules', [
     "icon": 'fighting-scots-icon',
     "moduleClass": 'burgundy',
     "prefix": '',
-    "suffix": '',
-    "selected": true
+    "suffix": ''
   }
 ]);

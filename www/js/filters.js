@@ -29,4 +29,20 @@ filter('username', function () {
     }
     return username.toLowerCase();
   };
+}).
+filter('password', function () {
+  return function (password, direction) {
+    if (direction === 'encode') {
+      return btoa(password);
+    } else if (direction === 'decode') {
+      return atob(password);
+    }
+  };
+}).
+filter('selectedModules', function () {
+  return function (allModules, selectedModulesList) {
+    return allModules.filter(function (module) {
+      return selectedModulesList.indexOf(module.endpoint) != -1;
+    });
+  };
 });

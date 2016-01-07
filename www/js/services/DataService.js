@@ -1,4 +1,4 @@
-app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'RequestTimeout', 'StorageService', 'AppInfoRefreshTime', function ($http, $window, ApiUrl, AppVersion, RequestTimeout, StorageService, AppInfoRefreshTime) {
+app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSettings', function ($http, ApiUrl, RequestTimeout, DefaultSettings) {
 
   /**
    * Retrieve data for user from server using a GET request
@@ -10,7 +10,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
    */
   this.get = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+    var url = ApiUrl + DefaultSettings.appVersion + '/' + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -38,7 +38,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
    */
   this.post = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + AppVersion + '/' + dataType.toLowerCase();
+    var url = ApiUrl + DefaultSettings.appVersion + '/' + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -63,7 +63,7 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
    */
   this.setProperty = function (userCredentials, property, value) {
 
-    var url = ApiUrl + AppVersion + '/' + 'setproperty',
+    var url = ApiUrl + DefaultSettings.appVersion + '/' + 'setproperty',
         params = userCredentials;
 
     params.property = property;
@@ -76,24 +76,5 @@ app.service('DataService', ['$http', '$window', 'ApiUrl', 'AppVersion', 'Request
     };
 
     return $http.get(url, config);
-  };
-
-  /**
-   * Refresh app info if time since last refresh exceeds threshold
-   */
-  this.refreshAppInfo = function () {
-    var now = new Date(),
-      lastAppInfoRefresh = StorageService.retrieveDate('lastAppInfoRefresh'),
-      timeDiff = now - lastAppInfoRefresh;
-
-    // Refresh if timeDiff exceeds threshold
-    if (timeDiff > AppInfoRefreshTime) {
-      return this.get('AppInfo').then(function (response) {
-        StorageService.store('lastAppInfoRefresh', now);
-        return response.data;
-      });
-    } else {
-      return false;
-    }
   };
 }]);

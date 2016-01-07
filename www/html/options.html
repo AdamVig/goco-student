@@ -4,11 +4,15 @@
   <ion-content class="options-content text-center has-header">
     <ion-list>
       <ion-item>
-        <ion-toggle ng-model="options.loadOnLaunch"
-          ng-change="options.settings.toggle('loadOnLaunch')"
+        <ion-toggle ng-model="options.settings.loadOnLaunch"
+          ng-change="options.toggle('loadOnLaunch')"
           toggle-class="toggle-balanced">
           Load all data on launch
         </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <span class="item-label">App Version</span>
+        <span class="item-data" ng-bind="options.settings.appVersion"></span>
       </ion-item>
     </ion-list>
     <ng-include src="'html/_about.html'">
