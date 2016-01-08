@@ -2,7 +2,7 @@ app.directive('appBanner', function () {
   return {
     templateUrl: 'html/directives/_appbanner.html',
     controllerAs: 'appBanner',
-    controller: ['$scope', '$ionicModal', '$interval', 'DataService', 'AppInfoRefreshTime', function ($scope, $ionicModal, $interval, DataService, AppInfoRefreshTime) {
+    controller: ['$scope', '$ionicModal', '$interval', '$window', 'DataService', 'AppInfoRefreshTime', function ($scope, $ionicModal, $interval, $window, DataService, AppInfoRefreshTime) {
 
       var appBanner = this;
       var refreshCheckTime = 10000; // Time to check for refresh in ms
@@ -25,9 +25,12 @@ app.directive('appBanner', function () {
       // Refresh app info including banner
       appBanner.refreshAppInfo = function () {
         var now = new Date();
+        lastRefreshTime = new Date(
+            $window.localStorage.getItem('GoCo.lastRefresh'));
 
         if (now - lastRefreshTime > AppInfoRefreshTime) {
           lastRefreshTime = now;
+          $window.localStorage.setItem('GoCo.lastRefresh', lastRefreshTime);
           DataService.get('AppInfo').then(function (response) {
             if (response.data.banner.title) {
               $scope.banner = response.data.banner;
@@ -38,9 +41,7 @@ app.directive('appBanner', function () {
 
       appBanner.refreshAppInfo();
 
-      $interval(function () {
-        appBanner.refreshAppInfo();
-      }, refreshCheckTime);
+      $interval(appBanner.refreshAppInfo, refreshCheckTime);
     }]
   };
 });
