@@ -5,7 +5,8 @@ constant('RequestTimeout', {
 constant('AppInfoRefreshTime', 300000).
 constant('ErrorMessages', {
   'timeout': 'Took too long. Try again!',
-  'unknown': 'Something went wrong. Try again!'
+  'unknown': 'Something went wrong. Try again!',
+  'noCredentials': 'Please logout and login again.'
 }).
 constant('DefaultSettings', {
   "loadOnLaunch": true,

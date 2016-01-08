@@ -46,11 +46,17 @@ app.directive('gocoModule', function () {
           module.loading = true;
           module.animating = false;
           module.errorMessage = null;
+          var hasCredentials = false;
           var startTime = new Date().getTime();
 
           // Get data from server
           DbFactory.getCredentials().then(function (userCredentials) {
-            return DataService.post(module.endpoint, userCredentials);
+            if (userCredentials) {
+              hasCredentials = true;
+              return DataService.post(module.endpoint, userCredentials);
+            } else {
+              throw new ReferenceError("No user credentials found in database.");
+            }
           }).then(function(response) {
 
             try {
@@ -64,15 +70,19 @@ app.directive('gocoModule', function () {
             if (response.outof) module.outOf = response.outof;
           }, function(response, status) {
 
-            var respTime = new Date().getTime() - startTime;
-
             // Make error message
-            if (response) {
+            try {
               module.errorMessage = twemoji(response);
-            } else if (respTime >= RequestTimeout.default){
-              module.errorMessage = ErrorMessages.timeout;
-            } else {
-              module.errorMessage = ErrorMessages.unknown;
+            } catch (e) {
+
+              var respTime = new Date().getTime() - startTime;
+              if (respTime >= RequestTimeout.default){
+                module.errorMessage = ErrorMessages.timeout;
+              } else if (hasCredentials === false) {
+                module.errorMessage = ErrorMessages.noCredentials;
+              } else {
+                module.errorMessage = ErrorMessages.unknown;
+              }
             }
           }).
           finally(function() {

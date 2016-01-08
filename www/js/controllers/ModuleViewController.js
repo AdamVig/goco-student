@@ -10,10 +10,16 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
   moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
 
   moduleView.loading = true;
+  var hasCredentials = false;
   var startTime = new Date().getTime();
 
   DbFactory.getCredentials().then(function (userCredentials) {
-    return DataService.post(moduleView.endpoint, userCredentials);
+    if (userCredentials) {
+      hasCredentials = true;
+      return DataService.post(moduleView.endpoint, userCredentials);
+    } else {
+      throw new ReferenceError("No user credentials found in database.");
+    }
   })
   .then(function (response) {
     moduleView.data = response.data.data;
@@ -22,14 +28,20 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
     }
     $scope.moduleViewData = moduleView.data;
   }, function (response, status) {
-    var respTime = new Date().getTime() - startTime;
 
-    if (response) {
+    // Make error message
+    try {
       moduleView.errorMessage = twemoji(response);
-    } else if (respTime >= RequestTimeout.default){
-      moduleView.errorMessage = ErrorMessages.timeout;
-    } else {
-      moduleView.errorMessage = ErrorMessages.unknown;
+    } catch (e) {
+
+      var respTime = new Date().getTime() - startTime;
+      if (respTime >= RequestTimeout.default){
+        moduleView.errorMessage = ErrorMessages.timeout;
+      } else if (hasCredentials === false) {
+        moduleView.errorMessage = ErrorMessages.noCredentials;
+      } else {
+        moduleView.errorMessage = ErrorMessages.unknown;
+      }
     }
   })
   .finally(function () {
