@@ -7,32 +7,38 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
   // Update selected modules
   home.updateModules = function () {
     ModuleFactory.getSelectedModules().then(function (selectedModules) {
+
       home.selectedModules = $filter('selectedModules')(Modules, selectedModules);
       return ModuleFactory.getModuleClass();
-    }).then(function (moduleClass) {
-      home.moduleClass = moduleClass;
-    });
 
-    if (SettingsFactory.get('loadOnLaunch') === true) {
-      home.loadAllModules();
-    }
+    }).then(function (moduleClass) {
+
+      home.moduleClass = moduleClass;
+      return SettingsFactory.get('loadOnLaunch');
+
+    }).then(function (loadOnLaunch) {
+      if (loadOnLaunch === true) {
+        home.loadAllModules();
+      }
+    });
   };
 
   // Load data in all modules at once
   home.loadAllModules = function () {
-    var delayModuleLoad = 500;
-    var i = 0;
+    var pauseLengthMs = 500;
 
-    // Load all modules with set delay time in between
-    (function loadModule() {
+    // Load all modules with pauses in between
+    // Taken from http://goo.gl/dPtJKM
+    (function loadModule(i) {
       $timeout(function () {
-        if (i < $scope.moduleControl.length) {
-          $scope.moduleControl[i]();
-          i++;
-          loadModule();
+        $scope.moduleControl[i](); // Load module
+
+        // Increment i and load next module
+        if (++i < $scope.moduleControl.length) {
+          loadModule(i);
         }
-      }, delayModuleLoad);
-    })();
+      }, pauseLengthMs);
+    })(0);
   };
 
   // Start refresh of all data then hide pull to refresh
