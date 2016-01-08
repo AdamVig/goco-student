@@ -1,4 +1,4 @@
-app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPlatform, $q, $filter) {
+app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', '$rootScope', function ($ionicPlatform, $q, $filter, $rootScope) {
 
   var dbFactory = this;
   var db;
@@ -25,6 +25,24 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
           delete data.key; // Remove database key from object
         }
         deferred.resolve(data);
+      });
+
+      return deferred.promise;
+    });
+  };
+
+  /**
+   * Check if a key exists in the database
+   * @param  {string} key Possible database key
+   * @return {promise}    Promise fulfilled by whether or not
+   *                      key exists in database (boolean)
+   */
+  var checkKey = function (key) {
+    return dataPromise.then(function () {
+      var deferred = $q.defer();
+
+      db.exists(key, function (exists) {
+        deferred.resolve(exists);
       });
 
       return deferred.promise;
@@ -79,6 +97,16 @@ app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', function ($ionicPla
 
   dbFactory.getModuleSettings = function () {
     return getData(modulesKey);
+  };
+
+  /**
+   * Check if credentials exist in database
+   * Runs once when application loads to set state
+   * @return {promise} Promise fulfilled by a whether or not
+   *                   credentials exist in database (boolean)
+   */
+  dbFactory.checkCredentials = function () {
+    return checkKey(userKey);
   };
 
   return dbFactory;
