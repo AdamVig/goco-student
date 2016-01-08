@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'DataService', 'ModuleFactory', 'Modules', 'SettingsFactory', function ($rootScope, $scope, $state, $timeout, $filter, DataService, ModuleFactory, Modules, SettingsFactory) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'DataService', 'ModuleFactory', 'Modules', 'SettingsFactory', 'DbFactory', function ($rootScope, $scope, $state, $timeout, $filter, DataService, ModuleFactory, Modules, SettingsFactory, DbFactory) {
 
   var home = this;
   home.hasBanner = false;
@@ -63,5 +63,12 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     }
   });
 
-  home.updateModules();
+  DbFactory.checkCredentials().then(function (loggedIn) {
+    if (loggedIn) {
+      home.updateModules();
+    } else {
+      console.error('No saved credentials. Returning to login screen.');
+      $state.go('login');
+    }
+  });
 }]);
