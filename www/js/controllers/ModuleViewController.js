@@ -8,24 +8,20 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
   moduleView.icon = $stateParams.icon;
   moduleView.color = $stateParams.color;
   moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
-  moduleView.userCredentials = {};
-  
-  DbFactory.getCredentials().then(function (credentials) {
-    moduleView.userCredentials = credentials;
-  });
 
   moduleView.loading = true;
   var startTime = new Date().getTime();
 
-  DataService.post(moduleView.endpoint, moduleView.userCredentials)
-  .success(function (response) {
-    moduleView.data = response.data;
-    $scope.moduleViewData = response.data;
-    if (response.data.expiration) {
-      delete response.data.expiration;
-    }
+  DbFactory.getCredentials().then(function (userCredentials) {
+    return DataService.post(moduleView.endpoint, userCredentials);
   })
-  .error(function (response, status) {
+  .then(function (response) {
+    moduleView.data = response.data.data;
+    if (moduleView.data.expiration) {
+      delete moduleView.data.expiration;
+    }
+    $scope.moduleViewData = moduleView.data;
+  }, function (response, status) {
     var respTime = new Date().getTime() - startTime;
 
     if (response) {

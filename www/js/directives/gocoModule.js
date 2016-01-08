@@ -18,11 +18,6 @@ app.directive('gocoModule', function () {
       var module = this;
       var animationTime = 1500;
       module.loading = null;
-      module.userCredentials = {};
-
-      DbFactory.getCredentials().then(function (credentials) {
-        module.userCredentials = credentials;
-      });
 
       module.moduleType = $scope.moduleType;
       module.endpoint = $scope.endpoint;
@@ -54,20 +49,20 @@ app.directive('gocoModule', function () {
           var startTime = new Date().getTime();
 
           // Get data from server
-          DataService.post(module.endpoint, module.userCredentials).
-          success(function(response) {
+          DbFactory.getCredentials().then(function (userCredentials) {
+            return DataService.post(module.endpoint, userCredentials);
+          }).then(function(response) {
 
             try {
               // Make sure data displays even if value is falsy
-              module.data = response.data.toString();
+              module.data = response.data.data.toString();
             } catch (e) {
               throw new Error("No data received from info module request.");
             }
 
             // Get "out of" amount if provided
             if (response.outof) module.outOf = response.outof;
-          }).
-          error(function(response, status) {
+          }, function(response, status) {
 
             var respTime = new Date().getTime() - startTime;
 
