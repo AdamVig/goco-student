@@ -5,22 +5,22 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'DataS
   var timeoutPromise = null;
   login.user = null;
   login.status = false;
-  login.userCredentials = {
-    "username": "",
-    "password": ""
-  };
+  login.userCredentials = {'username': '', 'password': ''};
+  var filteredCredentials = {'username': '', 'password': ''};
 
   /* Process credentials, create user in database, redirect to next view */
   login.loginUser = function () {
 
-    login.userCredentials.username = $filter('username')(login.userCredentials.username);
-    login.userCredentials.password = $filter('password')(login.userCredentials.password, 'encode');
+    filteredCredentials = {
+      'username': $filter('username')(login.userCredentials.username),
+      'password': $filter('password')(login.userCredentials.password, 'encode')
+    };
 
     checkLogin().then(function (response) {
       login.user = response.data.data;
 
-      DbFactory.saveCredentials(login.userCredentials.username,
-          login.userCredentials.password);
+      DbFactory.saveCredentials(filteredCredentials.username,
+          filteredCredentials.password);
 
       if (login.user.hasOwnProperty('privacyPolicy')) {
         $state.go('home');
@@ -37,17 +37,17 @@ app.controller('LoginController', ['$state', '$q', '$timeout', '$filter', 'DataS
 
 
     return DataService.get('checklogin',
-        login.userCredentials,
+        filteredCredentials,
         loginCheckTimeout).
     success(function (response) {
       login.status = false;
 
-      return DataService.get('createuser', login.userCredentials);
+      return DataService.get('createuser', filteredCredentials);
     }).
     error(function (response, status) {
       if (status == 401) {
         login.status = 'status-invalid';
-        login.userCredentials.password = ''; // Only reset password
+        login.userCredentials.password = ''; // Reset password
       } else {
         $state.go('home');
       }
