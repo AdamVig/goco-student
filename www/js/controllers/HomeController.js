@@ -1,7 +1,6 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'DataService', 'ModuleFactory', 'Modules', 'SettingsFactory', 'DbFactory', function ($rootScope, $scope, $state, $timeout, $filter, DataService, ModuleFactory, Modules, SettingsFactory, DbFactory) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'ModuleFactory', 'Modules', 'SettingsFactory', 'DbFactory', function ($rootScope, $scope, $state, $timeout, $filter, ModuleFactory, Modules, SettingsFactory, DbFactory) {
 
   var home = this;
-  home.hasBanner = false;
   $scope.moduleControl = [];
 
   // Update selected modules
@@ -54,12 +53,6 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     if (fromState.name == 'login') {
       home.updateModules();
       home.loadAllModules();
-    }
-  });
-
-  $scope.$watch('banner', function () {
-    if ($scope.banner) {
-      home.hasBanner = true;
     }
   });
 
