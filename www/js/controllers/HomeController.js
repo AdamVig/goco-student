@@ -1,18 +1,18 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', '$filter', 'ModuleFactory', 'Modules', 'SettingsFactory', 'DbFactory', function ($rootScope, $scope, $state, $timeout, $filter, ModuleFactory, Modules, SettingsFactory, DbFactory) {
+app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'ModuleFactory', 'Modules', 'SettingsFactory', 'DbFactory', function ($rootScope, $scope, $state, $timeout, ModuleFactory, Modules, SettingsFactory, DbFactory) {
 
   var home = this;
   $scope.moduleControl = [];
 
   // Update selected modules
   home.updateModules = function () {
-    ModuleFactory.getSelectedModules().then(function (selectedModules) {
+    ModuleFactory.getModuleSettings().then(function (moduleSettings) {
 
-      home.selectedModules = $filter('selectedModules')(Modules, selectedModules);
-      return ModuleFactory.getModuleClass();
+      home.moduleSettings = moduleSettings;
+      return ModuleFactory.getSelectedModuleObjects();
 
-    }).then(function (moduleClass) {
+    }).then(function (selectedModuleObjects) {
 
-      home.moduleClass = moduleClass;
+      home.selectedModules = selectedModuleObjects;
       return SettingsFactory.get('loadOnLaunch');
 
     }).then(function (loadOnLaunch) {

@@ -8,8 +8,9 @@
       on-refresh="home.refresh()"
       ng-if="moduleTypeShown == 'info'">
     </ion-refresher>
-    <goco-module ng-class="home.moduleClass"
+    <goco-module ng-class="home.moduleSettings[moduleTypeShown].class"
       ng-repeat="module in home.selectedModules"
+      ng-show="module.moduleType == moduleTypeShown"
       module-type="module.moduleType"
       endpoint="module.endpoint"
       label="module.label"
