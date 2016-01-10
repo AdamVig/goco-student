@@ -1,28 +1,18 @@
-app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'Modules', function ($rootScope, $filter, ModuleFactory, Modules) {
+app.controller('ConfigController', ['$rootScope', '$scope', 'ModuleFactory', 'Modules', function ($rootScope, $scope, ModuleFactory, Modules) {
   var config = this;
 
   config.allModules = Modules;
+  config.moduleTypeShown = $rootScope.moduleTypeShown;
 
-  config.selectedModuleObjects = [];
   config.selectedModules = [];
   config.checkboxes = {};
 
-  // Update list of module definitions from constant
-  var updateSelectedModuleObjects = function () {
-    config.selectedModuleObjects = $filter('selectedModules')(config.allModules,
-        config.selectedModules);
-  };
-
   // Update list of selected module endpoint names
   var updateSelectedModules = function () {
-    config.moduleTypeShown = $rootScope.moduleTypeShown;
     ModuleFactory.getSelectedModules().then(function (selectedModules) {
       config.selectedModules = selectedModules;
-      updateSelectedModuleObjects();
     });
   };
-
-  updateSelectedModules();
 
   // Add or remove a module from the list of selected modules
   config.updateModules = function (endpoint) {
@@ -32,13 +22,12 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
     } else {
       config.selectedModules.splice(endpointIndex, 1);
     }
-    updateSelectedModuleObjects();
     ModuleFactory.updateSelectedModules(config.selectedModules);
   };
 
   // Tell whether or not an object is selected
   config.isSelected = function (module) {
-    return config.selectedModuleObjects.indexOf(module) != -1;
+    return config.selectedModules.indexOf(module) != -1;
   };
 
   // Tell whether or not an object is the only selected object
@@ -46,6 +35,9 @@ app.controller('ConfigController', ['$rootScope', '$filter', 'ModuleFactory', 'M
     return config.selectedModules.length == 1 && config.isSelected(module);
   };
 
-  // Update modules when moduleTypeShown changes
-  $rootScope.$on('modules:updated', updateSelectedModules);
+  updateSelectedModules();
+  $scope.$on('modules:typeChanged', function (event, moduleTypeShown) {
+    config.moduleTypeShown = moduleTypeShown;
+    updateSelectedModules();
+  });
 }]);

@@ -8,6 +8,7 @@ app.directive('homeNav', function () {
       // Switch which module type is shown
       homeNav.switch = function (moduleType) {
         $rootScope.moduleTypeShown = moduleType;
+        $rootScope.$broadcast('modules:typeChanged', moduleType);
       };
     }]
   };
