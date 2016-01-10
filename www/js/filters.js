@@ -40,9 +40,20 @@ filter('password', function () {
   };
 }).
 filter('selectedModules', function () {
-  return function (allModules, selectedModulesList) {
-    return allModules.filter(function (module) {
-      return selectedModulesList.indexOf(module.endpoint) != -1;
-    });
+  return function (allModules, moduleSettings) {
+
+    var getModuleObjects = function (modulesList) {
+      return allModules.filter(function (module) {
+        return modulesList.indexOf(module.endpoint) != -1;
+      });
+    };
+
+    var selectedInfoModules = getModuleObjects(moduleSettings.info.selected);
+    var selectedInteractionModules = getModuleObjects(
+        moduleSettings.interaction.selected);
+    var selectedModules = selectedInfoModules.concat(
+        selectedInteractionModules);
+
+    return selectedModules;
   };
 });
