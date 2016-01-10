@@ -7,12 +7,7 @@ app.directive('homeNav', function () {
 
       // Switch which module type is shown
       homeNav.switch = function (moduleType) {
-        if ($rootScope.moduleTypeShown == 'info') {
-          $rootScope.moduleTypeShown = 'interaction';
-        } else {
-          $rootScope.moduleTypeShown = 'info';
-        }
-        $rootScope.$broadcast('modules:updated');
+        $rootScope.moduleTypeShown = moduleType;
       };
     }]
   };
