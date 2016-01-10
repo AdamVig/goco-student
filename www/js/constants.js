@@ -10,7 +10,7 @@ constant('ErrorMessages', {
 }).
 constant('DefaultSettings', {
   "loadOnLaunch": true,
-  "appVersion": '2.4'
+  "appVersion": '2.5'
 }).
 constant('DefaultModuleSettings', {
   'info': {
