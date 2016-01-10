@@ -56,6 +56,16 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
   };
 
   /**
+   * Get module settings
+   * @return {promise} Promise fulfilled by module settings (object)
+   */
+  moduleFactory.getModuleSettings = function () {
+    return dataPromise.then(function () {
+      return moduleSettings;
+    });
+  };
+
+  /**
    * 1. Get stored app version and stored module settings
    * 2. Use current app version and default module settings if not in database
    */
