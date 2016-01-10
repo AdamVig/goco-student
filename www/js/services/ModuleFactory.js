@@ -1,4 +1,4 @@
-app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSettings', 'DefaultModuleSettings', 'DbFactory', 'SettingsFactory', function ($rootScope, $timeout, Modules, DefaultSettings, DefaultModuleSettings, DbFactory, SettingsFactory) {
+app.factory('ModuleFactory', ['$rootScope', '$timeout', '$filter', 'Modules', 'DefaultSettings', 'DefaultModuleSettings', 'DbFactory', 'SettingsFactory', function ($rootScope, $timeout, $filter, Modules, DefaultSettings, DefaultModuleSettings, DbFactory, SettingsFactory) {
 
   var moduleFactory = {};
   var dataPromise;
@@ -42,6 +42,17 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', 'Modules', 'DefaultSetti
   moduleFactory.getSelectedModules = function () {
     return dataPromise.then(function () {
       return moduleSettings[$rootScope.moduleTypeShown].selected;
+    });
+  };
+
+  /**
+   * Get selected module objects for both module type from module settings
+   * @return {promise} Promise fulfilled by list of selected module
+   *                   objects (array of objects)
+   */
+  moduleFactory.getSelectedModuleObjects = function () {
+    return dataPromise.then(function () {
+      return $filter('selectedModules')(Modules, moduleSettings);
     });
   };
 
