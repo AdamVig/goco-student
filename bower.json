@@ -2,7 +2,7 @@
   "name": "GoCo Student",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.1.1"
+    "ionic": "driftyco/ionic-bower#latest"
   },
   "dependencies": {
     "twemoji": "~1.4.1",
@@ -10,8 +10,6 @@
     "lawnchair": "~0.6.4"
   },
   "resolutions": {
-    "angular-sanitize": "1.4.3",
-    "angular": ">= 1.0.8",
-    "angular-animate": "1.4.3"
+    "angular": ">= 1.0.8"
   }
 }
