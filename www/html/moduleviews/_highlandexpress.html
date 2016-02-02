@@ -16,14 +16,14 @@
   </div>
   <div class="highland-schedule">
     <div class="highland-destinations row">
-      <div class="col"
-        ng-repeat="destination in moduleView.data.schedule[highland.day].destinations">
+    	<div class="col"
+        ng-repeat="destination in moduleView.data.schedule[highland.day].destinations track by $index">
         {{destination}}
-      </div>
+    	</div>
     </div>
     <div class="row"
       ng-repeat="row in moduleView.data.schedule[highland.day].times">
-      <div class="col" ng-repeat="column in row">{{column}}</div>
+      <div class="col" ng-repeat="column in row track by $index">{{column}}</div>
     </div>
   </div>
 </div>
