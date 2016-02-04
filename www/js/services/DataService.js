@@ -22,7 +22,11 @@ app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSetting
     // Request configuration
     var config = {
       params: userCredentials,
-      timeout: timeout || RequestTimeout.default
+      timeout: timeout || RequestTimeout.default,
+      headers: {
+        "X-Platform": ionic.Platform.platform(),
+        "X-Platform-Version": ionic.Platform.version()
+      }
     };
 
     return $http.get(url, config);
@@ -49,7 +53,11 @@ app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSetting
 
     // Request configuration
     var config = {
-      timeout: timeout || RequestTimeout.default
+      timeout: timeout || RequestTimeout.default,
+      headers: {
+        "X-Platform": ionic.Platform.platform(),
+        "X-Platform-Version": ionic.Platform.version()
+      }
     };
 
     return $http.post(url, JSON.stringify(userCredentials), config);
