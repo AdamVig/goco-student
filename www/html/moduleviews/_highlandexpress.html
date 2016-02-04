@@ -14,16 +14,18 @@
     <button type="button" class="schedule-button ion-arrow-right-a icon-small"
       ng-click="highland.nextSchedule()"></button>
   </div>
-  <div class="highland-schedule">
-    <div class="highland-destinations row">
-    	<div class="col"
-        ng-repeat="destination in moduleView.data.schedule[highland.day].destinations track by $index">
-        {{destination}}
-    	</div>
+  <ion-scroll class="highland-schedule" direction="xy">
+    <div class="highland-schedule-inner" style="height: {{highland.height}}px; width: {{highland.width}}px;">
+      <div class="highland-destinations row">
+      	<div class="col"
+          ng-repeat="destination in moduleView.data.schedule[highland.day].destinations track by $index">
+          {{destination}}
+      	</div>
+      </div>
+      <div class="row"
+        ng-repeat="row in moduleView.data.schedule[highland.day].times">
+        <div class="col" ng-repeat="column in row track by $index">{{column}}</div>
+      </div>
     </div>
-    <div class="row"
-      ng-repeat="row in moduleView.data.schedule[highland.day].times">
-      <div class="col" ng-repeat="column in row track by $index">{{column}}</div>
-    </div>
-  </div>
+  </ion-scroll>
 </div>

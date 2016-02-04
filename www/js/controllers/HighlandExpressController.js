@@ -11,6 +11,7 @@ app.controller('HighlandExpressController', ['$scope', function ($scope) {
     } else {
       highland.day = highland.days[0];
     }
+    highland.getDimensions();
   };
 
   highland.previousSchedule = function () {
@@ -20,5 +21,14 @@ app.controller('HighlandExpressController', ['$scope', function ($scope) {
     } else {
       highland.day = highland.days[highland.days.length - 1];
     }
+    highland.getDimensions();
   };
+
+  highland.getDimensions = function () {
+    var highlandData = $scope.moduleViewData.schedule[highland.day];
+    highland.height = highlandData.times.length * 50 + 100;
+    highland.width = highlandData.destinations.length * 100;
+  };
+
+  highland.getDimensions();
 }]);
