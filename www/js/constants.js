@@ -18,7 +18,7 @@ constant('DefaultModuleSettings', {
     'class': 'one-half'
   },
   'interaction': {
-    'selected': ['athleticsSchedule'],
+    'selected': ['nextMeal'],
     'class': ''
   }
 }).
