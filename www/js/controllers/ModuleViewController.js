@@ -20,20 +20,18 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
     } else {
       throw new ReferenceError("No user credentials found in database.");
     }
-  })
-  .then(function (response) {
+  }).then(function success(response) {
     moduleView.data = response.data.data;
     if (moduleView.data.expiration) {
       delete moduleView.data.expiration;
     }
     $scope.moduleViewData = moduleView.data;
-  }, function (response, status) {
+  }, function error(response, status) {
 
     // Make error message
     try {
       moduleView.errorMessage = twemoji(response);
     } catch (e) {
-
       var respTime = new Date().getTime() - startTime;
       if (respTime >= RequestTimeout.default){
         moduleView.errorMessage = ErrorMessages.timeout;
@@ -43,12 +41,9 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
         moduleView.errorMessage = ErrorMessages.unknown;
       }
     }
-  })
-  .finally(function () {
+  }).finally(function () {
     $timeout(function () {
       moduleView.loading = false;
     }, moduleView.minLoadingTimeMs);
   });
-
-
 }]);
