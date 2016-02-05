@@ -53,6 +53,10 @@ textarea {
     margin-right: 1em;
   }
 }
+// Add correct amount of space at bottom of list
+.list:last-child {
+    margin-bottom: 17px;
+}
 // Reduce header font sizes on tablets and horizontal phones
 @media (min-width: 600px) {
   .scroll-content {
