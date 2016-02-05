@@ -91,7 +91,7 @@ constant('Modules', [
     "endpoint": 'highlandExpress',
     "label": 'Highland Express',
     "icon": 'highland-express-icon',
-    "moduleClass": 'dark-green',
+    "moduleClass": 'gold',
     "prefix": '',
     "suffix": ''
   },
