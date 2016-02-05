@@ -103,5 +103,14 @@ constant('Modules', [
     "moduleClass": 'burgundy',
     "prefix": '',
     "suffix": ''
+  },
+  {
+    "moduleType": 'interaction',
+    "endpoint": 'nextMeal',
+    "label": 'Next Meal',
+    "icon": 'plate-icon',
+    "moduleClass": 'acid-green',
+    "prefix": '',
+    "suffix": ''
   }
 ]);

@@ -1,0 +1,8 @@
+<div class="next-meal">
+  <module-view-header icon="moduleView.icon" label="moduleView.label"></module-view-header>
+  <ion-list class="next-meal-list">
+    <ion-item ng-repeat="item in moduleView.data track by $index">
+      {{item}}
+    </ion-item>
+  </ion-list>
+</div>
