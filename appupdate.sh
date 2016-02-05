@@ -31,6 +31,7 @@ cecho() {
 }
 
 devices=( "iPhone-4s" "iPhone-5" "iPhone-6" "iPhone-6-Plus" "iPad-Air" )
+zoomlevels=( "1" "1" "1" "1" "3" )
 
 cecho cyan "Welcome to AdamVig App Update."
 
@@ -43,11 +44,14 @@ fi
 # Emulate iOS devices
 read -p "Emulate all possible iOS devices? (y/n) " yn
 if [ $yn == "y" ]; then
-  for i in "${devices[@]}"; do
+  for i in "${!devices[@]}"; do
+
+    devicename=${devices[$i]}
+    zoomlevel=${zoomlevels[$i]}
 
     # Emulate device
-    cordova emulate ios --target="$i" >& /dev/null
-    cecho blue "$i emulator started."
+    cordova emulate ios --target="$devicename" >& /dev/null
+    cecho blue "$devicename emulator started. Press Cmd + $zoomlevel to resize."
 
     # Bring iOS simulator window to front
     osascript \
