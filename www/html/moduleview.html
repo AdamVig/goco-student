@@ -4,9 +4,12 @@
   <ion-content class="module-view-content has-header"
     scroll="true"
     overflow-scroll="false">
-    <h3 class="error-message text-center vertical-center"
-      ng-bind-html="moduleView.errorMessage"
-      ng-if="moduleView.errorMessage"></h3>
+    <div class="error-message text-center vertical-center"
+      ng-if="moduleView.errorMessage"
+      ng-click="moduleView.refresh()">
+      <h3 ng-bind-html="moduleView.errorMessage"></h3>
+      <h4>Tap to refresh</h4>
+    </div>
     <goco-loader
       class="center"
       ng-show="moduleView.loading"
