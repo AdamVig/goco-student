@@ -6,7 +6,7 @@
     <ion-refresher
       pulling-text="Pull to refresh..."
       on-refresh="home.refresh()"
-      ng-if="moduleTypeShown == 'info'">
+      ng-show="moduleTypeShown != 'interaction'">
     </ion-refresher>
     <goco-module ng-class="home.moduleSettings[moduleTypeShown].class"
       ng-repeat="module in home.selectedModules"
