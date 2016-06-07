@@ -1,8 +1,8 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
-var sass = require('gulp-ruby-sass');
-var minifyCss = require('gulp-cssnano');
+var sass = require('gulp-sass');
+var minifyCss = require('gulp-clean-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var prefix = require('gulp-autoprefixer');
@@ -21,15 +21,15 @@ var supportedBrowsers = [
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function(done) {
-  sass('./scss/ionic.app.scss')
-    .pipe(gulp.dest('./www/css/'))
-    .pipe(prefix({
-			browsers: supportedBrowsers
-		}))
-    .pipe(minifyCss())
-    .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
+    return gulp.src('./scss/ionic.app.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./www/css/'))
+        .pipe(prefix({
+	    browsers: supportedBrowsers
+	}))
+        .pipe(minifyCss())
+        .pipe(rename({ extname: '.min.css' }))
+        .pipe(gulp.dest('./www/css/'));
 });
 
 gulp.task('watch', function() {
