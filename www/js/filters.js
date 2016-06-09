@@ -1,50 +1,50 @@
-app.filter('titleCase', function () {
+app.filter("titleCase", function () {
   return function (input) {
-    var words = input.split(' ');
+    var words = input.split(" ");
     for (var i = 0; i < words.length; i++) {
       words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
     }
-    return words.join(' ');
+    return words.join(" ");
   };
 }).
-filter('camelCaseToHuman', function () {
+filter("camelCaseToHuman", function () {
   return function (input) {
     return input.replace(/^[a-z]|[A-Z]/g, function (v, i) {
         return i === 0 ? v : " " + v.toLowerCase();
     });
   };
 }).
-filter('camelCaseToDashSeparated', function () {
+filter("camelCaseToDashSeparated", function () {
   return function (input) {
     return input.replace(/^[a-z]|[A-Z]/g, function (v, i) {
         return i === 0 ? v : "-" + v;
     }).toLowerCase();
   };
 }).
-filter('username', function () {
+filter("username", function () {
   return function (username) {
     // Remove email domain if entered
-    if (username.indexOf('@') > -1) {
-      username = username.split('@')[0];
+    if (username.indexOf("@") > -1) {
+      username = username.split("@")[0];
     }
     return username.toLowerCase();
   };
 }).
-filter('password', function () {
+filter("password", function () {
   return function (password, direction) {
-    if (direction === 'encode') {
+    if (direction === "encode") {
       return btoa(password);
-    } else if (direction === 'decode') {
+    } else if (direction === "decode") {
       return atob(password);
     }
   };
 }).
-filter('selectedModules', function () {
+filter("selectedModules", function () {
   return function (allModules, moduleSettings) {
 
     var getModuleObjects = function (modulesList) {
       return allModules.filter(function (module) {
-        return modulesList.indexOf(module.endpoint) != -1;
+        return modulesList.indexOf(module.endpoint) !== -1;
       });
     };
 

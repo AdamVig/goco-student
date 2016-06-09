@@ -1,21 +1,20 @@
-app.service('PopupService', ['$ionicPopup', function ($ionicPopup) {
-  var popupService = this;
+app.service("PopupService", ["$ionicPopup", function ($ionicPopup) {
 
   /**
    * Show a popup
    * @param {String} popupName Name of popup
    * @param {Object} $event      Contains information from ng-click
    */
-  this.showPopup = function (popupName, $event) {
+  this.showPopup = function (popupName) {
 
     var popupConfig = {
       confirmOptOut: {
-        type: 'confirm',
-        title: 'Are you sure you want to opt out?',
-        cancelText: 'No',
-        cancelType: 'button-positive',
-        okText: 'Yes',
-        okType: 'button-stable'
+        type: "confirm",
+        title: "Are you sure you want to opt out?",
+        cancelText: "No",
+        cancelType: "button-positive",
+        okText: "Yes",
+        okType: "button-stable"
       }
     };
 

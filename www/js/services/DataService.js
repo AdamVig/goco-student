@@ -1,8 +1,8 @@
-app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSettings', function ($http, ApiUrl, RequestTimeout, DefaultSettings) {
+app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSettings", function ($http, ApiUrl, RequestTimeout, DefaultSettings) {
 
   /**
    * Retrieve data for user from server using a GET request
-   * @param  {String}   dataType        Type of data to get, ex: 'chapelCredits'
+   * @param  {String}   dataType        Type of data to get, ex: "chapelCredits"
    * @param  {object}   userCredentials Contains username and password
    * @param  {number}   timeout         Custom timeout in milliseconds
    * @param  {function} timeout         Custom timeout function
@@ -10,7 +10,7 @@ app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSetting
    */
   this.get = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + DefaultSettings.appVersion + '/' + dataType.toLowerCase();
+    var url = ApiUrl + DefaultSettings.appVersion + "/" + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -34,7 +34,7 @@ app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSetting
 
   /**
    * Retrieve data for user from server using a POST request
-   * @param  {String}   dataType        Type of data to get, ex: 'chapelCredits'
+   * @param  {String}   dataType        Type of data to get, ex: "chapelCredits"
    * @param  {object}   userCredentials Contains username and password
    * @param  {number}   timeout         Custom timeout in milliseconds
    * @param  {function} timeout         Custom timeout function
@@ -42,7 +42,7 @@ app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSetting
    */
   this.post = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + DefaultSettings.appVersion + '/' + dataType.toLowerCase();
+    var url = ApiUrl + DefaultSettings.appVersion + "/" + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -71,7 +71,7 @@ app.service('DataService', ['$http', 'ApiUrl', 'RequestTimeout', 'DefaultSetting
    */
   this.setProperty = function (userCredentials, property, value) {
 
-    var url = ApiUrl + DefaultSettings.appVersion + '/' + 'setproperty',
+    var url = ApiUrl + DefaultSettings.appVersion + "/" + "setproperty",
         params = userCredentials;
 
     params.property = property;

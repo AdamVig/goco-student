@@ -1,19 +1,19 @@
-app.directive('gocoModule', function () {
+app.directive("gocoModule", function () {
   return {
-    restrict: 'E',
+    restrict: "E",
     scope: {
-      moduleType: '=',
-      endpoint: '=',
-      label: '=',
-      icon: '=',
-      moduleClass: '=',
-      prefix: '=',
-      suffix: '=',
-      moduleControl: '='
+      moduleType: "=",
+      endpoint: "=",
+      label: "=",
+      icon: "=",
+      moduleClass: "=",
+      prefix: "=",
+      suffix: "=",
+      moduleControl: "="
     },
-    templateUrl: 'html/directives/_gocomodule.html',
-    controllerAs: 'module',
-    controller: ['$rootScope', '$scope', '$filter', '$state', '$timeout', 'DataService', 'Modules', 'RequestTimeout', 'ErrorMessages', 'twemoji', 'DbFactory', function ($rootScope, $scope, $filter, $state, $timeout, DataService, Modules, RequestTimeout, ErrorMessages, twemoji, DbFactory) {
+    templateUrl: "html/directives/_gocomodule.html",
+    controllerAs: "module",
+    controller: ["$rootScope", "$scope", "$filter", "$state", "$timeout", "DataService", "Modules", "RequestTimeout", "ErrorMessages", "twemoji", "DbFactory", function ($rootScope, $scope, $filter, $state, $timeout, DataService, Modules, RequestTimeout, ErrorMessages, twemoji, DbFactory) {
 
       var module = this;
       var animationTime = 1500;
@@ -28,10 +28,12 @@ app.directive('gocoModule', function () {
       module.suffix = $scope.suffix;
       module.moduleControl = $scope.moduleControl;
 
-      if (module.endpoint) module.endpoint = module.endpoint.toLowerCase();
+      if (module.endpoint) {
+        module.endpoint = module.endpoint.toLowerCase();
+      }
 
       module.delegateAction = function () {
-        if (module.moduleType == 'info') {
+        if (module.moduleType === "info") {
           module.load();
         } else {
           module.goToView();
@@ -67,8 +69,10 @@ app.directive('gocoModule', function () {
             }
 
             // Get "out of" amount if provided
-            if (response.outof) module.outOf = response.outof;
-          }, function(response, status) {
+            if (response.outof) {
+              module.outOf = response.outof;
+            }
+          }, function(response) {
 
             // Make error message
             try {
@@ -99,21 +103,21 @@ app.directive('gocoModule', function () {
         }
       };
 
-      if (module.moduleType == 'info') {
+      if (module.moduleType === "info") {
         $scope.moduleControl.push(module.load);
       }
 
       module.goToView = function () {
         var params = {
-          'endpoint': module.endpoint,
-          'icon': module.icon,
-          'color': module.moduleClass,
-          'label': module.label
+          "endpoint": module.endpoint,
+          "icon": module.icon,
+          "color": module.moduleClass,
+          "label": module.label
         };
-        $state.go('moduleView', params);
+        $state.go("moduleView", params);
       };
 
-      $rootScope.$on('modules:reset', function () {
+      $rootScope.$on("modules:reset", function () {
         module.data = null;
       });
 

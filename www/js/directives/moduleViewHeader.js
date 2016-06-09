@@ -1,13 +1,13 @@
-app.directive('moduleViewHeader', function () {
+app.directive("moduleViewHeader", function () {
   return {
-    restrict: 'E',
-    templateUrl: 'html/directives/_moduleviewheader.html',
+    restrict: "E",
+    templateUrl: "html/directives/_moduleviewheader.html",
     scope: {
-      'icon': '=',
-      'label': '='
+      "icon": "=",
+      "label": "="
     },
-    controllerAs: 'moduleViewHeader',
-    controller: ['$scope', function ($scope) {
+    controllerAs: "moduleViewHeader",
+    controller: ["$scope", function ($scope) {
 
       var moduleViewHeader = this;
 

@@ -1,12 +1,12 @@
-app.directive('appBanner', function () {
+app.directive("appBanner", function () {
   return {
-    templateUrl: 'html/directives/_appbanner.html',
-    controllerAs: 'appBanner',
-    controller: ['$scope', '$ionicModal', '$interval', 'DataService', 'AppInfoRefreshTime', function ($scope, $ionicModal, $interval, DataService, AppInfoRefreshTime) {
+    templateUrl: "html/directives/_appbanner.html",
+    controllerAs: "appBanner",
+    controller: ["$scope", "$ionicModal", "$interval", "DataService", "AppInfoRefreshTime", function ($scope, $ionicModal, $interval, DataService, AppInfoRefreshTime) {
 
       var appBanner = this;
 
-      $ionicModal.fromTemplateUrl('html/_banner.html', {
+      $ionicModal.fromTemplateUrl("html/_banner.html", {
         scope: $scope
       }).then(function (modal) {
         $scope.bannerModal = modal;
@@ -22,7 +22,7 @@ app.directive('appBanner', function () {
 
       // Refresh app info including banner
       appBanner.refreshAppInfo = function () {
-        DataService.get('AppInfo').then(function (response) {
+        DataService.get("AppInfo").then(function (response) {
           if (response.data.banner.title) {
             $scope.banner = response.data.banner;
           }

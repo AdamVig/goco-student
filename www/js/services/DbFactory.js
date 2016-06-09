@@ -1,14 +1,14 @@
-app.factory('DbFactory', ['$ionicPlatform', '$q', '$filter', '$rootScope', function ($ionicPlatform, $q, $filter, $rootScope) {
+app.factory("DbFactory", ["$ionicPlatform", "$q", function ($ionicPlatform, $q) {
 
   var dbFactory = this;
   var db;
-  var userKey = 'credentials';
-  var settingsKey = 'settings';
-  var modulesKey = 'module_settings';
+  var userKey = "credentials";
+  var settingsKey = "settings";
+  var modulesKey = "module_settings";
 
   // Create database object when device is ready
   var dataPromise = $ionicPlatform.ready(function() {
-    db = Lawnchair({name:'goco', record:'data'});
+    db = Lawnchair({name:"goco", record:"data"}); // jshint ignore:line
   });
 
   /**

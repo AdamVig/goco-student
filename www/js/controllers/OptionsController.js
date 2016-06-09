@@ -1,4 +1,4 @@
-app.controller('OptionsController', ['$scope', 'SettingsFactory', function ($scope, SettingsFactory) {
+app.controller("OptionsController", ["$scope", "SettingsFactory", function ($scope, SettingsFactory) {
   var options = this;
   options.settings = {};
 

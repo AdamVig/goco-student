@@ -1,4 +1,4 @@
-app.factory('ModuleFactory', ['$rootScope', '$timeout', '$filter', 'Modules', 'DefaultSettings', 'DefaultModuleSettings', 'DbFactory', 'SettingsFactory', function ($rootScope, $timeout, $filter, Modules, DefaultSettings, DefaultModuleSettings, DbFactory, SettingsFactory) {
+app.factory("ModuleFactory", ["$rootScope", "$timeout", "$filter", "Modules", "DefaultSettings", "DefaultModuleSettings", "DbFactory", "SettingsFactory", function ($rootScope, $timeout, $filter, Modules, DefaultSettings, DefaultModuleSettings, DbFactory, SettingsFactory) {
 
   var moduleFactory = {};
   var dataPromise;
@@ -12,12 +12,20 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', '$filter', 'Modules', 'D
    * @return {string}            CSS class to use for all modules
    */
   var makeModuleClass = function (numModules) {
-    if (numModules > 5) return 'list-item';
-    else if (numModules == 5) return 'one-fifth';
-    else if (numModules == 4) return 'one-fourth';
-    else if (numModules == 3) return 'one-third';
-    else if (numModules == 2) return 'one-half';
-    else return '';
+    switch (numModules) {
+    case (numModules > 5):
+      return "list-item";
+    case 5:
+      return "one-fifth";
+    case 4:
+      return "one-fourth";
+    case 3:
+      return "one-third";
+    case 2:
+      return "one-half";
+    default:
+      return "";
+    }
   };
 
   /**
@@ -30,7 +38,7 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', '$filter', 'Modules', 'D
     moduleSettings[$rootScope.moduleTypeShown].selected = updatedSelectedModules;
     moduleSettings[$rootScope.moduleTypeShown].class = makeModuleClass(
         updatedSelectedModules.length);
-    $rootScope.$broadcast('modules:updated');
+    $rootScope.$broadcast("modules:updated");
     DbFactory.saveModuleSettings(moduleSettings);
   };
 
@@ -52,7 +60,7 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', '$filter', 'Modules', 'D
    */
   moduleFactory.getSelectedModuleObjects = function () {
     return dataPromise.then(function () {
-      return $filter('selectedModules')(Modules, moduleSettings);
+      return $filter("selectedModules")(Modules, moduleSettings);
     });
   };
 
@@ -80,19 +88,19 @@ app.factory('ModuleFactory', ['$rootScope', '$timeout', '$filter', 'Modules', 'D
    * 1. Get stored app version and stored module settings
    * 2. Use current app version and default module settings if not in database
    */
-  dataPromise = SettingsFactory.get('appVersion').then(function (appVersion) {
+  dataPromise = SettingsFactory.get("appVersion").then(function (appVersion) {
 
     storedAppVersion = appVersion;
     return DbFactory.getModuleSettings();
 
   }).then(function (storedModuleSettings) {
-    if (storedModuleSettings && storedAppVersion == currentAppVersion) {
+    if (storedModuleSettings && storedAppVersion === currentAppVersion) {
       moduleSettings = storedModuleSettings;
     } else {
       moduleSettings = DefaultModuleSettings;
       DbFactory.saveModuleSettings(moduleSettings);
       storedAppVersion = currentAppVersion;
-      SettingsFactory.set('appVersion', currentAppVersion);
+      SettingsFactory.set("appVersion", currentAppVersion);
     }
   });
 

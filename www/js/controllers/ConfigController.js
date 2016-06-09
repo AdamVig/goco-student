@@ -1,4 +1,4 @@
-app.controller('ConfigController', ['$rootScope', '$scope', 'ModuleFactory', 'Modules', function ($rootScope, $scope, ModuleFactory, Modules) {
+app.controller("ConfigController", ["$rootScope", "$scope", "ModuleFactory", "Modules", function ($rootScope, $scope, ModuleFactory, Modules) {
   var config = this;
 
   config.allModules = Modules;
@@ -17,7 +17,7 @@ app.controller('ConfigController', ['$rootScope', '$scope', 'ModuleFactory', 'Mo
   // Add or remove a module from the list of selected modules
   config.updateModules = function (endpoint) {
     var endpointIndex = config.selectedModules.indexOf(endpoint);
-    if (endpointIndex == -1) {
+    if (endpointIndex === -1) {
       config.selectedModules.push(endpoint);
     } else {
       config.selectedModules.splice(endpointIndex, 1);
@@ -27,16 +27,16 @@ app.controller('ConfigController', ['$rootScope', '$scope', 'ModuleFactory', 'Mo
 
   // Tell whether or not an object is selected
   config.isSelected = function (module) {
-    return config.selectedModules.indexOf(module) != -1;
+    return config.selectedModules.indexOf(module) !== -1;
   };
 
   // Tell whether or not an object is the only selected object
   config.isOnlyModule = function (module) {
-    return config.selectedModules.length == 1 && config.isSelected(module);
+    return config.selectedModules.length === 1 && config.isSelected(module);
   };
 
   updateSelectedModules();
-  $scope.$on('modules:typeChanged', function (event, moduleTypeShown) {
+  $scope.$on("modules:typeChanged", function (event, moduleTypeShown) {
     config.moduleTypeShown = moduleTypeShown;
     updateSelectedModules();
   });

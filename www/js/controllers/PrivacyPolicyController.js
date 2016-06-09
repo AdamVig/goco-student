@@ -1,7 +1,7 @@
-app.controller('PrivacyPolicyController', ['$state', 'DataService', 'DbFactory', 'PopupService', function ($state, DataService, DbFactory, PopupService) {
+app.controller("PrivacyPolicyController", ["$state", "DataService", "DbFactory", "PopupService", function ($state, DataService, DbFactory, PopupService) {
 
   var privacyPolicy = this;
-  privacyPolicy.status = 'checking';
+  privacyPolicy.status = "checking";
   privacyPolicy.user = {};
   privacyPolicy.timeout = false;
   privacyPolicy.userCredentials = {};
@@ -15,16 +15,16 @@ app.controller('PrivacyPolicyController', ['$state', 'DataService', 'DbFactory',
 
     // Accept privacy policy
     if (accepted) {
-      DataService.setProperty(privacyPolicy.userCredentials, 'privacyPolicy', 'accepted');
-      $state.go('home');
+      DataService.setProperty(privacyPolicy.userCredentials, "privacyPolicy", "accepted");
+      $state.go("home");
 
     // Deny privacy policy
     } else {
-      PopupService.showPopup('confirmOptOut')
+      PopupService.showPopup("confirmOptOut")
       .then(function (result) {
         if (result) {
-          DataService.setProperty(privacyPolicy.userCredentials, 'privacyPolicy', 'denied');
-          $state.go('home');
+          DataService.setProperty(privacyPolicy.userCredentials, "privacyPolicy", "denied");
+          $state.go("home");
         }
       });
     }

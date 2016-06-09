@@ -1,12 +1,12 @@
-app.directive('gocoLoader', function () {
+app.directive("gocoLoader", function () {
   return {
-    restrict: 'E',
+    restrict: "E",
     scope: {
-      'icon': '='
+      "icon": "="
     },
-    templateUrl: 'html/directives/_gocoloader.html',
-    controllerAs: 'gocoLoader',
-    controller: ['$scope', function ($scope) {
+    templateUrl: "html/directives/_gocoloader.html",
+    controllerAs: "gocoLoader",
+    controller: ["$scope", function ($scope) {
 
       var gocoLoader = this;
 

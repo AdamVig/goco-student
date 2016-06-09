@@ -1,4 +1,4 @@
-app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 'twemoji', 'ErrorMessages', 'DataService', 'RequestTimeout', 'DbFactory', function ($scope, $timeout, $stateParams, twemoji, ErrorMessages, DataService, RequestTimeout, DbFactory) {
+app.controller("ModuleViewController", ["$scope", "$timeout", "$stateParams", "twemoji", "ErrorMessages", "DataService", "RequestTimeout", "DbFactory", function ($scope, $timeout, $stateParams, twemoji, ErrorMessages, DataService, RequestTimeout, DbFactory) {
   var moduleView = this;
   moduleView.minLoadingTimeMs = 500;
   moduleView.data = {};
@@ -7,7 +7,7 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
   moduleView.label = $stateParams.label;
   moduleView.icon = $stateParams.icon;
   moduleView.color = $stateParams.color;
-  moduleView.templateURL = 'html/moduleviews/_' + moduleView.endpoint + '.html';
+  moduleView.templateURL = "html/moduleviews/_" + moduleView.endpoint + ".html";
 
   moduleView.refresh = function () {
     moduleView.errorMessage = null;
@@ -29,7 +29,7 @@ app.controller('ModuleViewController', ['$scope', '$timeout', '$stateParams', 't
         delete moduleView.data.expiration;
       }
       $scope.moduleViewData = moduleView.data;
-    }, function error(response, status) {
+    }, function error(response) {
 
       // Make error message
       try {

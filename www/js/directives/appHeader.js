@@ -1,15 +1,15 @@
-app.directive('appHeader', function () {
+app.directive("appHeader", function () {
   return {
-    restrict: 'E',
+    restrict: "E",
     scope: {
-      'backButton': '=',
-      'allowConfiguration': '='
+      "backButton": "=",
+      "allowConfiguration": "="
     },
-    templateUrl: 'html/directives/_appheader.html',
-    controller: ['$rootScope', '$state', '$scope', '$ionicPopover', '$ionicModal', 'DbFactory', function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, DbFactory) {
+    templateUrl: "html/directives/_appheader.html",
+    controller: ["$rootScope", "$state", "$scope", "$ionicPopover", "$ionicModal", "DbFactory", function ($rootScope, $state, $scope, $ionicPopover, $ionicModal, DbFactory) {
 
       // Prepare menu popover
-      $ionicPopover.fromTemplateUrl('html/_menu.html', {
+      $ionicPopover.fromTemplateUrl("html/_menu.html", {
         scope: $scope,
       }).then(function(popover) {
         $scope.menu = popover;
@@ -24,7 +24,7 @@ app.directive('appHeader', function () {
       };
 
       var configPromise = $ionicModal.fromTemplateUrl(
-        'html/_configuration.html',
+        "html/_configuration.html",
         {scope: $scope})
       .then(function (modal) {
         $scope.configurationModal = modal;
@@ -44,8 +44,8 @@ app.directive('appHeader', function () {
       $scope.logout = function () {
         $scope.hideMenu();
         DbFactory.deleteCredentials();
-        $state.go('login');
-        $rootScope.$broadcast('modules:reset');
+        $state.go("login");
+        $rootScope.$broadcast("modules:reset");
       };
 
       $scope.go = function (destination) {

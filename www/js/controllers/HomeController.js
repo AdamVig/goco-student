@@ -1,4 +1,4 @@
-app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 'ModuleFactory', 'Modules', 'SettingsFactory', 'DbFactory', function ($rootScope, $scope, $state, $timeout, ModuleFactory, Modules, SettingsFactory, DbFactory) {
+app.controller("HomeController", ["$rootScope", "$scope", "$state", "$timeout", "ModuleFactory", "Modules", "SettingsFactory", "DbFactory", function ($rootScope, $scope, $state, $timeout, ModuleFactory, Modules, SettingsFactory, DbFactory) {
 
   var home = this;
   $scope.moduleControl = [];
@@ -13,7 +13,7 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     }).then(function (selectedModuleObjects) {
 
       home.selectedModules = selectedModuleObjects;
-      return SettingsFactory.get('loadOnLaunch');
+      return SettingsFactory.get("loadOnLaunch");
 
     }).then(function (loadOnLaunch) {
       if (loadOnLaunch === true) {
@@ -43,14 +43,14 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
   // Start refresh of all data then hide pull to refresh
   home.refresh = function () {
     home.loadAllModules();
-    $scope.$broadcast('scroll.refreshComplete');
+    $scope.$broadcast("scroll.refreshComplete");
   };
 
-  $scope.$on('modules:updated', home.updateModules);
+  $scope.$on("modules:updated", home.updateModules);
 
   // Update modules on login
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-    if (fromState.name == 'login') {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState) {
+    if (fromState.name === "login") {
       home.updateModules();
       home.loadAllModules();
     }
@@ -60,8 +60,8 @@ app.controller('HomeController', ['$rootScope', '$scope', '$state', '$timeout', 
     if (loggedIn) {
       home.updateModules();
     } else {
-      console.error('No saved credentials. Returning to login screen.');
-      $state.go('login');
+      console.error("No saved credentials. Returning to login screen.");
+      $state.go("login");
     }
   });
 }]);

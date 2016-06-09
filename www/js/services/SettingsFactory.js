@@ -1,4 +1,4 @@
-app.factory('SettingsFactory', ['DefaultSettings', 'DbFactory', function (DefaultSettings, DbFactory) {
+app.factory("SettingsFactory", ["DefaultSettings", "DbFactory", function (DefaultSettings, DbFactory) {
 
   var settingsFactory = this;
 
@@ -56,7 +56,7 @@ app.factory('SettingsFactory', ['DefaultSettings', 'DbFactory', function (Defaul
    */
   settingsFactory.toggle = function (name) {
 
-    if (typeof(_settings[name]) === 'boolean') {
+    if (typeof(_settings[name]) === "boolean") {
       _settings[name] = !_settings[name];
       DbFactory.saveSettings(_settings);
     }
