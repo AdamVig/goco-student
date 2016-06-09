@@ -3,6 +3,7 @@ var minifyCss = require("gulp-clean-css");
 var prefix = require("gulp-autoprefixer");
 var rename = require("gulp-rename");
 var sass = require("gulp-sass");
+var sourcemaps = require("gulp-sourcemaps");
 
 var paths = {
   allSass: ["./scss/**/*.scss"],
@@ -23,9 +24,11 @@ gulp.task("default", ["sass"]);
 
 gulp.task("sass", function () {
   return gulp.src(paths.sassIn)
+    .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
-    .pipe(gulp.dest(paths.cssOut))
     .pipe(prefix(supportedBrowsers))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest(paths.cssOut))
     .pipe(minifyCss())
     .pipe(rename({extname: ".min.css"}))
     .pipe(gulp.dest(paths.cssOut));

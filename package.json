@@ -19,11 +19,12 @@
     "gulp-cssnano": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest",
+    "gulp-sourcemaps": "latest",
     "gulp-util": "latest",
     "memory-cache": "latest",
+    "shelljs": "latest",
     "through2": "latest",
-    "vinyl-sourcemaps-apply": "latest",
-    "shelljs": "latest"
+    "vinyl-sourcemaps-apply": "latest"
   },
   "cordovaPlugins": [
     "org.apache.cordova.inappbrowser",
