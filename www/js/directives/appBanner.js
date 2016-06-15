@@ -22,7 +22,7 @@ app.directive("appBanner", function () {
 
       // Refresh app info including banner
       appBanner.refreshAppInfo = function () {
-        DataService.get("AppInfo").then(function (response) {
+        DataService.get("meta").then(function (response) {
           if (response.data.banner.title) {
             $scope.banner = response.data.banner;
           }
