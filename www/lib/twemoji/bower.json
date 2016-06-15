@@ -1,7 +1,6 @@
 {
   "name": "twemoji",
   "description": "A Unicode standard based way to implement emoji across all platforms.",
-  "version": "v1.4.0",
   "main": "./twemoji.amd.js",
   "ignore": [
     ".git",
@@ -32,6 +31,7 @@
     "test",
     "tests"
   ],
+  "twemoji": "git://github.com/twitter/twemoji.git#gh-pages",
   "homepage": "https://github.com/twitter/twemoji",
   "authors": [
     "Twitter, Inc."

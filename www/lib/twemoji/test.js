@@ -514,4 +514,43 @@ wru.test([{
     wru.assert('correct length', div.getElementsByTagName('img').length === 0);
     wru.assert('expected html', div.innerHTML === '"\u2b1c\uFE0E"');
   }
+}, {
+  name: 'SVG Elements are ignored',
+  test: function () {
+    if (typeof SVGElement !== 'undefined') {
+      var innerHTML, div = document.createElement('div');
+      div.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40">' +
+        '<switch>' +
+          '<circle cx="20" cy="20" r="18" stroke="grey" stroke-width="2" fill="#99FF66" />' +
+          '<foreignObject>' +
+            '<div>I \u2764 emoji!</div>' +
+          '</foreignObject>' +
+        '</switch>' +
+      '</svg>';
+      // grab the normalized one
+      innerHTML = div.innerHTML;
+      twemoji.parse(div);
+      wru.assert('nothing changed', innerHTML === div.innerHTML);
+    } else {
+      wru.assert('nothing to do here');
+    }
+  }
+}, {
+  name: 'using a different onerror',
+  test: function () {
+    var Image = window.Image;
+    window.Image = function () {
+      var self = new Image;
+      setTimeout(function () {
+        window.Image = Image;
+        self.onerror();
+      }, 10);
+      return self;
+    };
+    var div = document.createElement('div');
+    div.innerHTML = '5\ufe0f\u20e3';
+    twemoji.parse(div, {onerror: wru.async(function () {
+      wru.assert('OK');
+    })});
+  }
 }]);

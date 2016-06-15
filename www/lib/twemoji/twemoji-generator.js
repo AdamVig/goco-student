@@ -516,8 +516,8 @@ function createTwemoji(re) {
         // used to find HTML special chars in attributes
         rescaper = /[&<>'"]/g,
 
-        // nodes with type 1 which should **not** be parsed
-        shouldntBeParsed = /IFRAME|NOFRAMES|NOSCRIPT|SCRIPT|SELECT|STYLE|TEXTAREA/,
+        // nodes with type 1 which should **not** be parsed (including lower case svg)
+        shouldntBeParsed = /IFRAME|NOFRAMES|NOSCRIPT|SCRIPT|SELECT|STYLE|TEXTAREA|[a-z]/,
 
         // just a private shortcut
         fromCharCode = String.fromCharCode;
@@ -664,7 +664,7 @@ function createTwemoji(re) {
               );
               if (src) {
                 img = new Image();
-                img.onerror = twemoji.onerror;
+                img.onerror = options.onerror;
                 img.setAttribute('draggable', 'false');
                 attrib = options.attributes(icon, variant);
                 for (attrname in attrib) {
@@ -828,7 +828,8 @@ function createTwemoji(re) {
           base:       typeof how.base === 'string' ? how.base : twemoji.base,
           ext:        how.ext || twemoji.ext,
           size:       how.folder || toSizeSquaredAsset(how.size || twemoji.size),
-          className:  how.className || twemoji.className
+          className:  how.className || twemoji.className,
+          onerror:    how.onerror || twemoji.onerror
         });
       }
 
