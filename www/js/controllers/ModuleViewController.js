@@ -4,6 +4,7 @@ app.controller("ModuleViewController", ["$scope", "$timeout", "$stateParams", "t
   moduleView.data = {};
 
   moduleView.endpoint = $stateParams.endpoint;
+  moduleView.httpMethod = $stateParams.httpMethod;
   moduleView.label = $stateParams.label;
   moduleView.icon = $stateParams.icon;
   moduleView.color = $stateParams.color;
@@ -19,7 +20,16 @@ app.controller("ModuleViewController", ["$scope", "$timeout", "$stateParams", "t
     DbFactory.getCredentials().then(function (userCredentials) {
       if (userCredentials) {
         hasCredentials = true;
-        return DataService.post(moduleView.endpoint, userCredentials);
+
+        // Use HTTP method specified in module configuration
+        if (moduleView.httpMethod === "post") {
+          return DataService.post(moduleView.endpoint, userCredentials);
+        } else if (moduleView.httpMethod === "get") {
+          return DataService.get(moduleView.endpoint);
+        } else {
+          throw new Error("Method " + moduleView.httpMethod + " not supported.");
+        }
+
       } else {
         throw new ReferenceError("No user credentials found in database.");
       }

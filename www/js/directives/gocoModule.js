@@ -119,8 +119,10 @@ app.directive("gocoModule", function () {
       }
 
       module.goToView = function () {
+        // Parameter names must also be added to URL in router
         var params = {
           "endpoint": module.endpoint,
+          "httpMethod": module.httpMethod,
           "icon": module.icon,
           "color": module.moduleClass,
           "label": module.label
