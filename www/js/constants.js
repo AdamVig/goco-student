@@ -25,6 +25,7 @@ constant("DefaultModuleSettings", {
 constant("Modules", [
   {
     "moduleType": "info",
+    "httpMethod": "post",
     "endpoint": "chapelCredits",
     "label": "CL&W Credits",
     "icon": "chapel-icon",
@@ -34,6 +35,7 @@ constant("Modules", [
   },
   {
     "moduleType": "info",
+    "httpMethod": "post",
     "endpoint": "mealPoints",
     "label": "Mealpoints",
     "icon": "meal-points-icon",
@@ -43,6 +45,7 @@ constant("Modules", [
   },
   {
     "moduleType": "info",
+    "httpMethod": "post",
     "endpoint": "mealPointsPerDay",
     "label": "Mealpoints Left/Day",
     "icon": "calculator-icon",
@@ -52,6 +55,7 @@ constant("Modules", [
   },
   {
     "moduleType": "info",
+    "httpMethod": "get",
     "endpoint": "daysLeftInSemester",
     "label": "Days Left In Semester",
     "icon": "calendar-icon",
@@ -61,6 +65,7 @@ constant("Modules", [
   },
   {
     "moduleType": "info",
+    "httpMethod": "post",
     "endpoint": "studentID",
     "label": "Student ID",
     "icon": "person-icon",
@@ -70,6 +75,7 @@ constant("Modules", [
   },
   {
     "moduleType": "info",
+    "httpMethod": "get",
     "endpoint": "temperature",
     "label": "Temperature",
     "icon": "thermometer-icon",
@@ -79,6 +85,7 @@ constant("Modules", [
   } ,
   {
     "moduleType": "interaction",
+    "httpMethod": "post",
     "endpoint": "chapelEvents",
     "label": "CL&W Events",
     "icon": "bible-icon",
@@ -88,6 +95,7 @@ constant("Modules", [
   },
   {
     "moduleType": "interaction",
+    "httpMethod": "get",
     "endpoint": "highlandExpress",
     "label": "Highland Express",
     "icon": "highland-express-icon",
@@ -97,6 +105,7 @@ constant("Modules", [
   },
   {
     "moduleType": "interaction",
+    "httpMethod": "get",
     "endpoint": "athleticsSchedule",
     "label": "Athletics Schedule",
     "icon": "fighting-scots-icon",
@@ -106,6 +115,7 @@ constant("Modules", [
   },
   {
     "moduleType": "interaction",
+    "httpMethod": "post",
     "endpoint": "nextMeal",
     "label": "Next Meal",
     "icon": "plate-icon",

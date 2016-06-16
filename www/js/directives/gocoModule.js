@@ -3,6 +3,7 @@ app.directive("gocoModule", function () {
     restrict: "E",
     scope: {
       moduleType: "=",
+      httpMethod: "=",
       endpoint: "=",
       label: "=",
       icon: "=",
@@ -20,6 +21,7 @@ app.directive("gocoModule", function () {
       module.loading = null;
 
       module.moduleType = $scope.moduleType;
+      module.httpMethod = $scope.httpMethod;
       module.endpoint = $scope.endpoint;
       module.label = $scope.label;
       module.icon = $scope.icon;
