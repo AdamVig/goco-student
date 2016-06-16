@@ -1,5 +1,4 @@
-//app.constant('ApiUrl', 'https://gocostudent.adamvig.com/api/").
-app.constant("ApiUrl", "http://local.dev:4626/api/").
+app.constant("ApiUrl", "https://gocostudent.adamvig.com/api/").
 constant("RequestTimeout", {
   "default": 25000
 }).
