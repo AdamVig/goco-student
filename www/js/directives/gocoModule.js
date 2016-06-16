@@ -57,7 +57,16 @@ app.directive("gocoModule", function () {
           DbFactory.getCredentials().then(function (userCredentials) {
             if (userCredentials) {
               hasCredentials = true;
-              return DataService.post(module.endpoint, userCredentials);
+
+              // Use HTTP method specified in module configuration
+              if (module.httpMethod === "post") {
+                return DataService.post(module.endpoint, userCredentials);
+              } else if (module.httpMethod === "get") {
+                return DataService.get(module.endpoint);
+              } else {
+                throw new Error("Method " + module.httpMethod + " not supported.");
+              }
+
             } else {
               throw new ReferenceError("No user credentials found in database.");
             }
