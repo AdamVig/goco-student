@@ -62,7 +62,8 @@ app.directive("gocoModule", function () {
               if (module.httpMethod === "post") {
                 return DataService.post(module.endpoint, userCredentials);
               } else if (module.httpMethod === "get") {
-                return DataService.get(module.endpoint);
+                return DataService.get(module.endpoint,
+                                       userCredentials.username);
               } else {
                 throw new Error("Method " + module.httpMethod + " not supported.");
               }

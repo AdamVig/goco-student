@@ -2,7 +2,7 @@ app.directive("appBanner", function () {
   return {
     templateUrl: "html/directives/_appbanner.html",
     controllerAs: "appBanner",
-    controller: ["$scope", "$ionicModal", "$interval", "DataService", "AppInfoRefreshTime", function ($scope, $ionicModal, $interval, DataService, AppInfoRefreshTime) {
+    controller: ["$scope", "$ionicModal", "$interval", "DataService", "DbFactory", "AppInfoRefreshTime", function ($scope, $ionicModal, $interval, DataService, DbFactory, AppInfoRefreshTime) {
 
       var appBanner = this;
 
@@ -22,9 +22,11 @@ app.directive("appBanner", function () {
 
       // Refresh app info including banner
       appBanner.refreshAppInfo = function () {
-        DataService.get("meta").then(function (response) {
-          if (response.data.banner.title) {
-            $scope.banner = response.data.banner;
+        DbFactory.getCredentials().then(function (userCredentials) {
+          return DataService.get("message", userCredentials.username);
+        }).then(function (response) {
+          if (response.data.enabled) {
+            $scope.banner = response.data;
           }
         });
       };

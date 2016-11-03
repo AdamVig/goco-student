@@ -3,13 +3,14 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
   /**
    * Retrieve data for user from server using a GET request
    * @param  {String}   dataType        Type of data to get, ex: "chapelCredits"
+   * @param  {String}   username        Username of logged in user
    * @param  {number}   timeout         Custom timeout in milliseconds
    * @param  {function} timeout         Custom timeout function
    * @return {promise}                  Fulfilled by response from server
    */
-  this.get = function (dataType, timeout) {
+  this.get = function (dataType, username, timeout) {
 
-    var url = ApiUrl + DefaultSettings.appVersion + "/" + dataType.toLowerCase();
+    var url = ApiUrl + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -24,7 +25,8 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
       headers: {
         "X-Platform": ionic.Platform.platform(),
         "X-Platform-Version": ionic.Platform.version()
-      }
+      },
+      params: {username: username}
     };
 
     return $http.get(url, config);
@@ -40,7 +42,7 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
    */
   this.post = function (dataType, userCredentials, timeout) {
 
-    var url = ApiUrl + DefaultSettings.appVersion + "/" + dataType.toLowerCase();
+    var url = ApiUrl + dataType.toLowerCase();
 
     // Prepare timeout $q instance
     if (timeout) {
@@ -61,26 +63,34 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
     return $http.post(url, JSON.stringify(userCredentials), config);
   };
 
-  /**
-   * Set property in user data
-   * @param {object} userCredentials Contains username and password
-   * @param {String} property        Name of property to set
-   * @param {String} value           Value of property to set
+    /**
+   * Modify data on server using a PUT request
+   * @param  {String}   url        Relative URL to access
+   * @param  {object}   userData Contains username and password
+   * @param  {number}   timeout         Custom timeout in milliseconds
+   * @param  {function} timeout         Custom timeout function
+   * @return {promise}                  Fulfilled by response from server
    */
-  this.setProperty = function (userCredentials, property, value) {
+  this.put = function (url, userData, timeout) {
 
-    var url = ApiUrl + DefaultSettings.appVersion + "/" + "setproperty",
-        params = userCredentials;
+    var url = ApiUrl + url.toLowerCase();
 
-    params.property = property;
-    params.value = value;
+    // Prepare timeout $q instance
+    if (timeout) {
+      if (timeout.promise) {
+        timeout = timeout.promise;
+      }
+    }
 
     // Request configuration
     var config = {
-      params: params,
-      timeout: RequestTimeout.default
+      timeout: timeout || RequestTimeout.default,
+      headers: {
+        "X-Platform": ionic.Platform.platform(),
+        "X-Platform-Version": ionic.Platform.version()
+      }
     };
 
-    return $http.get(url, config);
+    return $http.put(url, JSON.stringify(userData), config);
   };
 }]);

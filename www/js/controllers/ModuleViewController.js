@@ -25,7 +25,7 @@ app.controller("ModuleViewController", ["$scope", "$timeout", "$stateParams", "t
         if (moduleView.httpMethod === "post") {
           return DataService.post(moduleView.endpoint, userCredentials);
         } else if (moduleView.httpMethod === "get") {
-          return DataService.get(moduleView.endpoint);
+          return DataService.get(moduleView.endpoint, userCredentials.username);
         } else {
           throw new Error("Method " + moduleView.httpMethod + " not supported.");
         }
