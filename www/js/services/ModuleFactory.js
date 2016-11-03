@@ -13,8 +13,6 @@ app.factory("ModuleFactory", ["$rootScope", "$timeout", "$filter", "Modules", "D
    */
   var makeModuleClass = function (numModules) {
     switch (numModules) {
-    case (numModules > 5):
-      return "list-item";
     case 5:
       return "one-fifth";
     case 4:
@@ -23,8 +21,10 @@ app.factory("ModuleFactory", ["$rootScope", "$timeout", "$filter", "Modules", "D
       return "one-third";
     case 2:
       return "one-half";
-    default:
+    case 1:
       return "";
+    default:
+      return "list-item";
     }
   };
 
