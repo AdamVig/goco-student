@@ -1,5 +1,5 @@
 {
-  "name": "GoCo Student",
+  "name": "goco-student",
   "private": "true",
   "devDependencies": {
     "ionic": "driftyco/ionic-bower#latest"
