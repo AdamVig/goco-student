@@ -24,10 +24,10 @@ gulp.task("default", ["sass"]);
 
 gulp.task("sass", function () {
   return gulp.src(paths.sassIn)
-    .pipe(sourcemaps.init())
+//    .pipe(sourcemaps.init())
     .pipe(sass().on("error", sass.logError))
     .pipe(prefix(supportedBrowsers))
-    .pipe(sourcemaps.write())
+//    .pipe(sourcemaps.write())
     .pipe(gulp.dest(paths.cssOut))
     .pipe(minifyCss())
     .pipe(rename({extname: ".min.css"}))
