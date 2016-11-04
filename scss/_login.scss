@@ -40,7 +40,11 @@
       @extend .horizontal-center;
       width: 75%;
       .login-loader {
-        font-size: 1.5rem;
+        display: block;
+        height: 47px;
+        & > svg {
+          margin-top: 10px;
+        }
       }
     }
   }
