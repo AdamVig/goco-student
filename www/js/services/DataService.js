@@ -1,5 +1,11 @@
 app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSettings", function ($http, ApiUrl, RequestTimeout, DefaultSettings) {
 
+  this.headers = {
+    "X-Platform": ionic.Platform.platform(),
+    "X-Platform-Version": ionic.Platform.version(),
+    "X-App-Version": DefaultSettings.appVersion
+  };
+
   /**
    * Retrieve data for user from server using a GET request
    * @param  {String}   dataType        Type of data to get, ex: "chapelCredits"
@@ -22,10 +28,7 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
     // Request configuration
     var config = {
       timeout: timeout || RequestTimeout.default,
-      headers: {
-        "X-Platform": ionic.Platform.platform(),
-        "X-Platform-Version": ionic.Platform.version()
-      },
+      headers: this.headers,
       params: {username: username}
     };
 
@@ -54,10 +57,7 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
     // Request configuration
     var config = {
       timeout: timeout || RequestTimeout.default,
-      headers: {
-        "X-Platform": ionic.Platform.platform(),
-        "X-Platform-Version": ionic.Platform.version()
-      }
+      headers: this.headers
     };
 
     return $http.post(url, JSON.stringify(userCredentials), config);
@@ -85,10 +85,7 @@ app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSetting
     // Request configuration
     var config = {
       timeout: timeout || RequestTimeout.default,
-      headers: {
-        "X-Platform": ionic.Platform.platform(),
-        "X-Platform-Version": ionic.Platform.version()
-      }
+      headers: this.headers
     };
 
     return $http.put(url, JSON.stringify(userData), config);
