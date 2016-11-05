@@ -25,8 +25,8 @@ app.directive("appBanner", function () {
         DbFactory.getCredentials().then(function (userCredentials) {
           return DataService.get("message", userCredentials.username);
         }).then(function (response) {
-          if (response.data.enabled) {
-            $scope.banner = response.data;
+          if (response.data.data.active) {
+            $scope.banner = response.data.data;
           }
         });
       };
