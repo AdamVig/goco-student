@@ -1,9 +1,10 @@
-app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSettings", function ($http, ApiUrl, RequestTimeout, DefaultSettings) {
+app.service("DataService", ["$http", "ApiUrl", "RequestTimeout", "DefaultSettings", "ApiVersion", function ($http, ApiUrl, RequestTimeout, DefaultSettings, ApiVersion) {
 
   this.headers = {
     "X-Platform": ionic.Platform.platform(),
     "X-Platform-Version": ionic.Platform.version(),
-    "X-App-Version": DefaultSettings.appVersion
+    "X-App-Version": DefaultSettings.appVersion,
+    "Accept-Version": ApiVersion
   };
 
   /**

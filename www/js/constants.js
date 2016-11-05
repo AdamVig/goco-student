@@ -1,4 +1,5 @@
 app.constant("ApiUrl", "https://gocostudent.adamvig.com/api/").
+constant("ApiVersion", "~0").
 constant("RequestTimeout", {
   "default": 25000
 }).
