@@ -1,6 +1,6 @@
 {
   "name": "goco-student",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "GoCo Student: An Ionic project",
   "repository": {
     "type": "git",
@@ -28,11 +28,11 @@
       "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
       "id": "cordova-plugin-whitelist"
     },
-    "cordova-plugin-crosswalk-webview",
     "cordova-plugin-splashscreen",
     "https://github.com/litehelpers/Cordova-sqlite-storage.git",
     "ionic-plugin-keyboard",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "cordova-plugin-crosswalk-webview"
   ],
   "cordovaPlatforms": [
     "ios",

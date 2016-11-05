@@ -11,7 +11,7 @@ constant("ErrorMessages", {
 }).
 constant("DefaultSettings", {
   "loadOnLaunch": true,
-  "appVersion": "2.6.0"
+  "appVersion": "2.7.0"
 }).
 constant("DefaultModuleSettings", {
   "info": {
@@ -19,8 +19,8 @@ constant("DefaultModuleSettings", {
     "class": "one-half"
   },
   "interaction": {
-    "selected": ["nextMeal"],
-    "class": ""
+    "selected": ["chapelEvents", "nextMeal"],
+    "class": "one-half"
   }
 }).
 constant("Modules", [
