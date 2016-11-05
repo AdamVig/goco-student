@@ -60,6 +60,7 @@ app.controller("ModuleViewController", ["$scope", "$timeout", "$stateParams", "t
       $timeout(function () {
         moduleView.loading = false;
       }, moduleView.minLoadingTimeMs);
+      $scope.$broadcast("scroll.refreshComplete");
     });
   };
 

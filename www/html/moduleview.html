@@ -2,8 +2,12 @@
   <app-header back-button="true"
     allow-configuration="false"></app-header>
   <ion-content class="module-view-content has-header"
-    scroll="true"
-    overflow-scroll="false">
+               scroll="true"
+               overflow-scroll="false">
+    <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="moduleView.refresh()">
+    </ion-refresher>
     <div class="error-message text-center vertical-center"
       ng-if="moduleView.errorMessage"
       ng-click="moduleView.refresh()">
